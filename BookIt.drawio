@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-04-29T13:54:53.639Z" agent="5.0 (Macintosh; Intel Mac OS X 11_2_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36" etag="KPsxic_3xFpY5ljqM1pU" version="14.4.8" type="github">
+<mxfile host="app.diagrams.net" modified="2021-04-29T13:55:27.830Z" agent="5.0 (Macintosh; Intel Mac OS X 11_2_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36" etag="kwpPuib-Fqm51l9rKE9T" version="14.4.8" type="github">
   <diagram id="dgWKxW_PN67MSb6J2tfW" name="Page-1">
     <mxGraphModel dx="1426" dy="754" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -7,10 +7,10 @@
         <mxCell id="zfBXquAkik9O-GY_uFJq-1" value="" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.containers.browserWindow;rSize=0;strokeColor=#666666;strokeColor2=#008cff;strokeColor3=#c4c4c4;mainText=,;recursiveResize=0;" vertex="1" parent="1">
           <mxGeometry x="10" y="40" width="790" height="560" as="geometry" />
         </mxCell>
-        <mxCell id="zfBXquAkik9O-GY_uFJq-2" value="Page 1" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.containers.anchor;fontSize=17;fontColor=#666666;align=left;" vertex="1" parent="zfBXquAkik9O-GY_uFJq-1">
+        <mxCell id="zfBXquAkik9O-GY_uFJq-2" value="BookIT" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.containers.anchor;fontSize=17;fontColor=#666666;align=left;" vertex="1" parent="zfBXquAkik9O-GY_uFJq-1">
           <mxGeometry x="60" y="12" width="110" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="zfBXquAkik9O-GY_uFJq-3" value="https://www.draw.io" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.containers.anchor;rSize=0;fontSize=17;fontColor=#666666;align=left;" vertex="1" parent="zfBXquAkik9O-GY_uFJq-1">
+        <mxCell id="zfBXquAkik9O-GY_uFJq-3" value="https://www.bookit.se" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.containers.anchor;rSize=0;fontSize=17;fontColor=#666666;align=left;" vertex="1" parent="zfBXquAkik9O-GY_uFJq-1">
           <mxGeometry x="130" y="60" width="250" height="26" as="geometry" />
         </mxCell>
         <mxCell id="zfBXquAkik9O-GY_uFJq-4" value="" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.forms.rrect;rSize=0;strokeColor=#999999;fillColor=#ffffff;" vertex="1" parent="zfBXquAkik9O-GY_uFJq-1">
