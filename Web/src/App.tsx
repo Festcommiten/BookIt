@@ -1,25 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import './utils/global/Global.css';
+import HomeView from './view/HomeView';
 
 function App() {
 	return (
-		<div className="App">
-			<header className="App-header">
-				<img src={ logo } className="App-logo" alt="logo"/>
-				<h1>
-					CI/CD Project - BookIt
-				</h1>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Learn React
-				</a>
-			</header>
-		</div>
+		<>
+			<HomeView />
+		</>
 	);
 }
 
