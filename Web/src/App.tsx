@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import Footer from './components/Footer';
 import './utils/global/Global.css';
 import HomeView from './view/HomeView';
 // import {
@@ -15,7 +16,8 @@ import HomeView from './view/HomeView';
 function App() {
 	return (
 		<>
-			<HomeView />
+			<HomeView/>
+			<Footer/>
 		</>
 	);
 }
