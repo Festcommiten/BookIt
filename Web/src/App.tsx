@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Footer from './components/Footer';
 import './utils/global/Global.css';
+import Navbar from './components/Navbar';
 import HomeView from './view/HomeView';
 // import {
 // 	BrowserRouter as Router,
@@ -16,6 +17,7 @@ import HomeView from './view/HomeView';
 function App() {
 	return (
 		<>
+			<Navbar/>
 			<HomeView/>
 			<Footer/>
 		</>
