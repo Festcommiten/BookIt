@@ -4,7 +4,7 @@ export default function HomeView() {
 	return (
 		<main>
 			<h1>
-				CI/CD Project - BookIt
+				HomeView
 			</h1>
 		</main>
 	);

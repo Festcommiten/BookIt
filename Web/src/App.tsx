@@ -1,15 +1,11 @@
 import React from 'react';
+import 'tachyons';
 import './App.css';
 import Footer from './components/Footer';
-import './utils/global/Global.css';
 import Navbar from './components/Navbar';
-import HomeView from './view/HomeView';
-// import {
-// 	BrowserRouter as Router,
-// 	Switch,
-// 	Route,
-// 	Link
-// } from "react-router-dom";
+import Routing from './routes/Routing';
+import './utils/global/Global.css';
+
 // import axios from 'axios';
 // import Button from '@material-ui/core/Button';
 // import { Calendar, momentLocalizer } from 'react-big-calendar'
@@ -17,8 +13,9 @@ import HomeView from './view/HomeView';
 function App() {
 	return (
 		<>
-			<Navbar/>
-			<HomeView/>
+			<Routing>
+				<Navbar/>
+			</Routing>
 			<Footer/>
 		</>
 	);
