@@ -11,7 +11,7 @@ class HomeView extends Component {
 			{
 				start: moment().toDate(),
 				end: moment()
-					.add(1, 'days')
+					.add(1, 'hours')
 					.toDate(),
 				title: 'Some title'
 			}
@@ -21,15 +21,12 @@ class HomeView extends Component {
 	render() {
 		return (
 		<main>
-			<h1>
-				HomeView
-			</h1>
 			<Calendar
 				localizer={localizer}
 				defaultDate={new Date()}
 				defaultView="week"
 				events={this.state.events}
-				style={{ height: "100vh" }}
+				style={{ height: "75vh" }}
 			/>
 		</main>
 		);
