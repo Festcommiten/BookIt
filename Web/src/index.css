@@ -13,7 +13,7 @@ body {
 }
 
 main {
-    margin-top: 95px;
+    margin-top: 110px;
 }
 
 @font-face {
@@ -24,6 +24,11 @@ main {
 @font-face {
     font-family: 'Alegreya Sans Regular';
     src: local('Alegreya Sans Regular'), url('./utils/global/fonts/AlegreyaSans/AlegreyaSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Alegreya Sans Bold';
+    src: local('Alegreya Sans Bold'), url('./utils/global/fonts/AlegreyaSans/AlegreyaSans-Bold.ttf') format('truetype');
 }
 
 h1 {
@@ -62,3 +67,12 @@ h3 {
     color: var(--thirdley-color);
 }
 
+.primary_button {
+    margin: 15px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: none;
+    background-color: var(--primary-color);
+    color: #F8F8F8;
+    font-family: 'Alegreya Sans Bold', serif;
+}
