@@ -194,18 +194,18 @@ Bad request:
 ```
 
 # Git-Policy
-- För att få merga till Dev branch så får filen/filerna/mapperna inte vara tomma.
+- För att få merga till Dev branch så får filen/filerna/mapparna inte vara tomma.
 
-- Du får inte slutföra pull requesten själv.
+- Du får **inte** slutföra pull requesten själv.
 
-- Innan något pushas till main så ska alla tester i test branchen gå igenom.
+- Innan något pushas till main så ska alla tester gå igenom.
 
-- När du skapar en pull request så flyttar du respektive kort på Jira till Testing och ber någon kolla igenom pull requesten innan kortet går till Done.
+- När du skapar en pull request så flyttar du respektive kort på Jira till **Git Merge Request** och ber någon kolla igenom pull requesten innan kortet flyttas till **Done**.
 
 - För att få sätta upp en egen branch så ska det finnas ett kort på Jira relaterat till.
 
-- Struktur för hur en ny branch heta och ska heta respektive till vilket kort du gjort. Exempel: "feat-this-is-my-card".
+- Struktur för hur en ny branch heta och ska heta respektive till vilket kort du gör/gjort. Exempel: **"feat-this-is-my-card"**.
 
-- Dina commits ska ha relaterad information till ändringar som skett.
+- Dina commits ska ha **__relaterad__** information till ändringar som skett.
 
 
