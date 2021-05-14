@@ -19,6 +19,7 @@ url: `/v1/new_booking`
 {
   "id": "1",
   "room": "room1",
+  "booking-company": "Company1",
   "booker": "user1",
   "start_time": "date string",
   "end_time": "date string"
@@ -62,6 +63,7 @@ Success:
     {
       "id": "1",
       "room": "room1",
+      "booking-company": "Company1",
       "booker": "user1",
       "start_time": "2021-05-16:16:00:00",
       "end_time": "date moment object"
@@ -69,6 +71,7 @@ Success:
     {
       "id": "2",
       "room": "room2",
+      "booking-company": "Company1",
       "booker": "user2",
       "start_time": "date moment object",
       "end_time": "date moment object"
@@ -103,6 +106,7 @@ Success:
     {
       "id": "1",
       "room": "room1",
+      "booking-company": "Company1",
       "booker": "user1",
       "start_time": "2021-05-16:16:00:00",
       "end_time": "date moment object"
@@ -110,6 +114,7 @@ Success:
     {
       "id": "2",
       "room": "room1",
+      "booking-company": "Company1",
       "booker": "user2",
       "start_time": "date moment object",
       "end_time": "date moment object"
@@ -141,6 +146,7 @@ API url: `/v1/update_booking`
   "id": "1",
   "room": "room2",
   "booker": "user1",
+  "booking-company": "Company1",
   "start_time": "2021-05-16:17:00:00",
   "end_time": "date moment object"
 }
