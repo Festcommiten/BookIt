@@ -17,7 +17,6 @@ url: `/v1/new_booking`
 
 ```json
 {
-  "id": "1",
   "room": "room1",
   "booking-company": "Company1",
   "booker": "user1",
