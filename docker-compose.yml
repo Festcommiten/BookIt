@@ -1,0 +1,10 @@
+version: '3'
+services:
+   web:
+    build: ./web
+    links:
+      - Db
+   db:
+    build: ./Db
+
+    ###just a example for now 
