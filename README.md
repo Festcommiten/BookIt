@@ -1,10 +1,14 @@
 # BookIt
 
-- This is our README file
+- [CRUD](#API-Data-Structure)
+    - [New-Booking](#New-Booking)
+    - [Read-bookings](#Read-bookings-from-backend)
+    - [Update-booking](#Update-a-booking)
+    - [Delete-booking](#Delete-booking)
+- [Git-Policy](#Git-Policy)
+# API-Data-Structure
 
-# API Data Structure
-
-# New Booking
+## **New-Booking**
 
 ### Request
 
@@ -41,7 +45,7 @@ Bad request:
 }
 ```
 
-# Get bookings from backend
+## **Read-bookings-from-backend**
 
 ### Request
 
@@ -125,7 +129,7 @@ Bad request:
 }
 ```
 
-# Update a booking
+## **Update-a-booking**
 
 HTTP Method: `PUT`  
 API url: `/v1/update_booking`
@@ -162,7 +166,7 @@ Bad request:
 }
 ```
 
-# Delete booking
+## **Delete-booking**
 
 ### Request
 
@@ -188,3 +192,20 @@ Bad request:
   "message": "Bad Request"
 }
 ```
+
+# Git-Policy
+- För att få merga till Dev branch så får filen/filerna/mapparna inte vara tomma.
+
+- Du får **inte** slutföra pull requesten själv.
+
+- Innan något pushas till main så ska alla tester gå igenom.
+
+- När du skapar en pull request så flyttar du respektive kort på Jira till **Git Merge Request** och ber någon kolla igenom pull requesten innan kortet flyttas till **Done**.
+
+- För att få sätta upp en egen branch så ska det finnas ett kort på Jira relaterat till.
+
+- Struktur för hur en ny branch heta och ska heta respektive till vilket kort du gör/gjort. Exempel: **"feat-this-is-my-card"**.
+
+- Dina commits ska ha **__relaterad__** information till ändringar som skett.
+
+
