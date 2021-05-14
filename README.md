@@ -194,15 +194,15 @@ Bad request:
 ```
 
 # Git-Policy
-- För att få merga till Dev branch så får filen/filerna/mapparna inte vara tomma.
+- För att få merga till Dev branch så får filen/filerna/mapparna **inte vara tomma**.
 
 - Du får **inte** slutföra pull requesten själv.
 
 - Innan något pushas till main så ska alla tester gå igenom.
 
-- När du skapar en pull request så flyttar du respektive kort på Jira till **Git Merge Request** och ber någon kolla igenom pull requesten innan kortet flyttas till **Done**.
+- När du vill commita till AzureDevops så måste du **länka** det till ett kort relaterat till vad du gjort och sedan flytta detta kort från **Git Merge Request** till **Done**
 
-- För att få sätta upp en egen branch så ska det finnas ett kort på Jira relaterat till.
+- För att få sätta upp en egen branch så ska det finnas ett kort på AzureDevops relaterat till.
 
 - Struktur för hur en ny branch heta och ska heta respektive till vilket kort du gör/gjort. Exempel: **"feat-this-is-my-card"**.
 
