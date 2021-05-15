@@ -1,10 +1,13 @@
+# Med dessa instruktioner bygger docker-compose en container-image för appen 
+# och en container-image för mongodb
 version: '3'
 services:
-   web:
-    build: ./web
+   app:
+    build: ./App
+    ports:
+      - "5000:5000"
     links:
-      - Db
+      - db
    db:
     build: ./Db
 
-    ###just a example for now 
