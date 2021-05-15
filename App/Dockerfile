@@ -1,3 +1,5 @@
+# Denna kod säger till docker-compose hur app.py ska byggas
+
 FROM python:3
 WORKDIR /usr/src/app
 COPY requirements.txt .
