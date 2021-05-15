@@ -1,0 +1,38 @@
+[
+    {
+        "booking-company": "Company1",
+        "booker": "user1",
+        "start_time": "2021-05-17:12:00:00",
+        "end_time": "2021-05-17:13:00:00"
+    },
+    {
+        "booking-company": "Company 2",
+        "booker": "user2",
+        "start_time": "2021-05-17:09:00:00",
+        "end_time": "2021-05-17:10:00:00"
+    },
+    {
+        "booking-company": "Company3",
+        "booker": "user3",
+        "start_time": "2021-05-17:15:00:00",
+        "end_time": "2021-05-17:16:00:00"
+    },
+    {
+        "booking-company": "Company1",
+        "booker": "user1",
+        "start_time": "2021-05-17:12:00:00",
+        "end_time": "2021-05-17:13:00:00"
+    },
+    {
+        "booking-company": "Company 2",
+        "booker": "user2",
+        "start_time": "2021-05-17:10:00:00",
+        "end_time": "2021-05-17:11:00:00"
+    },
+    {
+        "booking-company": "Company3",
+        "booker": "user3",
+        "start_time": "2021-05-17:16:00:00",
+        "end_time": "2021-05-17:17:00:00"
+    }
+]
