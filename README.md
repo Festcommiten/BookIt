@@ -209,7 +209,7 @@ Bad request:
 
 - För att få sätta upp en egen branch så ska det finnas ett kort på AzureDevops relaterat till.
 
-- Struktur för hur en ny branch heta och ska heta respektive till vilket kort du gör/gjort. Exempel: **"feat-this-is-my-card"**.
+- När du skapar en ny branch så skall den heta respektive till vilket kort du gör/gjort. Exempel: **"feat-this-is-my-card"**.
 
 - Dina commits ska ha **__relaterad__** information till ändringar som skett.
 
