@@ -18,7 +18,7 @@ url: `/v1/new_booking`
 ```json
 {
   "room": "room1",
-  "week": 19
+  "week": 19,
   "booking-company": "Company1",
   "booker": "user1",
   "start_time": "date string",
@@ -61,7 +61,7 @@ Success:
 {
   "bookings": [
     {
-        "_id": "ObjectId_56340AWDFSQ12"
+        "_id": "ObjectId_56340AWDFSQ12",
         "room": "ada",
         "week": 20,
         "booking-company": "Company1",
@@ -70,7 +70,7 @@ Success:
         "end_time": "2021-05-17:10:00:00"
     },
     {
-        "_id": "ObjectId_15215ASFF1245"
+        "_id": "ObjectId_15215ASFF1245",
         "room": "ada",
         "week": 20,
         "booking-company": "Company 1",
@@ -79,7 +79,7 @@ Success:
         "end_time": "2021-05-17:11:00:00"
     },
     {
-        "_id": "ObjectId_115570ASFD42"
+        "_id": "ObjectId_115570ASFD42",
         "room": "ada",
         "week": 20,
         "booking-company": "Company1",
