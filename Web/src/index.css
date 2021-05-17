@@ -1,12 +1,13 @@
 :root {
     --main-bg-color: #B9BBBF;
-    --primary-color: #F7B045;
-    --secondary-color: #4F4F53;
-    --thirdley-color: #CDCFD2;
+    --light-brilliant-orange: #F7B045;
+    --dark-grey: #4F4F53;
+    --light-grey: #CDCFD2;
 }
 
 body {
     margin: 0;
+    font-family: 'Alegreya Sans Regular', Arial, serif;
     background-color: var(--main-bg-color);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -35,37 +36,37 @@ main {
 h1 {
     font-family: 'Oleo Script', Arial, serif;
     font-size: 28px;
-    color: var(--primary-color);
+    color: var(--light-brilliant-orange);
 }
 
 h2 {
     font-family: 'Oleo Script', Arial, serif;
     font-size: 20px;
-    color: var(--primary-color);
+    color: var(--light-brilliant-orange);
 }
 
 h3 {
-    font-family: 'Alegreya Sans Regular', Arial, serif;
+    /*font-family: 'Alegreya Sans Regular', Arial, serif;*/
     font-size: 15px;
-    color: var(--secondary-color);
+    color: var(--dark-grey);
 }
 
 .primary_text {
-    font-family: 'Alegreya Sans Regular', Arial, serif;
+    /*font-family: 'Alegreya Sans Regular', Arial, serif;*/
     font-size: 15px;
-    color: var(--secondary-color);
+    color: var(--dark-grey);
 }
 
 .secondary_text {
-    font-family: 'Alegreya Sans Regular', Arial, serif;
+    /*font-family: 'Alegreya Sans Regular', Arial, serif;*/
     font-size: 13px;
-    color: var(--secondary-color);
+    color: var(--dark-grey);
 }
 
 .control_labels {
-    font-family: 'Alegreya Sans Regular', Arial, serif;
+    /*font-family: 'Alegreya Sans Regular', Arial, serif;*/
     font-size: 11px;
-    color: var(--thirdley-color);
+    color: var(--light-grey);
 }
 
 .primary_button {
@@ -73,7 +74,7 @@ h3 {
     padding: 10px 20px;
     border-radius: 15px;
     border: none;
-    background-color: var(--primary-color);
+    background-color: var(--light-brilliant-orange);
     color: #F8F8F8;
     font-family: 'Alegreya Sans Bold', serif;
 }
