@@ -3,6 +3,6 @@ nav {
     left: 0;
     top: 0;
     width: 100%;
-    background-color: var(--secondary-color);
+    background-color: var(--dark-grey);
     z-index: 1;
 }
