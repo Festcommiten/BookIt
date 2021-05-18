@@ -14,19 +14,18 @@ def bookit_api(app):
         def post(self):
             posted_data = request.get_json()
             response = {
-                "msg": "Something unexpected happened",
+                "message": "Something unexpected happened",
                 "status": 400
             }
-
             if tools.validate_request_keys_unordered(posted_data, tools.NEW_BOOKING):
                 if tools.validate_request_keys_ordered(posted_data, tools.NEW_BOOKING):
                     mock_collection.insert(posted_data)
-                    response["msg"] = "OK"
+                    response["message"] = "OK"
                     response["status"] = 200
                 else:
-                    response["msg"] = tools.REQUEST_KEYS_ORDERED_FALSE
+                    response["message"] = tools.REQUEST_KEYS_ORDERED_FALSE
             else:
-                response["msg"] = tools.REQUEST_KEYS_FALSE
+                response["message"] = tools.REQUEST_KEYS_FALSE
 
             return jsonify(response)
 

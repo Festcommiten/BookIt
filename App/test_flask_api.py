@@ -1,6 +1,8 @@
-import requests
+# import requests
 from multiprocessing import Process
 from flask import Flask
+
+# from <API location> import <API>
 
 app = Flask(__name__)
 # <API>(app)
@@ -17,7 +19,7 @@ def teardown_module(module):
     flask_app.join()
 
 
-##### WRITE UNIT TESTS BELOW THIS LINE #####
+# WRITE UNIT TESTS BELOW THIS LINE
 def test_new_booking():
     # This unit test will be implemented when Mongo test environment has been setup for pytest
     """
@@ -31,7 +33,7 @@ def test_new_booking():
         "end_time": "2021-05-21:10:00:00"
     }
     response = requests.post(url_endpoint, json=new_booking_correct_data_and_order).json()
-    assert = response["msg"] == "OK"
+    assert = response["message"] == "OK"
     assert response["status"] == 200
 
     new_booking_correct_data_wrong_order = {
@@ -43,7 +45,7 @@ def test_new_booking():
         "end_time": "2021-05-21:10:00:00"
     }
     response = requests.post(url_endpoint, json=new_booking_correct_data_wrong_order).json()
-    assert = response["msg"] == api_tools.REQUEST_KEYS_ORDERED_FALSE
+    assert = response["message"] == api_tools.REQUEST_KEYS_ORDERED_FALSE
     assert response["status"] == 400
 
     new_booking_incorrect_data = {
@@ -55,6 +57,6 @@ def test_new_booking():
         "end_time": "2021-05-21:10:00:00"
     }
     response = requests.post(url_endpoint, json=new_booking_incorrect_data).json()
-    assert = response["msg"] == api_tools.REQUEST_KEYS_FALSE
+    assert = response["message"] == api_tools.REQUEST_KEYS_FALSE
     assert response["status"] == 400
     """

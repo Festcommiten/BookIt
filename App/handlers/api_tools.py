@@ -1,6 +1,6 @@
 import collections
 
-### CONSTANTS ###
+# CONSTANTS
 
 # ENDPOINT NAMES
 NEW_BOOKING = "new_booking"
@@ -20,7 +20,7 @@ API_REQUEST_KEYS = {
 REQUEST_KEYS_FALSE = "One or more json keys are incorrect"
 REQUEST_KEYS_ORDERED_FALSE = "The jsons key order is incorrect"
 
-### END CONSTANTS ###
+# END CONSTANTS
 
 
 def validate_request_keys_unordered(posted_data: dict, endpoint_name: str) -> bool:
