@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Routing from './routes/Routing';
 import './utils/global/Global.css';
+import '@material-ui/icons'
 
 // import axios from 'axios';
 // import Button from '@material-ui/core/Button';
