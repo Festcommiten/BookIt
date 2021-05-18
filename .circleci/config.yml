@@ -1,0 +1,18 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.7
+
+    working_directory: ~/repo
+
+    steps:
+      # Step 1: obtain repo from GitHub
+      - checkout
+      # Step 2: create virtual env and install dependencies
+      - run:
+          name: run docker-compose.yml
+          command: |
+            docker-compose build
+      - run:
+          name: run tests

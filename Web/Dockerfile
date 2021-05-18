@@ -18,7 +18,7 @@ COPY package.json .
 
 RUN npm install
 
-RUN npm run build
+RUN npm run build --no-cache
 
 WORKDIR ./build
 
