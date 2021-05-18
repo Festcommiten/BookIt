@@ -1,12 +1,5 @@
 version: '3'
 services:
-  web:
-    build: ./Web
-    links:
-      - app
-    ports:
-      - "443:443"
-      - "80:80"
   db:
     build: ./Db
     links:
