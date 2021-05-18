@@ -223,5 +223,5 @@ Bad request:
 
 - När du skapar en ny branch så skall den heta respektive till vilket kort du gör/gjort. Exempel: **"feat-this-is-my-card"**.
 
-- Dina commits ska ha **__relaterad__** information till ändringar som skett.
+- Dina commits ska ha **__relaterad__** information till ändringar som skett..
 
