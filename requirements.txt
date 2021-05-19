@@ -1,3 +1,6 @@
 flake8==3.9.1
 py==1.10.0
 pytest==6.2.3
+flask
+flask-RESTful
+pymongo
