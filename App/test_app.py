@@ -1,4 +1,3 @@
-import requests
 from multiprocessing import Process
 from flask import Flask
 # from <API LOCATION> import <API>
@@ -17,4 +16,4 @@ def teardown_module(module):
     flask_app.terminate()
     flask_app.join()
 
-##### WRITE UNIT TESTS BELOW THIS LINE #####
+# WRITE UNIT TESTS BELOW THIS LINE
