@@ -24,7 +24,29 @@ export default function ColumnTime() {
 	return (
 		<div className="week-column_rows">
 			<div className="mt1 tc shadow-1 br4">
+				<h2>FestCommitén</h2>
+			</div>
+			{ render_time_slots }
+		</div>
+	);
+}
+
+export function ColumnTimeLeft() {
+	return (
+		<div className="week-column_rows">
+			<div className="mt1 tc shadow-1 br4">
 				<ArrowBackIosIcon className="mt3 ml2 light-brilliant-orange"/>
+			</div>
+			{ render_time_slots }
+		</div>
+	);
+}
+
+export function ColumnTimeRight() {
+	return (
+		<div className="week-column_rows">
+			<div className="mt1 tc shadow-1 br4">
+				<ArrowForwardIosIcon className="mt3 ml2 light-brilliant-orange"/>
 			</div>
 			{ render_time_slots }
 		</div>

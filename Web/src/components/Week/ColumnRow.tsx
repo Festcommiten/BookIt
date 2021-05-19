@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React from 'react';
 import './ColumnRow.css';
 import {
@@ -10,38 +11,55 @@ import {
 } from './ColumnRowItem';
 
 interface DataSource {
-	weekday: string
-	date: string
-	isTrue: boolean
+	passed_time_slot: boolean
+	id: number
 	company: string
 	booker: string
-	index: number
+	start_time: moment.Moment
 }
 
-function render_day_slot_column(company: string, booker: string) {
+interface OneDayData {
+	weekday: string
+	date: string
+	datasource: Array<DataSource>
+}
+
+function render_day_slot_column(ds: DataSource) {
+	
+	
 	return (
 		<>
 			<RenderGrey_out_slot/>
-			<RenderRedSlotPassed company={ company } booker={ booker }/>
+			<RenderRedSlotPassed company={ ds.company } booker={ ds.booker }/>
 			<RenderGreenSlot/>
 			<RenderFreeSlot/>
 			<RenderFreeSlot/>
 			<RenderFreeSlot/>
-			<RenderRedSlot company={ company } booker={ booker }/>
+			<RenderRedSlot company={ ds.company } booker={ ds.booker }/>
 			<RenderFreeSlot/>
 			<RenderFreeSlot/>
 		</>
 	);
 }
 
-export default function ColumnRow(dataSource: DataSource) {
+function unpackData(oneDayData: OneDayData) {
+	let day0: DataSource = oneDayData.datasource[0];
+	let day1: DataSource = oneDayData.datasource[1];
+	let day2: DataSource = oneDayData.datasource[2];
+	let day3: DataSource = oneDayData.datasource[3];
+	let day4: DataSource = oneDayData.datasource[4];
 	
-	let {weekday, date, company, booker} = dataSource;
+	
+}
+
+export default function ColumnRow(oneDayData: OneDayData) {
+	
+	let {weekday, date} = oneDayData;
 	
 	return (
 		<div className="week-column_rows">
 			<RenderTitle weekday={ weekday } date={ date }/>
-			{ render_day_slot_column(company, booker) }
+			{ render_day_slot_column(oneDayData.datasource[0]) }
 		</div>
 	);
 };

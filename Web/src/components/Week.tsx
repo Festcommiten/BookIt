@@ -3,71 +3,48 @@ import React from 'react';
 import data from '../utils/api/data.json';
 import './Week.css';
 import ColumnRow from './Week/ColumnRow';
-import ColumnTime from './Week/ColumnTime';
+import ColumnTime, { ColumnTimeLeft, ColumnTimeRight } from './Week/ColumnTime';
 import WeekHeaderRow from './Week/WeekHeaderRow';
 
 export default function Week() {
-	
-	// axios.get('data.json')
-	// 	.then(response => console.log(response.data))
-	// 	.catch(error => console.log(error))
-	
-	interface SlotData {
+	interface DataSource {
+		passed_time_slot: boolean
+		id: number
 		company: string
 		booker: string
 		start_time: moment.Moment
-		end_time: moment.Moment
 	}
 	
-	interface SlotDataStartTime {
-		company: string
-		booker: string
-		start_time: number
+	interface OneDayData {
+		weekday: string
+		date: string
+		datasource: Array<DataSource>
 	}
 	
-	interface JsonData {
-		room: string
-		week: number
-		booking_company: string
-		booker: string
-		start_time: moment.Moment
-		end_time: moment.Moment
-	}
-	
-	// console.log(data);
-	const today = moment();
-	// console.log(today.format());
-	// console.log(today.dayOfYear());
-	// console.log(today.hour());
-	
-	let room: string = 'kakashi';
-	let week_number = today.week() - 1;
-	let time_slot = [
-		'8-9',
-		'9-10',
-		'10-11',
-		'11-12',
-		'12-13',
-		'13-14',
-		'14-15',
-		'15-16',
-		'16-17'
-	];
-	let start_slot = [8, 9, 10, 11, 12, 13, 14, 15, 16];
-	let week_days = [
+	let week_days: Array<string> = [
 		'Monday',
 		'Tuesday',
 		'Wednesday',
 		'Thursday',
 		'Friday'
 	];
-	let dates = [
+	let dates: Array<string> = [
 		'2021-05-17',
 		'2021-05-18',
 		'2021-05-19',
 		'2021-05-20',
 		'2021-05-21'
 	];
+	let passed_time_slot: Array<boolean> = [
+		true,
+		true,
+		true,
+		false,
+		false,
+		false,
+		false
+	];
+	let ids: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 	let companies: Array<string> = [
 		'SoftwareSkills',
 		'Codic Consulting',
@@ -77,15 +54,95 @@ export default function Week() {
 		'GoMoGrp',
 		'VipeTech'
 	];
+	let bookers: Array<string> = [
+		'Robin Kamo',
+		'Leo Backend',
+		'Niklas på Ópsss',
+	];
+	let start_times: Array<string> =[
+		"2021-05-18T8:00:00+02:00",
+		"2021-05-18T9:00:00+02:00",
+		"2021-05-18T10:00:00+02:00",
+		"2021-05-18T11:00:00+02:00",
+		"2021-05-18T12:00:00+02:00",
+		"2021-05-18T13:00:00+02:00",
+		"2021-05-18T14:00:00+02:00",
+		"2021-05-18T15:00:00+02:00",
+		"2021-05-18T16:00:00+02:00",
+	]
+	// let oneDayData: OneDayData;
 	
-	const render_time_slots = time_slot.map((slot, i) => {
-		return (
-			<div key={ i } className="pa2 ma0 item-time"><p>{ time_slot[i] }</p></div>
-		);
-	});
 	
+	let start_slot = [8, 9, 10, 11, 12, 13, 14, 15, 16];
+	
+	function fillOneDayData(day_index:number) {
+		let oneDayData: OneDayData = {
+			weekday: week_days[day_index],
+			date: dates[day_index],
+			datasource: []
+		};
+		
+		for (let i = 0; i < start_slot.length; i++) {
+			let temp: DataSource = {
+				passed_time_slot: passed_time_slot[i],
+				id: ids[i],
+				company: companies[0],
+				booker: bookers[0],
+				start_time: moment(start_times[i])
+			};
+			oneDayData.datasource.push(temp);
+		}
+		return oneDayData;
+	}
+	
+	let wholeWeekData:Array<OneDayData> = []
+	
+	function makaWholeWeekData() {
+		for (let i = 0; i < 5; i++) {
+			wholeWeekData.push(fillOneDayData(i))
+		}
+	}
+	makaWholeWeekData()
+	
+	// axios.get('data.json')
+	// 	.then(response => console.log(response.data))
+	// 	.catch(error => console.log(error))
+	interface SlotData {
+		company: string
+		booker: string
+		start_time: moment.Moment
+		end_time: moment.Moment
+	}
+	interface SlotDataStartTime {
+		company: string
+		booker: string
+		start_time: number
+	}
+	interface JsonData {
+		room: string
+		week: number
+		booking_company: string
+		booker: string
+		start_time: moment.Moment
+		end_time: moment.Moment
+	}
+	// console.log(data);
+	const today = moment();
+	// console.log(today.format());
+	// console.log(today.dayOfYear());
+	// console.log(today.hour());
+	let room: string = 'kakashi';
+	let week_number = today.week() - 1;
+	let time_slots = [
+		true,
+		true,
+		true,
+		false,
+		false,
+		false,
+		false
+	];
 	let monday_data: Array<SlotData> = [];
-	
 	function check_for_monday_data() {
 		for (let i = 0; i < data.length; i++) {
 			if (data[i].room == room && data[i].week == week_number) {
@@ -101,12 +158,9 @@ export default function Week() {
 		}
 		// console.log(monday_data);
 	}
-	
-	check_for_monday_data();
+	// check_for_monday_data();
 	let hours: Array<number> = [];
-	
 	let hours_info: Array<SlotDataStartTime> = [];
-	
 	function get_hours() {
 		for (let i = 0; i < monday_data.length; i++) {
 			let day = moment(dates[0]);
@@ -121,9 +175,7 @@ export default function Week() {
 			}
 		}
 	}
-	
 	let controller: Array<boolean> = [];
-	
 	function compare_time_slots() {
 		let index: number = 0;
 		for (let i = 0; i < start_slot.length; i++) {
@@ -135,7 +187,6 @@ export default function Week() {
 			}
 		}
 	}
-	
 	function render_monday() {
 		hours = [];
 		controller = [];
@@ -159,60 +210,22 @@ export default function Week() {
 			{/*<WeekHeaderRow week_number={ week_number }/>*/ }
 			
 			<div className="week-column">
-				<ColumnTime/>
-				{/*<div className="week-column_rows">
-					<div className="pa2 ma0 item">
-						<p className="primary_text">{ week_days[0] }</p>
-						<p className="secondary_text">{ dates[0] }</p>
-					</div>
-					<div className="pa2 ma0 item">0</div>
-					<div className="pa2 ma0 item">1</div>
-					<div className="pa2 ma0 item">2</div>
-					<div className="pa2 ma0 item">3</div>
-					<div className="pa2 ma0 item-red">
-						<h3 className="primary_text">Codic Education</h3>
-						<p className="secondary_text">Robin Kamo</p></div>
-					<div className="pa2 ma0 item">5</div>
-					<div className="pa2 ma0 item">6</div>
-					<div className="pa2 ma0 item">7</div>
-					<div className="pa2 ma0 item">8</div>
-				</div>*/ }
-				<ColumnRow
-					weekday={ week_days[0] }
-					date={ dates[0] }
-					isTrue={ true }
-					company={ companies[0] }
-					booker={ 'Robin Kamo' }
-					index={ 1 }/>
-				<ColumnRow
-					weekday={ week_days[1] }
-					date={ dates[1] }
-					isTrue={ true }
-					company={ companies[1] }
-					booker={ 'Robin Kamo' }
-					index={ 1 }/>
-				<ColumnRow
-					weekday={ week_days[2] }
-					date={ dates[2] }
-					isTrue={ true }
-					company={ companies[2] }
-					booker={ 'Robin Kamo' }
-					index={ 1 }/>
-				<ColumnRow
-					weekday={ week_days[3] }
-					date={ dates[3] }
-					isTrue={ true }
-					company={ companies[3] }
-					booker={ 'Robin Kamo' }
-					index={ 1 }/>
-				<ColumnRow
-					weekday={ week_days[4] }
-					date={ dates[4] }
-					isTrue={ true }
-					company={ companies[4] }
-					booker={ 'Robin Kamo' }
-					index={ 1 }/>
-				<ColumnTime/>
+				{/*<ColumnTime/>*/}
+				<ColumnTimeLeft/>
+				{
+					wholeWeekData.map((data, i) => {
+						return (
+							<ColumnRow
+								key={ i }
+								weekday={ wholeWeekData[i].weekday }
+								date={ wholeWeekData[i].date }
+								datasource={ wholeWeekData[i].datasource }
+							/>
+						)
+					})
+				}
+				<ColumnTimeRight/>
+				{/*<ColumnTime/>*/}
 			</div>
 		</div>
 	);

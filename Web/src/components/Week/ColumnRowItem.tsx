@@ -1,13 +1,6 @@
 import React from 'react';
 import './ColumnRowItem.css';
 
-// interface DataSource {
-// 	isTrue: boolean
-// 	company: string
-// 	booker: string
-// 	index: number
-// }
-
 interface WeekDate {
 	weekday: string
 	date: string

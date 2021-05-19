@@ -5,13 +5,4 @@
     background-color: var(--tint-yellow-3);
 }
 
-.week-column_rows {
-    display: grid;
-    grid-template-rows: repeat(6, 1fr);
-    grid-gap: 4px;
-}
 
-nav, footer {
-    /*background-color: #ff725c;*/
-    /*background-color: #9eebcf;*/
-}
