@@ -6,3 +6,13 @@ footer {
     background-color: #4F4F53;
     z-index: 1;
 }
+
+.grid-footer {
+    display: grid;
+    grid-template-columns: auto 10em auto;
+}
+
+.grid-footer-inner {
+    display: grid;
+    grid-template-columns: 2em 6em 2em;
+}
