@@ -18,7 +18,7 @@ interface DataSource {
 	index: number
 }
 
-function render_time_slot_column(company: string, booker: string) {
+function render_day_slot_column(company: string, booker: string) {
 	return (
 		<>
 			<RenderGrey_out_slot/>
@@ -41,7 +41,7 @@ export default function ColumnRow(dataSource: DataSource) {
 	return (
 		<div className="week-column_rows">
 			<RenderTitle weekday={ weekday } date={ date }/>
-			{ render_time_slot_column(company, booker) }
+			{ render_day_slot_column(company, booker) }
 		</div>
 	);
 };

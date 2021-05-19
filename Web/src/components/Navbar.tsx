@@ -1,3 +1,5 @@
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import React from 'react';
 import RoutingPath from '../routes/RoutingPath';
 import { NavigationButtonPrimary } from './Buttons';
@@ -13,6 +15,17 @@ export default function Navbar() {
 			
 			<div className='fl w-third'>
 				<h1 className='tc mt0 mb0'>Kakashi</h1>
+				{/*<div className='grid-footer-inner'>
+					<div className="mt1 tl">
+						<ArrowBackIosIcon className="pa2 light-brilliant-orange"/>
+					</div>
+					<div>
+						<h1 className=" ma0 tc">v.19</h1>
+					</div>
+					<div className="mt1 tr">
+						<ArrowForwardIosIcon className="pa2 light-brilliant-orange"/>
+					</div>
+				</div>*/}
 			</div>
 			
 			<div className='fl w-third mt1'>

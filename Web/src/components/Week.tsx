@@ -3,6 +3,7 @@ import React from 'react';
 import data from '../utils/api/data.json';
 import './Week.css';
 import ColumnRow from './Week/ColumnRow';
+import ColumnTime from './Week/ColumnTime';
 import WeekHeaderRow from './Week/WeekHeaderRow';
 
 export default function Week() {
@@ -54,11 +55,11 @@ export default function Week() {
 	];
 	let start_slot = [8, 9, 10, 11, 12, 13, 14, 15, 16];
 	let week_days = [
-		'Måndag',
-		'Tisdag',
-		'Onsdag',
-		'Torsdag',
-		'Fredag'
+		'Monday',
+		'Tuesday',
+		'Wednesday',
+		'Thursday',
+		'Friday'
 	];
 	let dates = [
 		'2021-05-17',
@@ -67,10 +68,19 @@ export default function Week() {
 		'2021-05-20',
 		'2021-05-21'
 	];
+	let companies: Array<string> = [
+		'SoftwareSkills',
+		'Codic Consulting',
+		'Codic Education',
+		'Futureskill',
+		'MeAnalytics',
+		'GoMoGrp',
+		'VipeTech'
+	];
 	
 	const render_time_slots = time_slot.map((slot, i) => {
 		return (
-			<div key={ i } className="pa2 ma0 item-time">{ time_slot[i] }</div>
+			<div key={ i } className="pa2 ma0 item-time"><p>{ time_slot[i] }</p></div>
 		);
 	});
 	
@@ -146,15 +156,12 @@ export default function Week() {
 	
 	return (
 		<div className="tc">
-			<WeekHeaderRow week_number={ week_number }/>
+			{/*<WeekHeaderRow week_number={ week_number }/>*/ }
 			
 			<div className="week-column">
-				<div className="week-column_rows">
-					<div className="pa2 ma0 item-week-day">FestCommitén</div>
-					{ render_time_slots }
-				</div>
-				<div className="week-column_rows">
-					<div className="pa2 ma0 item-week-day">
+				<ColumnTime/>
+				{/*<div className="week-column_rows">
+					<div className="pa2 ma0 item">
 						<p className="primary_text">{ week_days[0] }</p>
 						<p className="secondary_text">{ dates[0] }</p>
 					</div>
@@ -169,35 +176,43 @@ export default function Week() {
 					<div className="pa2 ma0 item">6</div>
 					<div className="pa2 ma0 item">7</div>
 					<div className="pa2 ma0 item">8</div>
-				</div>
+				</div>*/ }
 				<ColumnRow
-					weekday={week_days[1]}
-					date={dates[1]}
-					isTrue={true}
-					company={'Codic Education'}
-					booker={'Robin Kamo'}
-					index={1} />
+					weekday={ week_days[0] }
+					date={ dates[0] }
+					isTrue={ true }
+					company={ companies[0] }
+					booker={ 'Robin Kamo' }
+					index={ 1 }/>
 				<ColumnRow
-					weekday={week_days[2]}
-					date={dates[2]}
-					isTrue={true}
-					company={'Codic Education'}
-					booker={'Robin Kamo'}
-					index={1} />
+					weekday={ week_days[1] }
+					date={ dates[1] }
+					isTrue={ true }
+					company={ companies[1] }
+					booker={ 'Robin Kamo' }
+					index={ 1 }/>
 				<ColumnRow
-					weekday={week_days[3]}
-					date={dates[3]}
-					isTrue={true}
-					company={'Codic Education'}
-					booker={'Robin Kamo'}
-					index={1} />
+					weekday={ week_days[2] }
+					date={ dates[2] }
+					isTrue={ true }
+					company={ companies[2] }
+					booker={ 'Robin Kamo' }
+					index={ 1 }/>
 				<ColumnRow
-					weekday={week_days[4]}
-					date={dates[4]}
-					isTrue={true}
-					company={'Codic Education'}
-					booker={'Robin Kamo'}
-					index={1} />
+					weekday={ week_days[3] }
+					date={ dates[3] }
+					isTrue={ true }
+					company={ companies[3] }
+					booker={ 'Robin Kamo' }
+					index={ 1 }/>
+				<ColumnRow
+					weekday={ week_days[4] }
+					date={ dates[4] }
+					isTrue={ true }
+					company={ companies[4] }
+					booker={ 'Robin Kamo' }
+					index={ 1 }/>
+				<ColumnTime/>
 			</div>
 		</div>
 	);

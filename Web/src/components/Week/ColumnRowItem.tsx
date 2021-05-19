@@ -33,13 +33,13 @@ export function RenderGrey_out_slot() {
 
 export function RenderFreeSlot() {
 	return (
-		<div className="pa2 ma0 item"></div>
+		<div className="pa2 ma0 item grow shadow-1"></div>
 	);
 }
 
 export function RenderGreenSlot() {
 	return (
-		<div className="pa2 ma0 item-green"></div>
+		<div className="pa2 ma0 item-green grow shadow-1"></div>
 	);
 }
 
@@ -51,7 +51,7 @@ interface BookingInfo {
 export function RenderRedSlot(bookingInfo: BookingInfo) {
 	let {company, booker} = bookingInfo;
 	return (
-		<div className="pa2 ma0 item-red">
+		<div className="pa2 ma0 item-red grow shadow-1">
 			<h3 className="primary_text">{ company }</h3>
 			<p className="secondary_text">{ booker }</p>
 		</div>

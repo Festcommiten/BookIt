@@ -11,8 +11,6 @@ export default function WeekHeaderRow(data: Data) {
 	const {week_number} = data;
 	return (
 		<div className="week-header-row">
-			<div className="mt3">
-			</div>
 			<div className="mt3 tr">
 				<ArrowBackIosIcon className="pa2 light-brilliant-orange"/>
 			</div>
@@ -21,8 +19,6 @@ export default function WeekHeaderRow(data: Data) {
 			</div>
 			<div className="mt3 tl">
 				<ArrowForwardIosIcon className="pa2 light-brilliant-orange"/>
-			</div>
-			<div className="mt3">
 			</div>
 		</div>
 	);
