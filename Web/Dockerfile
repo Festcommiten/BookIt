@@ -1,6 +1,6 @@
 FROM nginx:latest
 
-COPY ./Web .
+COPY ./Web/ .
 
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
