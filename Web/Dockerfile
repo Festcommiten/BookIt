@@ -20,6 +20,6 @@ RUN npm install
 
 RUN npm run build --force
 
-WORKDIR ./build/
+WORKDIR /root/build/
 
-COPY . /usr/share/nginx/www/build/
+COPY . /usr/share/nginx/www/
