@@ -1,9 +1,0 @@
-För att sätta upp mock_databasen:
-Stå dig i Bookit/
-
-docker-compose build                                            --bygger det som docker-compose filen dikterar
-docker-compose up                                               --startar alla containers
-docker container ls                                             --listar aktiva containers
-docker exec -it <3 första symbolerna i ditt container_id> bash       --gå in i docker container
-sh import-to-mongo.sh                                           --importerar mock data in i MongoDB
-exit                                                            --gå ut ut docker container
