@@ -1,10 +1,7 @@
 version: '3'
 services:
-   web:
-    build: ./web
-    links:
-      - Db
-   db:
+  db:
     build: ./Db
+    ports:
+      - "27017:27017"
 
-    ###just a example for now 

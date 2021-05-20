@@ -17,8 +17,8 @@ url: `/v1/new_booking`
 
 ```json
 {
-  "id": "1",
   "room": "room1",
+  "week": 19,
   "booking-company": "Company1",
   "booker": "user1",
   "start_time": "date string",
@@ -61,20 +61,31 @@ Success:
 {
   "bookings": [
     {
-      "id": "1",
-      "room": "room1",
-      "booking-company": "Company1",
-      "booker": "user1",
-      "start_time": "2021-05-16:16:00:00",
-      "end_time": "date moment object"
+        "_id": "ObjectId_56340AWDFSQ12",
+        "room": "ada",
+        "week": 20,
+        "booking-company": "Company1",
+        "booker": "user1",
+        "start_time": "2021-05-17:09:00:00",
+        "end_time": "2021-05-17:10:00:00"
     },
     {
-      "id": "2",
-      "room": "room2",
-      "booking-company": "Company1",
-      "booker": "user2",
-      "start_time": "date moment object",
-      "end_time": "date moment object"
+        "_id": "ObjectId_15215ASFF1245",
+        "room": "ada",
+        "week": 20,
+        "booking-company": "Company 1",
+        "booker": "user2",
+        "start_time": "2021-05-17:10:00:00",
+        "end_time": "2021-05-17:11:00:00"
+    },
+    {
+        "_id": "ObjectId_115570ASFD42",
+        "room": "ada",
+        "week": 20,
+        "booking-company": "Company1",
+        "booker": "user3",
+        "start_time": "2021-05-17:11:00:00",
+        "end_time": "2021-05-17:12:00:00"
     }
   ],
   "status": 200,
@@ -210,7 +221,7 @@ Bad request:
 
 - För att få sätta upp en egen branch så ska det finnas ett kort på AzureDevops relaterat till.
 
-- Struktur för hur en ny branch heta och ska heta respektive till vilket kort du gör/gjort. Exempel: **"feat-this-is-my-card"**.
+- När du skapar en ny branch så skall den heta respektive till vilket kort du gör/gjort. Exempel: **"feat-this-is-my-card"**.
 
 - Dina commits ska ha **__relaterad__** information till ändringar som skett.
 
