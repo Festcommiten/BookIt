@@ -2,6 +2,7 @@ version: '3'
 services:
   db:
     build: ./Db
+    image: bookit:dev
     ports:
       - "27017:27017"
 
