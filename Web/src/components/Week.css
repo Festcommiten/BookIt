@@ -1,8 +1,0 @@
-.week-column {
-    display: grid;
-    grid-template-columns: 0.25fr 1fr 1fr 1fr 1fr 1fr 0.25fr;
-    grid-gap: 4px;
-    background-color: var(--tint-yellow-3);
-}
-
-
