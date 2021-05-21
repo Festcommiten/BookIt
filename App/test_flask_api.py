@@ -25,6 +25,7 @@ def test_new_booking():
     """
     url_endpoint = url + "/v1/new_booking"
     new_booking_correct_data_and_order = {
+        "_id": 1,
         "room": "ada",
         "week": 20,
         "booking-company": "Company1",
@@ -37,6 +38,7 @@ def test_new_booking():
     assert response["status"] == 200
 
     new_booking_correct_data_wrong_order = {
+        "_id": 1,
         "week": 20,
         "room": "ada",
         "booking-company": "Company1",
@@ -49,6 +51,7 @@ def test_new_booking():
     assert response["status"] == 400
 
     new_booking_incorrect_data = {
+        "_id": 1,
         "room": "ada",
         "week": 20,
         "booking-company": "Company1",

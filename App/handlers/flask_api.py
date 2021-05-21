@@ -2,6 +2,8 @@ from flask import jsonify, request
 from flask_restful import Api, Resource
 from pymongo import MongoClient
 import handlers.api_tools as tools
+from bson import json_util
+import json
 
 # MONGO
 client = MongoClient("mongodb://db:27017")
@@ -29,5 +31,25 @@ def bookit_api(app):
 
             return jsonify(response)
 
+    class AllBookings(Resource):
+        def get(self):
+            response = {
+                "bookings": [],
+                "message": "Something unexpected happened",
+                "status": 400
+            }
+            try:
+                # all_bookings = json_util.dumps(mock_collection.find())
+                all_bookings = list(mock_collection.find())
+                # all_bookings_json = json.dumps(all_bookings, default=json_util.default)
+                response["bookings"] = all_bookings
+                response["message"] = "OK"
+                response["status"] = 200
+                return response
+            except Exception as e:
+                response["message"] = e
+                return response
+
     api = Api(app)
     api.add_resource(NewBooking, "/v1/new_booking")
+    api.add_resource(AllBookings, "/v1/bookings")

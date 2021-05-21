@@ -8,9 +8,10 @@ NEW_BOOKING = "new_booking"
 # EXPECTED REQUEST
 API_REQUEST_KEYS = {
     NEW_BOOKING: [
+        "_id",
         "room",
         "week",
-        "booking-company",
+        "booking_company",
         "booker",
         "start_time",
         "end_time"
