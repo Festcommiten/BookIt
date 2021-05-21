@@ -1,6 +1,6 @@
 FROM nginx:latest
 
-COPY . .
+COPY . /usr/share/nginx/www/
 
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
@@ -16,10 +16,8 @@ RUN apt-get install nodejs -y
 
 COPY package.json .
 
+WORKDIR /usr/share/nginx/www/
+
 RUN npm install
 
-RUN npm run build
-
-WORKDIR ./build
-
-COPY . /usr/share/nginx/www/
+RUN npm run build --force
