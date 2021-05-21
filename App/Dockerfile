@@ -1,6 +1,6 @@
 # Denna kod säger till docker-compose hur app.py ska byggas
 
-FROM python:3
+FROM python:3.8
 WORKDIR /usr/src/app
 COPY requirements.txt .
 RUN pip3 install --no-cache-dir -r requirements.txt
