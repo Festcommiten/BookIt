@@ -11,25 +11,16 @@ export default function Footer() {
 	
 	return (
 		<footer className="pa3 grid-footer">
-			<div className="">
-				<img src={ logo } alt="Codic Education logo" />
+			<div>
+				<img src={ logo } alt="Codic Education logo"/>
 			</div>
-			
-			<div className='grid-footer-inner'>
-				<div className="mt1 tl">
-					<ArrowBackIosIcon className="pa2 light-brilliant-orange"/>
-				</div>
-				<div>
-					<h1 className=" ma0 tc">v.{ week_number }</h1>
-				</div>
-				<div className="mt1 tr">
-					<ArrowForwardIosIcon className="pa2 light-brilliant-orange"/>
-				</div>
+			<div>
+				<h1 className=" ma0 tc">v.{ week_number }</h1>
 			</div>
-			<div className='tr'>
+			<div className="tr">
 				<h2 className="mt2">FestCommitén</h2>
 			</div>
-			
+		
 		</footer>
 	);
 }
