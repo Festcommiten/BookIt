@@ -1,6 +1,5 @@
 :root {
     --main-bg-color: #F8F8F8;
-    --light-brilliant-orange: #F7B045;
     --tint-yellow-13: #F1980C;
     --tint-yellow-12: #F29F20;
     --tint-yellow-11: #F2A732;
@@ -8,6 +7,7 @@
     --tint-yellow-9: #F4B757;
     --tint-yellow-8: #F4BF6B;
     --tint-yellow-7: #F5C77C;
+    --light-brilliant-orange: #F7B045;
     --tint-yellow-6: #F7D08F;
     --tint-yellow-5: #F8D8A3;
     --tint-yellow-4: #F9DFB5;
@@ -66,6 +66,10 @@ main {
 
 .light-brilliant-orange {
     color: var(--light-brilliant-orange);
+}
+
+.light-green {
+    color: #9eebcf;
 }
 
 h1 {

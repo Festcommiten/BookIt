@@ -118,7 +118,7 @@ export default function Week() {
 		return Math.floor(Math.random() * max);
 	}
 	
-	let passedSlots:number = 19;
+	let passedSlots:number = 21;
 	let currentSlot:number = 0;
 	
 	function fillOneDayData(day_index: number) {

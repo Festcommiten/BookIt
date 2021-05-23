@@ -14,3 +14,13 @@ export interface OneDayData {
 	date: string
 	datasource: Array<DataSource>
 }
+
+export interface BookingInfo {
+	company: string
+	booker: string
+}
+
+export interface WeekDate {
+	weekday: string
+	date: string
+}
