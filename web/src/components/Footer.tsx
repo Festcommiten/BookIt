@@ -1,5 +1,3 @@
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import moment from 'moment';
 import React from 'react';
 import './Footer.css';
@@ -20,7 +18,6 @@ export default function Footer() {
 			<div className="tr">
 				<h2 className="mt2">FestCommitén</h2>
 			</div>
-		
 		</footer>
 	);
 }

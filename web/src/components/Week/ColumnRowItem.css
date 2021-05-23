@@ -10,16 +10,17 @@
     /*border: 1px solid rgba(0, 0, 0, 0.8);*/
 }
 
-.item-time, .item, .item-green, .item-red, .item-grey-out {
+.item-time, .item, .item-green, .item-blue, .item-red, .item-grey-out {
     height: 4em;
 }
 
-.item, .item-green, .item-red, .item-grey-out {
+.item, .item-green, .item-blue, .item-red, .item-grey-out {
     border-radius: 5px;
 }
 
 .item {
-    background-color: var(--tint-yellow-2);
+    /*background-color: var(--tint-yellow-2);*/
+    background-color: #e8fdf5;
     /*border: 1px solid rgba(0, 0, 0, 0.8);*/
 }
 
@@ -28,8 +29,14 @@
     /*border: 1px solid rgba(0, 0, 0, 0.8);*/
 }
 
+.item-blue {
+    background-color: var(--light-blue);
+    /*border: 1px solid rgba(0, 0, 0, 0.8);*/
+}
+
 .item-red {
-    background-color: var(--light-red);
+    /*background-color: var(--light-red);*/
+    background-color: var(--tint-yellow-2);
     /*border: 1px solid rgba(0, 0, 0, 0.8);*/
 }
 

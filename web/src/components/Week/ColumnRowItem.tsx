@@ -18,21 +18,21 @@ export function RenderTitle(weekDate: WeekDate) {
 	);
 }
 
-export function RenderGrey_out_slot() {
+export function RenderFreeSlotPassed() {
 	return (
 		<div className="pa2 ma0 item-grey-out"></div>
 	);
 }
 
-export function RenderFreeSlot() {
+export function RenderFreeSlotFuture() {
 	return (
 		<div className="pa2 ma0 item grow shadow-1"></div>
 	);
 }
 
-export function RenderGreenSlot() {
+export function RenderFreeSlotCurrentTime() {
 	return (
-		<div className="pa2 ma0 item-green grow shadow-1"></div>
+		<div className="pa2 ma0 item-blue grow shadow-1"></div>
 	);
 }
 
@@ -41,7 +41,7 @@ interface BookingInfo {
 	booker: string
 }
 
-export function RenderRedSlot(bookingInfo: BookingInfo) {
+export function RenderBookedSlotFuture(bookingInfo: BookingInfo) {
 	let {company, booker} = bookingInfo;
 	return (
 		<div className="pa2 ma0 item-red grow shadow-1">
@@ -51,7 +51,17 @@ export function RenderRedSlot(bookingInfo: BookingInfo) {
 	);
 }
 
-export function RenderRedSlotPassed(bookingInfo: BookingInfo) {
+export function RenderBookedSlotCurrentTime(bookingInfo: BookingInfo) {
+	let {company, booker} = bookingInfo;
+	return (
+		<div className="pa2 ma0 item-blue grow shadow-1">
+			<h3 className="primary_text">{ company }</h3>
+			<p className="secondary_text">{ booker }</p>
+		</div>
+	);
+}
+
+export function RenderBookedSlotPassed(bookingInfo: BookingInfo) {
 	let {company, booker} = bookingInfo;
 	return (
 		<div className="pa2 ma0 item-grey-out">
@@ -60,29 +70,3 @@ export function RenderRedSlotPassed(bookingInfo: BookingInfo) {
 		</div>
 	);
 }
-
-/*export default function ColumnRowItem(dataSource: DataSource) {
-	
-	let {isTrue, company, booker, index} = dataSource;
-	
-	function withData() {
-		return (
-			<div key={ index } className="pa2 ma0 item-red">
-				<h3 className="primary_text">{ company }</h3>
-				<p className="secondary_text">{ booker }</p>
-			</div>
-		);
-	}
-	
-	function withoutData() {
-		return (
-			<div key={ index } className="pa2 ma0 item"></div>
-		);
-	}
-	
-	if (isTrue) {
-		return withData();
-	} else {
-		return withoutData();
-	}
-};*/

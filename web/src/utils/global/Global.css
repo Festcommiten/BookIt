@@ -28,8 +28,11 @@
     --tint-dark-grey-3: #E3E3E5;
     --tint-dark-grey-2: #EEEEEE;
     --tint-dark-grey-1: #F8F8F8;
-    --light-red: #ff725c;
-    --light-green: #9eebcf;
+    /*--light-red: #ff725c;*/
+    --light-red: #ffdfdf;
+    /*--light-green: #9eebcf;*/
+    --light-green: #e8fdf5;
+    --light-blue: #96ccff;
 }
 
 @font-face {
