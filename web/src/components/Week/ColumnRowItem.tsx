@@ -70,29 +70,3 @@ export function RenderBookedSlotPassed(bookingInfo: BookingInfo) {
 		</div>
 	);
 }
-
-/*export default function ColumnRowItem(dataSource: DataSource) {
-	
-	let {isTrue, company, booker, index} = dataSource;
-	
-	function withData() {
-		return (
-			<div key={ index } className="pa2 ma0 item-red">
-				<h3 className="primary_text">{ company }</h3>
-				<p className="secondary_text">{ booker }</p>
-			</div>
-		);
-	}
-	
-	function withoutData() {
-		return (
-			<div key={ index } className="pa2 ma0 item"></div>
-		);
-	}
-	
-	if (isTrue) {
-		return withData();
-	} else {
-		return withoutData();
-	}
-};*/
