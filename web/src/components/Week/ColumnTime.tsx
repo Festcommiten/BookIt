@@ -1,6 +1,7 @@
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import React from 'react';
+import './ColumnTime.css';
 
 let time_slot = [
 	'8-9',
@@ -16,7 +17,9 @@ let time_slot = [
 
 const render_time_slots = time_slot.map((slot, i) => {
 	return (
-		<div key={ i } className="pa2 ma0 item-time"><p>{ time_slot[i] }</p></div>
+		<div key={ i } className="pa2 ma0 item-time">
+			<p>{ time_slot[i] }</p>
+		</div>
 	);
 });
 
@@ -32,10 +35,16 @@ export default function ColumnTime() {
 }
 
 export function ColumnTimeLeft() {
+	function goToPastWeek() {
+		alert('Past week');
+	}
+	
 	return (
 		<div className="week-column_rows">
-			<div className="mt1 tc shadow-1 br4">
-				<ArrowBackIosIcon className="mt3 ml2 light-brilliant-orange"/>
+			<div onClick={ goToPastWeek }>
+				<ArrowBackIosIcon
+					fontSize="large"
+					className="navigation-arrows mt3 ml3"/>
 			</div>
 			{ render_time_slots }
 		</div>
@@ -43,10 +52,16 @@ export function ColumnTimeLeft() {
 }
 
 export function ColumnTimeRight() {
+	function goToNextWeek() {
+		alert('Next week');
+	}
+	
 	return (
 		<div className="week-column_rows">
-			<div className="mt1 tc shadow-1 br4">
-				<ArrowForwardIosIcon className="mt3 ml2 light-brilliant-orange"/>
+			<div onClick={ goToNextWeek }>
+				<ArrowForwardIosIcon
+					fontSize="large"
+					className="navigation-arrows mt3 mr2"/>
 			</div>
 			{ render_time_slots }
 		</div>

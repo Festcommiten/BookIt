@@ -1,0 +1,7 @@
+.navigation-arrows {
+    color: var(--tint-dark-grey-7);
+}
+
+.navigation-arrows:hover {
+    cursor: pointer;
+}
