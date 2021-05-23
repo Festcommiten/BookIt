@@ -23,17 +23,6 @@ const render_time_slots = time_slot.map((slot, i) => {
 	);
 });
 
-export default function ColumnTime() {
-	return (
-		<div className="week-column_rows">
-			<div className="mt1 tc shadow-1 br4">
-				<h2>FestCommitén</h2>
-			</div>
-			{ render_time_slots }
-		</div>
-	);
-}
-
 export function ColumnTimeLeft() {
 	function goToPastWeek() {
 		alert('Past week');
