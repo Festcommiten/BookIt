@@ -14,11 +14,11 @@ current_day_int = time_now.day
 current_hour_int = time_now.hour
 
 starting_times = []
+weeks = [20, 21, 22, 23, 24, 25]
 
 NUMBER_OF_WEEKS = 5
 TIME_SLOTS_FOR_ROOM_PER_WEEK = 45
-TOTAL_TIME_SLOTS_FOR_ROOM = NUMBER_OF_WEEKS * TIME_SLOTS_FOR_ROOM_PER_WEEK
-STARTING_WEEK_NUMBER = current_week_int - 1
+
 
 ROOM_NAMES_LIST = ["Ada", "Rust", "Douglas", "Katniss", "Kakashi", "Obito"]
 
@@ -60,7 +60,7 @@ def get_starting_id(all_int_id_entries):
 
 def int_ids_in_db():
     try:
-        all_int_id_entries = False  # collection.find({"_id": {"$type": "double"}})
+        all_int_id_entries = collection.find({"_id": {"$type": "double"}})
     except:
         all_int_id_entries = False
 
@@ -77,15 +77,8 @@ def room_name_exist(room_name):
         return False
 
 
-def get_current_time(time_slot_number):
-    year = convert_int_to_string_of_minimum_length_two(current_year_int)
-    month = convert_int_to_string_of_minimum_length_two(current_month_int)
-    day = convert_int_to_string_of_minimum_length_two(current_day_int)
-    hour = convert_int_to_string_of_minimum_length_two(current_hour_int)
-    return f"{year}-{month}-{day}T{hour}:00:00+02:00"
-
-
 def day_of_time_slot(slot_number):
+    day = 1
     if slot_number <= 9:
         return 1
     elif 10 <= slot_number <= 18:
@@ -101,6 +94,7 @@ def day_of_time_slot(slot_number):
 def date_of_day(week: int, day: int):
     time_object = datetime.date.fromisocalendar(current_year_int, week, day)
     return_list = [time_object.year, time_object.month, time_object.day]
+
     return return_list
 
 
@@ -136,35 +130,39 @@ def get_current_time_slot_value(week: int, time_slot_number: int):
     minute = "00"
 
     starting_time = f"{year}-{month}-{day}T{hour}:{minute}:00+02:00"
-    return starting_time
+    end_time = f"{year}-{month}-{day}T{hour + 1}:{minute}:00+02:00"
+    returnArray = [starting_time, end_time]
+    return returnArray
 
 
 def generate_empty_documents_for_room_time_slots_based_week(room_name: str, week: int):
-    room_name = str(room_name)
-    week = int(week)
     room_data_for_week = []
     all_int_id_entries = int_ids_in_db()
-    counter_for_id = get_starting_id(all_int_id_entries)
+    counter_for_id =  get_starting_id(all_int_id_entries)
     if room_name_exist(room_name):
-        for i in range(TOTAL_TIME_SLOTS_FOR_ROOM):
+        for i in range(TIME_SLOTS_FOR_ROOM_PER_WEEK):
             room_empty_time_slot_data = {
                 "_id": counter_for_id,
                 "room": room_name,
                 "week": week,
                 "booking_company": "",
                 "booker": "",
-                "starting_time": get_current_time_slot_value(week, i)
+                "starting_time": get_current_time_slot_value(week, i)[0],
+                "end_time": get_current_time_slot_value(week, i)[1]
             }
             room_data_for_week.append(room_empty_time_slot_data)
             counter_for_id += 1
     return room_data_for_week
 
 
-def generate_data():
-    pass
+collection.insertMany(generate_empty_documents_for_room_time_slots_based_week(ROOM_NAMES_LIST[0], weeks[0]))
+collection.insertMany(generate_empty_documents_for_room_time_slots_based_week(ROOM_NAMES_LIST[0], weeks[1]))
+collection.insertMany(generate_empty_documents_for_room_time_slots_based_week(ROOM_NAMES_LIST[0], weeks[2]))
+collection.insertMany(generate_empty_documents_for_room_time_slots_based_week(ROOM_NAMES_LIST[0], weeks[3]))
+collection.insertMany(generate_empty_documents_for_room_time_slots_based_week(ROOM_NAMES_LIST[0], weeks[4]))
+collection.insertMany(generate_empty_documents_for_room_time_slots_based_week(ROOM_NAMES_LIST[0], weeks[5]))
 
 
-generate_empty_documents_for_room_time_slots_based_week("Kakashi", 22)
 
 """
 days = datetime.timedelta(days=1)
