@@ -1,4 +1,6 @@
+flake8
 flask
 flask-RESTful
 pymongo
 pytest
+requests
