@@ -42,8 +42,8 @@ export default function Week() {
 		'VipeTech'
 	];
 	let bookers: Array<string> = [
-		'Robin Kamo',
-		'Leo Backend',
+		'Robin Kamo (Dum produktägare)',
+		'Leo på Backend',
 		'Niklas på Ópsss',
 	];
 	let start_times: Array<Array<string>> = [
