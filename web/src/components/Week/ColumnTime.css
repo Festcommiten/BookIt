@@ -1,5 +1,6 @@
 .navigation-arrows {
-    color: var(--tint-dark-grey-7);
+    /*color: var(--tint-dark-grey-7);*/
+    color: var(--dark-grey);
 }
 
 .navigation-arrows:hover {

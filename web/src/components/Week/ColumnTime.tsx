@@ -1,5 +1,6 @@
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import ForwardIcon from '@material-ui/icons/Forward';
 import React from 'react';
 import './ColumnTime.css';
 
