@@ -8,7 +8,7 @@ import json
 # MONGO
 client = MongoClient("mongodb://db:27017")
 db = client.test_db
-mock_collection = db["mock"]
+mock_collection = db["mock_data"]
 
 
 def bookit_api(app):
