@@ -20,4 +20,6 @@ WORKDIR /usr/share/nginx/www/
 
 RUN npm install
 
+RUN npm tests
+
 RUN npm run build --force

@@ -2,6 +2,21 @@ version: '3'
 services:
   db:
     build: ./Db
+    image: bookit:dev
     ports:
       - "27017:27017"
 
+  app:
+    build: ./App
+    image: bookit:dev
+    links:
+      - db
+    ports:
+      - "443:443"
+  web:
+    build: ./web
+    image: bookit:dev
+    links:
+      - app
+    ports:
+      - "80:80"
