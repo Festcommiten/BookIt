@@ -1,6 +1,7 @@
 import moment from 'moment';
 
-export interface DataSource {
+// Data structure for one slot
+export interface IndividualSlotData {
 	passed_time_slot: boolean
 	empty_slot: boolean
 	id: number
@@ -9,11 +10,20 @@ export interface DataSource {
 	start_time: moment.Moment
 }
 
-export interface OneDayData {
+// Data structure for one day
+export interface OneDayColumnData {
 	weekday: string
 	date: string
-	datasource: Array<DataSource>
+	slotDatas: Array<IndividualSlotData>
 }
+
+// Data structure from API
+export interface OneWeekData {
+	week: number
+	room: string
+	oneWeek: Array<OneDayColumnData>
+}
+
 
 export interface BookingInfo {
 	company: string

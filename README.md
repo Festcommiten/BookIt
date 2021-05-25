@@ -105,7 +105,7 @@ Bad request:
 ### Request
 
 HTTP Method: `GET`  
-API url: `/v1/bookings/{room1}`
+API url: `/v1/bookings/<str:room1>/<int:week>`
 
 ### Response
 
