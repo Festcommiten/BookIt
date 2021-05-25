@@ -170,9 +170,8 @@ def combine_lists(array_of_lists):
 
 
 def print_first_booked_of_room_for_all_weeks():
-    for i in range(len(weeks)):
-        for j in range(len(ROOM_NAMES_LIST)):
-            print(collection.find_one({"booker": {"$exists": "true", "$ne": ""}}))
+    for i in range(len(ROOM_NAMES_LIST)):
+        print(collection.find_one({"$and": {{"booker": {"$exists": "true", "$ne": ""}}, {"room": ROOM_NAMES_LIST[i]}))
 
 
 def get_random_starting_times():
