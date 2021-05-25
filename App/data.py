@@ -151,10 +151,10 @@ def combine_lists(array_of_lists):
 # collection.insert_many(combine_lists(populate_time_slots()))
 def print_first_data_of_room_for_current_week():
     for i in range(len(ROOM_NAMES_LIST)):
-        print(collection.find_one({"room": ROOM_NAMES_LIST[0]}))
+        print(collection.find_one({"room": ROOM_NAMES_LIST[i]}))
 
 
-print(combine_lists(populate_time_slots()))
+collection.insert_many(combine_lists(populate_time_slots()))
 print_first_data_of_room_for_current_week()
 
 # print(collection.find_one({"$and": [{"room": "Ada"}, {"week": 21}]}))
