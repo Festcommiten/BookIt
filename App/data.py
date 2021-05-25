@@ -170,7 +170,7 @@ def combine_lists(array_of_lists):
 
 
 def print_first_data_of_room_for_all_weeks():
-    for i in range(weeks):
+    for i in range(len(weeks)):
         for j in range(len(ROOM_NAMES_LIST)):
             print(collection.find_one({"room": ROOM_NAMES_LIST[i]}))
 
