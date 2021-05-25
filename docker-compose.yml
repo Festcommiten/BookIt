@@ -13,11 +13,3 @@ services:
       - db
     ports:
       - "80:80"
-  web:
-    build: ./web
-    image: bookit_web:dev
-    links:
-      - app
-    ports:
-      - "80:80"
-      - "443:443"
