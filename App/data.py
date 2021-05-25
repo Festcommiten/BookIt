@@ -157,7 +157,7 @@ def print_first_data_of_room_for_current_week():
 print(combine_lists(populate_time_slots()))
 print_first_data_of_room_for_current_week()
 
-print(collection.find_one({"$and": [{"room": "Ada"}, {"week": 21}]}).count())
+# print(collection.find_one({"$and": [{"room": "Ada"}, {"week": 21}]}))
 
 """
 days = datetime.timedelta(days=1)
