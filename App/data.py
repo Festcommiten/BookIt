@@ -169,10 +169,10 @@ def combine_lists(array_of_lists):
     return combined_list
 
 
-def print_first_data_of_room_for_all_weeks():
+def print_first_booked_of_room_for_all_weeks():
     for i in range(len(weeks)):
         for j in range(len(ROOM_NAMES_LIST)):
-            print(collection.find_one({"room": ROOM_NAMES_LIST[i]}))
+            print(collection.find_one({"booker": {"$exists": "true", "$ne": ""}}))
 
 
 def get_random_starting_times():
@@ -208,7 +208,7 @@ generate_bookings()
 print("These are all randomized mock bookings: ")
 print(collection.find({"booker": {"$exists": "true", "$ne": ""}}))
 print("This is printing the first document of each week for each room, should be 36 documents")
-print_first_data_of_room_for_all_weeks()
+print_first_booked_of_room_for_all_weeks()
 
 # print(collection.find_one({"$and": [{"room": "Ada"}, {"week": 21}]}))
 
