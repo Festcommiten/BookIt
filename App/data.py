@@ -1,5 +1,6 @@
 from pymongo import MongoClient
 import datetime
+import random
 
 # MONGO
 client = MongoClient("mongodb://db:27017")
@@ -19,6 +20,25 @@ NUMBER_OF_WEEKS = 5
 TIME_SLOTS_FOR_ROOM_PER_WEEK = 45
 
 ROOM_NAMES_LIST = ["Ada", "Rust", "Douglas", "Katniss", "Kakashi", "Obito"]
+
+bookers = \
+    [
+        "Leo på Backend",
+        "Lars på Frontend",
+        "Niklas på Operations",
+        "Oscar på Backend",
+        "Michaela på Deepend"
+    ]
+booking_companies = \
+    [
+        "Codic Education",
+        "Codic Consulting",
+        "GoMoGroup",
+        "MeAnalytics",
+        "FutureSkill",
+        "SoftwareSkills",
+        "Flexpool"
+    ]
 
 
 def updated_week_list():
@@ -124,6 +144,7 @@ def generate_empty_documents_for_room_time_slots_based_on_week(room_name: str, w
                 "starting_time": time_slot_data[0],
                 "end_time": time_slot_data[1]
             }
+            starting_times.append(room_empty_time_slot_data["starting_time"])
             room_data_for_week.append(room_empty_time_slot_data)
             # counter_for_id += 1
     return room_data_for_week
@@ -154,8 +175,34 @@ def print_first_data_of_room_for_current_week():
         print(collection.find_one({"room": ROOM_NAMES_LIST[i]}))
 
 
+def get_random_starting_times():
+    return random.sample(starting_times, 150)
+
+
+def convert_time_to_id(time, room_id):
+    year = time[0:4]
+    month = time[5:7]
+    day = time[8:10]
+    hour = time[11:13]
+    room_id = convert_int_to_string_of_minimum_length_two(room_id + 1)
+    id_to_update = int(year + month + day + hour + room_id)
+    return id_to_update
+
+
+def generate_bookings():
+    times_to_be_booked = get_random_starting_times()
+    for i in range(len(ROOM_NAMES_LIST)):
+        for time in range(len(times_to_be_booked)):
+            id_to_update = convert_time_to_id(times_to_be_booked[time], i)
+            booker = random.choice(bookers)
+            booking_company = random.choice(booking_companies)
+            collection.update_one({"_id": id_to_update}, {"$set": {"booker": booker, "booking_company": booking_company}})
+
+# print(combine_lists(populate_time_slots()))
+
 collection.insert_many(combine_lists(populate_time_slots()))
-print_first_data_of_room_for_current_week()
+generate_bookings()
+# print_first_data_of_room_for_current_week()
 
 # print(collection.find_one({"$and": [{"room": "Ada"}, {"week": 21}]}))
 
