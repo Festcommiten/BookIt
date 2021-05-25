@@ -170,7 +170,7 @@ def combine_lists(array_of_lists):
 
 
 def print_x_random_times():
-    x = 72
+    x = 12
     times_to_be_shown = get_random_starting_times()
     for i in range(len(ROOM_NAMES_LIST)):
         for j in range(x):
