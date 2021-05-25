@@ -208,9 +208,7 @@ print("Inserting empty time slot data")
 collection.insert_many(combine_lists(populate_time_slots()))
 print("Updating 150 * 6 documents with booker, and booking data")
 generate_bookings()
-print("These are all randomized mock bookings: ")
-print(collection.find({"booker": {"$exists": "true", "$ne": ""}}))
-print("This is printing the first document of each week for each room, should be 72 documents")
+print("Im printing 6 random times for each room, some booked others are free")
 print_x_random_times()
 
 
