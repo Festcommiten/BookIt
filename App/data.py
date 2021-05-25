@@ -174,7 +174,7 @@ def print_x_random_times():
     for i in range(len(ROOM_NAMES_LIST)):
         for j in range(72):
             id_int = convert_time_to_id(times_to_be_shown[j], i)
-            print(collection.find({"_id": id_int}))
+            print(collection.find_one({"_id": id_int}))
 
 
 def get_random_starting_times():
