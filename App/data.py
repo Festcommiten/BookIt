@@ -150,7 +150,7 @@ def combine_lists(array_of_lists):
 
 # print(combine_lists(populate_time_slots()))
 collection.insert(combine_lists(populate_time_slots()))
-collection.find({"$and": [{"room": "Ada"}, {"week": 21}]})
+print(collection.find({"$and": [{"room": "Ada"}, {"week": 21}]}))
 
 """
 days = datetime.timedelta(days=1)
