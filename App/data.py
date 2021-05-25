@@ -188,8 +188,8 @@ def convert_time_to_id(time, room_id):
     day = time[8:10]
     hour = time[11:13]
     room_id = convert_int_to_string_of_minimum_length_two(room_id + 1)
-    id_to_update = int(year + month + day + hour + room_id)
-    return id_to_update
+    converted_id = int(year + month + day + hour + room_id)
+    return converted_id
 
 
 def generate_bookings():
