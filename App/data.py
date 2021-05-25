@@ -170,9 +170,10 @@ def combine_lists(array_of_lists):
 
 
 def print_x_random_times():
+    x = 72
     times_to_be_shown = get_random_starting_times()
     for i in range(len(ROOM_NAMES_LIST)):
-        for j in range(72):
+        for j in range(x):
             id_int = convert_time_to_id(times_to_be_shown[j], i)
             print(collection.find_one({"_id": id_int}))
 
@@ -209,10 +210,9 @@ print("Updating 150 * 6 documents with booker, and booking data")
 generate_bookings()
 print("These are all randomized mock bookings: ")
 print(collection.find({"booker": {"$exists": "true", "$ne": ""}}))
-print("This is printing the first document of each week for each room, should be 36 documents")
+print("This is printing the first document of each week for each room, should be 72 documents")
 print_x_random_times()
 
-# print(collection.find_one({"$and": [{"room": "Ada"}, {"week": 21}]}))
 
 """
 days = datetime.timedelta(days=1)
