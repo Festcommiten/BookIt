@@ -196,12 +196,18 @@ def generate_bookings():
             id_to_update = convert_time_to_id(times_to_be_booked[time], i)
             booker = random.choice(bookers)
             booking_company = random.choice(booking_companies)
-            collection.update_one({"_id": id_to_update}, {"$set": {"booker": booker, "booking_company": booking_company}})
+            collection.update_one({"_id": id_to_update},
+                                  {"$set": {"booker": booker, "booking_company": booking_company}})
+
 
 # print(combine_lists(populate_time_slots()))
-
+print("Inserting empty time slot data")
 collection.insert_many(combine_lists(populate_time_slots()))
+print("Updating 150 * 6 documents with booker, and booking data")
 generate_bookings()
+print("These are all randomized mock bookings: ")
+print(collection.find({"booker": {"$exists": "true", "$ne": ""}}))
+
 # print_first_data_of_room_for_current_week()
 
 # print(collection.find_one({"$and": [{"room": "Ada"}, {"week": 21}]}))
