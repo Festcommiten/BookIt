@@ -139,14 +139,13 @@ def generate_empty_documents_for_room_time_slots_based_on_week(room_name: str, w
                 "_id": int(time_slot_data[2]),
                 "room": room_name,
                 "week": week,
-                "booking_company": "",
+                "company": "",
                 "booker": "",
                 "starting_time": time_slot_data[0],
                 "end_time": time_slot_data[1]
             }
             starting_times.append(room_empty_time_slot_data["starting_time"])
             room_data_for_week.append(room_empty_time_slot_data)
-            # counter_for_id += 1
     return room_data_for_week
 
 
@@ -200,7 +199,7 @@ def insert_random_bookings():
             booker = random.choice(bookers)
             booking_company = random.choice(booking_companies)
             collection.update_one({"_id": id_to_update},
-                                  {"$set": {"booker": booker, "booking_company": booking_company}})
+                                  {"$set": {"booker": booker, "company": booking_company}})
 
 
 

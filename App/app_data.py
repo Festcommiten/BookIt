@@ -44,7 +44,7 @@ def get_bookings_for_room_and_week(week, room_name):
 @app.route(current_version + '/remove/<int:id>', methods=['PUT'])
 @cross_origin()
 def remove_booking(id):
-    collection.update({"_id": id}, {"$set": {"booking_company": "", "booker": ""}})
+    collection.update({"_id": id}, {"$set": {"company": "", "booker": ""}})
     return "Time slot now empty"
 
 
@@ -52,9 +52,9 @@ def remove_booking(id):
 @cross_origin()
 def new_booking(id):
     booking_info = request.json
-    company = booking_info["booking_company"]
+    company = booking_info["company"]
     booker = booking_info["booker"]
-    collection.update({"_id": id}, {"$set": {"booking_company": company, "booker": booker}})
+    collection.update({"_id": id}, {"$set": {"company": company, "booker": booker}})
     return "Time slot booked"
 
 
