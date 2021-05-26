@@ -7,6 +7,8 @@ from flask_cors import CORS, cross_origin
 app = Flask(__name__)
 CORS(app)
 
+current_version = '/v1.0'
+
 # MONGO
 client = MongoClient("mongodb://db:27017")
 db = client.test_db
@@ -23,13 +25,13 @@ except Exception:
     print("Mock data already exists.")
 
 
-@app.route('/')
+@app.route(current_version + '/')
 @cross_origin()
 def alive():
     return "Hello World!"
 
 
-@app.route('/bookings/<int:week>/<string:room_name>', methods=['GET'])
+@app.route(current_version + '/bookings/<int:week>/<string:room_name>', methods=['GET'])
 @cross_origin()
 def get_bookings_for_room_and_week(week, room_name):
     retArray = []
@@ -39,14 +41,14 @@ def get_bookings_for_room_and_week(week, room_name):
     return jsonify(retArray)
 
 
-@app.route('/delete/<int:id>', methods=['PUT'])
+@app.route(current_version + '/remove/<int:id>', methods=['PUT'])
 @cross_origin()
-def delete_booking(id):
+def remove_booking(id):
     collection.update({"_id": id}, {"$set": {"booking_company": "", "booker": ""}})
     return "Time slot now empty"
 
 
-@app.route('/new_booking/<int:id>', methods=['PUT'])
+@app.route(current_version + '/new_booking/<int:id>', methods=['PUT'])
 @cross_origin()
 def new_booking(id):
     booking_info = request.json
