@@ -3,20 +3,32 @@ import React from 'react';
 import { IndividualSlotData, OneDayColumnData, OneWeekData } from '../utils/interface/WeekInterface';
 import { bookers, companies, dates, ids, start_slot, start_times, week_days } from '../utils/mock/MockData';
 import './Week.css';
+import { ButtonPrimary } from './Buttons';
 import ColumnRow from './Week/ColumnRow';
 import { ColumnTimeLeft, ColumnTimeRight } from './Week/ColumnTime';
-import axios from 'axios';
+import { hello_world, getWeekForRoom, newBooking, removeBooking } from '../utils/api/axios_requests';
 
 export default function Week() {
-	const url = 'http://127.0.0.1:80/'
+	// Get data for one week for room:
+	function f1() {
+		let week: number = 21;
+		let room: string = 'Ada';
+		getWeekForRoom(week, room);
+	}
 	
-	axios.get(url)
-		.then(response => console.log(response.data))
-		.catch(error => console.log(error))
+	// New Booking
+	let id: number = 202105240801;
+	let company: string = 'Fake Company';
+	let booker: string = 'Fake Kamo';
 	
-	axios.get(url + 'bookings/21/Ada')
-		.then(response => console.log(response.data))
-		.catch(error => console.log(error))
+	function f2() {
+		newBooking(id, company, booker);
+	}
+	
+	// Remove Booking
+	function f3() {
+		removeBooking(id);
+	}
 	
 	// interface SlotData {
 	// 	company: string
@@ -184,6 +196,24 @@ export default function Week() {
 					})
 				}
 				<ColumnTimeRight/>
+			</div>
+			<div>
+				<button
+					className="primary_button"
+					onClick={ hello_world }>Hello World
+				</button>
+				<button
+					className="primary_button"
+					onClick={ f1 }>Get Week For Room
+				</button>
+				<button
+					className="primary_button"
+					onClick={ f2 }>New Booking
+				</button>
+				<button
+					className="primary_button"
+					onClick={ f3 }>Remove Booking
+				</button>
 			</div>
 		</div>
 	);
