@@ -1,10 +1,8 @@
-version: '3'
+version: "3"
 services:
   db:
     build: ./Db
     image: bookit_db:dev
-    ports:
-      - "27017:27017"
 
   app:
     build: ./App
