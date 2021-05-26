@@ -1,1 +1,1 @@
-mongoimport --db test_db --collection mock --file mock_data.json --jsonArray
+mongoimport --db test_db --collection mock_data --file mock_data.json --jsonArray
