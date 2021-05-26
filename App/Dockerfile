@@ -5,4 +5,4 @@ WORKDIR /usr/src/app
 COPY requirements.txt .
 RUN pip3 install --no-cache-dir -r requirements.txt
 COPY . .
-CMD ["python", "app.py"]
+CMD ["python", "app_data.py"]
