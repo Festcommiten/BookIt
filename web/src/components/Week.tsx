@@ -5,11 +5,18 @@ import { bookers, companies, dates, ids, start_slot, start_times, week_days } fr
 import './Week.css';
 import ColumnRow from './Week/ColumnRow';
 import { ColumnTimeLeft, ColumnTimeRight } from './Week/ColumnTime';
+import axios from 'axios';
 
 export default function Week() {
-	// axios.get('data.json')
-	// 	.then(response => console.log(response.data))
-	// 	.catch(error => console.log(error))
+	const url = 'http://127.0.0.1:80/'
+	
+	axios.get(url)
+		.then(response => console.log(response.data))
+		.catch(error => console.log(error))
+	
+	axios.get(url + 'bookings/21/Ada')
+		.then(response => console.log(response.data))
+		.catch(error => console.log(error))
 	
 	// interface SlotData {
 	// 	company: string
