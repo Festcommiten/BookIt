@@ -1,10 +1,8 @@
-version: '3'
+version: "3"
 services:
   db:
     build: ./Db
     image: bookit_db:dev
-    ports:
-      - "27017:27017"
 
   app:
     build: ./App
@@ -13,11 +11,11 @@ services:
       - db
     ports:
       - "80:80"
-  web:
-    build: ./web
-    image: bookit_web:dev
-    links:
-      - app
-    ports:
-      - "80:80"
-      - "443:443"
+  # web:
+  #  build: ./web
+  #  image: bookit_web:dev
+  #  links:
+  #    - app
+  #  ports:
+  #    - "80:80"
+  #    - "443:443"

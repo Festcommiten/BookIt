@@ -27,7 +27,7 @@ bookers = \
         "Lars på Frontend",
         "Niklas på Operations",
         "Oscar på Backend",
-        "Michaela på Deepend"
+        "Michaela på Projektledning"
     ]
 booking_companies = \
     [
@@ -192,7 +192,7 @@ def convert_time_to_id(time, room_id):
     return converted_id
 
 
-def generate_bookings():
+def insert_random_bookings():
     times_to_be_booked = get_random_starting_times()
     for i in range(len(ROOM_NAMES_LIST)):
         for time in range(len(times_to_be_booked)):
@@ -203,13 +203,10 @@ def generate_bookings():
                                   {"$set": {"booker": booker, "booking_company": booking_company}})
 
 
-# print(combine_lists(populate_time_slots()))
-print("Inserting empty time slot data")
-collection.insert_many(combine_lists(populate_time_slots()))
-print("Updating 150 * 6 documents with booker, and booking data")
-generate_bookings()
-print("Im printing 6 random times for each room, some booked others are free")
-print_x_random_times()
+
+def insert_empty_time_slots():
+    collection.insert_many(combine_lists(populate_time_slots()))
+
 
 
 """
