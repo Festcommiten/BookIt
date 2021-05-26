@@ -27,7 +27,7 @@ let companies: Array<string> = [
 ];
 
 let bookers: Array<string> = [
-	'Robin Kamo (Dum produktägare)',
+	'Robin Kamo',
 	'Leo på Backend',
 	'Niklas på Ópsss',
 ];
