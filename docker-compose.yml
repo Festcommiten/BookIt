@@ -11,7 +11,7 @@ services:
       - db
     ports:
       - "80:80"
-   web:
+  web:
     build: ./web
     image: bookit_web:dev
     links:

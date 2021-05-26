@@ -20,14 +20,14 @@ function getWeekForRoom(week: number, room: string) {
 
 interface NewBooking {
 	_id: number
-	booking_company: string
+	company: string
 	booker: string
 }
 
 function newBooking(id: number, company: string, booker: string) {
 	let newBooking: NewBooking = {
 		_id: id,
-		booking_company: company,
+		company: company,
 		booker: booker
 	};
 	
