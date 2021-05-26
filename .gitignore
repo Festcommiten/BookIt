@@ -304,3 +304,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,jetbrains+all,venv,virtualenv,node,macos,windows
+App/helpers/__pycache__/
+
+App/__pycache__/
