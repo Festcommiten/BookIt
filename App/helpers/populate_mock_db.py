@@ -1,5 +1,6 @@
 from pymongo import MongoClient
 import datetime
+import random
 
 # MONGO
 client = MongoClient("mongodb://db:27017")
@@ -19,6 +20,25 @@ NUMBER_OF_WEEKS = 5
 TIME_SLOTS_FOR_ROOM_PER_WEEK = 45
 
 ROOM_NAMES_LIST = ["Ada", "Rust", "Douglas", "Katniss", "Kakashi", "Obito"]
+
+bookers = \
+    [
+        "Leo på Backend",
+        "Lars på Frontend",
+        "Niklas på Operations",
+        "Oscar på Backend",
+        "Michaela på Projektledning"
+    ]
+booking_companies = \
+    [
+        "Codic Education",
+        "Codic Consulting",
+        "GoMoGroup",
+        "MeAnalytics",
+        "FutureSkill",
+        "SoftwareSkills",
+        "Flexpool"
+    ]
 
 
 def updated_week_list():
@@ -119,13 +139,13 @@ def generate_empty_documents_for_room_time_slots_based_on_week(room_name: str, w
                 "_id": int(time_slot_data[2]),
                 "room": room_name,
                 "week": week,
-                "booking_company": "",
+                "company": "",
                 "booker": "",
                 "starting_time": time_slot_data[0],
                 "end_time": time_slot_data[1]
             }
+            starting_times.append(room_empty_time_slot_data["starting_time"])
             room_data_for_week.append(room_empty_time_slot_data)
-            # counter_for_id += 1
     return room_data_for_week
 
 
@@ -148,8 +168,45 @@ def combine_lists(array_of_lists):
     return combined_list
 
 
-print(combine_lists(populate_time_slots()))
-# collection.insert(combine_lists(populate_time_slots()))
+def print_x_random_times():
+    x = 12
+    times_to_be_shown = get_random_starting_times()
+    for i in range(len(ROOM_NAMES_LIST)):
+        for j in range(x):
+            id_int = convert_time_to_id(times_to_be_shown[j], i)
+            print(collection.find_one({"_id": id_int}))
+
+
+def get_random_starting_times():
+    return random.sample(starting_times, 150)
+
+
+def convert_time_to_id(time, room_id):
+    year = time[0:4]
+    month = time[5:7]
+    day = time[8:10]
+    hour = time[11:13]
+    room_id = convert_int_to_string_of_minimum_length_two(room_id + 1)
+    converted_id = int(year + month + day + hour + room_id)
+    return converted_id
+
+
+def insert_random_bookings():
+    times_to_be_booked = get_random_starting_times()
+    for i in range(len(ROOM_NAMES_LIST)):
+        for time in range(len(times_to_be_booked)):
+            id_to_update = convert_time_to_id(times_to_be_booked[time], i)
+            booker = random.choice(bookers)
+            booking_company = random.choice(booking_companies)
+            collection.update_one({"_id": id_to_update},
+                                  {"$set": {"booker": booker, "company": booking_company}})
+
+
+
+def insert_empty_time_slots():
+    collection.insert_many(combine_lists(populate_time_slots()))
+
+
 
 """
 days = datetime.timedelta(days=1)
