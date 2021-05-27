@@ -15,6 +15,7 @@ def bookit_api(app):
     class NewBooking(Resource):
         def post(self):
             posted_data = request.get_json()
+            print("GOT POSTED DATA")
             response = {
                 "message": "Something unexpected happened",
                 "status": 400
@@ -50,6 +51,16 @@ def bookit_api(app):
                 response["message"] = e
                 return response
 
+    class RemoveBooking(Resource):
+        def put(self, _id):
+            mock_collection.update({"_id": _id}, {"$set": {"company": "", "booker": ""}})
+            response = {
+                "message": "Time slot is now empty",
+                "status": 200
+            }
+            return response
+
     api = Api(app)
     api.add_resource(NewBooking, "/v1/new_booking")
     api.add_resource(AllBookings, "/v1/bookings")
+    api.add_resource(RemoveBooking, "/v1/remove/<int:_id>")
