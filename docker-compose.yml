@@ -10,7 +10,7 @@ services:
     links:
       - db
     ports:
-      - "80:80"
+      - "8080:80"
   web:
     build: ./web
     image: bookit_web:dev
