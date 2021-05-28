@@ -14,6 +14,7 @@ current_version = '/v1.0'
 client = MongoClient("mongodb://db:27017")
 db = client.test_db
 collection = db["mock_data"]
+users_collection = db["users"]
 
 try:
     insert_empty_time_slots()
@@ -73,7 +74,7 @@ def new_booking(id):
 @cross_origin()
 def get_users():
     return_list = []
-    cursor = collection.find()
+    cursor = users_collection.find()
     for doc in cursor:
         return_list.append(doc)
     return jsonify(return_list)

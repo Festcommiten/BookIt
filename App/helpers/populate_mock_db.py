@@ -261,7 +261,9 @@ def update_calendar_weeks():
 def create_admin_db(workplace_info: list):
     if workplace_info:
         users_collection.remove()
-        users_collection.insert_many(workplace_info)
+        for user in workplace_info:
+            user["_id"] = int(workplace_info.index(user) + 1)
+            users_collection.insert_one(user)
         print("Recreated users database")
     else:
         print("No input in list, did you accidentally delete work-info file?")
