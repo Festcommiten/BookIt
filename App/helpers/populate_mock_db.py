@@ -208,15 +208,19 @@ def convert_time_to_id(time, room_id):
 
 
 def insert_random_bookings():
-    times_to_be_booked = get_random_starting_times()
-    for i in range(len(ROOM_NAMES_LIST)):
-        for time in range(len(times_to_be_booked)):
-            id_to_update = convert_time_to_id(times_to_be_booked[time], i)
-            booker = random.choice(bookers)
-            booking_company = random.choice(booking_companies)
-            collection.update_one({"_id": id_to_update},
-                                  {"$set": {"booker": booker, "company": booking_company}})
-    print("Random bookings created")
+    if not collection.find_one({"company": "FutureSkill"}):
+        times_to_be_booked = get_random_starting_times()
+        for i in range(len(ROOM_NAMES_LIST)):
+            for time in range(len(times_to_be_booked)):
+                id_to_update = convert_time_to_id(times_to_be_booked[time], i)
+                booker = random.choice(bookers)
+                booking_company = random.choice(booking_companies)
+                collection.update_one({"_id": id_to_update},
+                                      {"$set": {"booker": booker, "company": booking_company}})
+        print("Random bookings created")
+    else:
+        print("No new bookings entered")
+
 
 def insert_empty_time_slots():
     collection.insert_many(combine_lists(populate_time_slots_for_all_weeks()))
@@ -258,30 +262,4 @@ days = datetime.timedelta(days=1)
 d = datetime.timedelta(days=2)
 a = time_now + d
 
-
-def type_is_int(input):
-    if type(input) == int:
-        return True
-    else:
-        return False
-
-
-def check_if_type_is_str(input):
-    if type(input) == str:
-        return True
-    else:
-        return False
-
-def latest_int_id_entry_in_db():
-    try:
-        latest_int_id_entry = collection.find().sort({"_id": -1}).limit(1)["_id"]
-        print(type(latest_int_id_entry))
-        print(latest_int_id_entry)
-    except:
-        latest_int_id_entry = False
-
-    if latest_int_id_entry:
-        return latest_int_id_entry
-    else:
-        return False
 """
