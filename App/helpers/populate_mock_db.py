@@ -14,9 +14,19 @@ current_month_int = time_now.month
 current_day_int = time_now.day
 current_hour_int = time_now.hour
 
+today = datetime.datetime.now()
+
+week_dates = [
+    today + datetime.timedelta(days=-7),
+    today,
+    today + datetime.timedelta(days=7),
+    today + datetime.timedelta(days=14),
+    today + datetime.timedelta(days=21),
+    today + datetime.timedelta(days=28)
+]
+
 starting_times = []
 
-NUMBER_OF_WEEKS = 5
 TIME_SLOTS_FOR_ROOM_PER_WEEK = 45
 
 ROOM_NAMES_LIST = ["Ada", "Rust", "Douglas", "Katniss", "Kakashi", "Obito"]
@@ -41,11 +51,17 @@ booking_companies = \
     ]
 
 
+def get_week_int(year, month, day):
+    return datetime.date(year, month, day).isocalendar()[1]
+
+
 def updated_week_list():
-    this_week = current_week_int
-    last_week = this_week - 1
-    next_week = this_week + 1
-    current_week_list = [last_week, this_week, next_week, next_week + 1, next_week + 2, next_week + 3]
+    current_week_list = []
+    for date in week_dates:
+        year = date.year
+        month = date.month
+        day = date.day
+        current_week_list.append(get_week_int(year, month, day))
     return current_week_list
 
 
@@ -149,7 +165,7 @@ def generate_empty_documents_for_room_time_slots_based_on_week(room_name: str, w
     return room_data_for_week
 
 
-def populate_time_slots():
+def populate_time_slots_for_all_weeks():
     populated_times_slots = []
     for room_order in range(len(ROOM_NAMES_LIST)):
         room_name = ROOM_NAMES_LIST[room_order]
@@ -200,12 +216,40 @@ def insert_random_bookings():
             booking_company = random.choice(booking_companies)
             collection.update_one({"_id": id_to_update},
                                   {"$set": {"booker": booker, "company": booking_company}})
-
-
+    print("Random bookings created")
 
 def insert_empty_time_slots():
-    collection.insert_many(combine_lists(populate_time_slots()))
+    collection.insert_many(combine_lists(populate_time_slots_for_all_weeks()))
+    print("1620 empty documents inserted")
 
+
+def populate_time_slots(week, room_order):
+    room_name = ROOM_NAMES_LIST[room_order]
+    populated_times_slots = generate_empty_documents_for_room_time_slots_based_on_week(room_name, week,
+                                                                                       room_order)
+    return populated_times_slots
+
+
+def add_new_week_to_all_rooms():
+    new_week = weeks[-1]
+    populated_times_slots = []
+    for room_order in range(len(ROOM_NAMES_LIST)):
+        populated_times_slots.append(populate_time_slots(new_week, room_order))
+    return populated_times_slots
+
+
+def update_calendar_weeks():
+    date_two_weeks_ago = today + datetime.timedelta(days=-14)
+    year = date_two_weeks_ago.year
+    month = date_two_weeks_ago.month
+    day = date_two_weeks_ago.day
+    two_weeks_ago = get_week_int(year, month, day)
+    if collection.find_one({"week": two_weeks_ago}):
+        collection.delete_many({"week": two_weeks_ago})
+        collection.insert_many(combine_lists(add_new_week_to_all_rooms()))
+        print("Deleted all entries for week before last and added a new week with empty time slots")
+    else:
+        print("Calendar was up to date, no weeks added or removed")
 
 
 """
