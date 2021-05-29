@@ -2,13 +2,16 @@ from flask import jsonify, request
 from flask_restful import Api, Resource
 from pymongo import MongoClient
 import handlers.api_tools as tools
-from bson import json_util
-import json
+import handlers.CONSTANTS as C
 
 # MONGO
 client = MongoClient("mongodb://db:27017")
 db = client.test_db
 mock_collection = db["mock_data"]
+
+
+def db_find_one(key: str, value):
+    return mock_collection.find_one({key: value})
 
 
 def bookit_api(app):
@@ -20,15 +23,15 @@ def bookit_api(app):
                 "message": "Something unexpected happened",
                 "status": 400
             }
-            if tools.validate_request_keys_unordered(posted_data, tools.NEW_BOOKING):
-                if tools.validate_request_keys_ordered(posted_data, tools.NEW_BOOKING):
+            if tools.validate_request_keys_unordered(posted_data, C.NEW_BOOKING):
+                if tools.validate_request_keys_ordered(posted_data, C.NEW_BOOKING):
                     mock_collection.insert(posted_data)
                     response["message"] = "OK"
                     response["status"] = 200
                 else:
-                    response["message"] = tools.REQUEST_KEYS_ORDERED_FALSE
+                    response["message"] = C.REQUEST_KEYS_ORDERED_FALSE
             else:
-                response["message"] = tools.REQUEST_KEYS_FALSE
+                response["message"] = C.REQUEST_KEYS_FALSE
 
             return jsonify(response)
 
@@ -52,15 +55,28 @@ def bookit_api(app):
                 return response
 
     class RemoveBooking(Resource):
-        def put(self, _id):
-            mock_collection.update({"_id": _id}, {"$set": {"company": "", "booker": ""}})
+        def put(self, id_number: int):
             response = {
-                "message": "Time slot is now empty",
-                "status": 200
+                "message": "",
+                "status": ""
             }
-            return response
+            _id = tools.str_to_int(id_number)
+            if _id:
+                if db_find_one("_id", _id):
+                    mock_collection.update({"_id": _id}, {"$set": {"company": "", "booker": ""}})
+                    response["message"] = C.SLOT_IS_EMPTY
+                    response["status"] = 200
+                    return response
+                else:
+                    response["message"] = C.ID_DOES_NOT_EXIST
+                    response["status"] = 400
+                    return response
+            else:
+                response["message"] = "'" + C.WRONG_ID_DATATYPE + "' " + C.STR_TO_INT_ERROR
+                response["status"] = 400
+                return response
 
     api = Api(app)
     api.add_resource(NewBooking, "/v1/new_booking")
     api.add_resource(AllBookings, "/v1/bookings")
-    api.add_resource(RemoveBooking, "/v1/remove/<int:_id>")
+    api.add_resource(RemoveBooking, "/v1/remove/<id_number>")
