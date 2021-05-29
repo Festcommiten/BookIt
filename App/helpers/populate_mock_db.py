@@ -2,10 +2,12 @@ from pymongo import MongoClient
 import datetime
 import random
 
+
 # MONGO
 client = MongoClient("mongodb://db:27017")
 db = client.test_db
 collection = db["mock_data"]
+users_collection = db["users"]
 
 my_date = datetime.date.today()
 time_now = datetime.datetime.today()
@@ -256,7 +258,34 @@ def update_calendar_weeks():
         print("Calendar was up to date, no weeks added or removed")
 
 
+def create_admin_db(workplace_info: list):
+    if workplace_info:
+        users_collection.remove()
+        for user in workplace_info:
+            user["_id"] = int(workplace_info.index(user) + 1)
+            users_collection.insert_one(user)
+        print("Recreated users database")
+    else:
+        print("No input in list, did you accidentally delete work-info file?")
+
+
+
 """
+
+    for user in workplace_info:
+        if users_collection.find(
+            {"$and":
+                [
+                    {"company": user["company"]},
+                    {"first_name": user["first_name"]},
+                    {"last_name": user["last_name"]}
+                ]
+            }
+        ):
+            pass
+        else:
+            users_collection.insert_many(workplace_info)
+            
 days = datetime.timedelta(days=1)
 
 d = datetime.timedelta(days=2)
