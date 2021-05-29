@@ -1,27 +1,5 @@
 import collections
-
-# CONSTANTS
-
-# ENDPOINT NAMES
-NEW_BOOKING = "new_booking"
-
-# EXPECTED REQUEST
-API_REQUEST_KEYS = {
-    NEW_BOOKING: [
-        "_id",
-        "room",
-        "week",
-        "booking_company",
-        "booker",
-        "start_time",
-        "end_time"
-    ]
-}
-# ERROR MESSAGES
-REQUEST_KEYS_FALSE = "One or more json keys are incorrect"
-REQUEST_KEYS_ORDERED_FALSE = "The jsons key order is incorrect"
-
-# END CONSTANTS
+import handlers.CONSTANTS as C
 
 
 def validate_request_keys_unordered(posted_data: dict, endpoint_name: str) -> bool:
@@ -31,7 +9,7 @@ def validate_request_keys_unordered(posted_data: dict, endpoint_name: str) -> bo
     :param endpoint_name: The name of the endpoint the request was sent to.
     :return: True if the unordered keys are the same, False if they're not.
     """
-    return collections.Counter(posted_data.keys()) == collections.Counter(API_REQUEST_KEYS[endpoint_name])
+    return collections.Counter(posted_data.keys()) == collections.Counter(C.API_REQUEST_KEYS[endpoint_name])
 
 
 def validate_request_keys_ordered(posted_data: dict, endpoint_name: str) -> bool:
@@ -41,4 +19,11 @@ def validate_request_keys_ordered(posted_data: dict, endpoint_name: str) -> bool
     :param endpoint_name: The name of the endpoint the request was sent to.
     :return: True if the ordered keys are the same, False if they're not.
     """
-    return list(posted_data) == API_REQUEST_KEYS[endpoint_name]
+    return list(posted_data) == C.API_REQUEST_KEYS[endpoint_name]
+
+
+def str_to_int(string: str):
+    try:
+        return int(string)
+    except ValueError:
+        return False
