@@ -17,3 +17,5 @@ services:
     image: bookitcontainers.azurecr.io/bookit_app:dev
     links:
       - db
+    ports:
+      - "8080:80"
