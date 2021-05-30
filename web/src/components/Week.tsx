@@ -26,7 +26,8 @@ export default class Week extends Component {
 	};
 	
 	componentDidMount() {
-		let week: number = 22;
+		let time: moment.Moment = moment();
+		let week: number = parseInt(time.format("W"));
 		let room: string = 'Kakashi';
 		
 		axios.get(url + `bookings/${ week }/${ room }`)
