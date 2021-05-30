@@ -10,13 +10,8 @@ services:
     image: bookitcontainers.azurecr.io/bookit_app:dev
     links:
       - db
-    ports:
-      - "8080:80"
   web:
     build: ./web
     image: bookitcontainers.azurecr.io/bookit_web:dev
     links:
       - app
-    ports:
-      - "80:80"
-      - "443:443"
