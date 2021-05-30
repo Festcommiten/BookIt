@@ -1,22 +1,28 @@
+import '@material-ui/icons';
 import React from 'react';
 import 'tachyons';
 import Footer from './components/Footer';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import Routing from './routes/Routing';
 import './utils/global/Global.css';
-import '@material-ui/icons'
+import { RoomProvider, WeekDataProvider, WeekProvider } from './utils/global/provider/GlobalProvider';
+import { UserProvider } from './utils/global/provider/UserProvider';
 
-// import axios from 'axios';
-// import { Calendar, momentLocalizer } from 'react-big-calendar'
 
 function App() {
 	return (
-		<>
-			<Routing>
-				<Navbar/>
-			</Routing>
-			<Footer/>
-		</>
+		<UserProvider>
+			<WeekProvider>
+				<RoomProvider>
+					<WeekDataProvider>
+						<Routing>
+							<Navbar/>
+						</Routing>
+						<Footer/>
+					</WeekDataProvider>
+				</RoomProvider>
+			</WeekProvider>
+		</UserProvider>
 	);
 }
 

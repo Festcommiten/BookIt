@@ -1,7 +1,14 @@
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import React from 'react';
+import moment from 'moment';
+import React, { useContext } from 'react';
 import './ColumnTime.css';
+import { WeekContext } from '../../utils/global/provider/GlobalProvider';
+
+const weekNow: number = parseInt(moment().format('W'));
+const weekMin = weekNow - 1;
+const weekMax = weekNow + 4;
+
 
 let time_slot = [
 	'8-9',
