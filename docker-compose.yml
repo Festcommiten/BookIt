@@ -6,7 +6,7 @@ services:
     links:
       - app
     ports:
-      - "80:8080"
+      - "80:80"
   db:
     build: ./Db
     image: bookitcontainers.azurecr.io/bookit_db:dev
