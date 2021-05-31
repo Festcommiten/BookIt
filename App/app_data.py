@@ -11,7 +11,7 @@ CORS(app)
 current_version = '/v1.0'
 
 # MONGO
-client = MongoClient("https://bookit-festcommitten.azurewebsites.net:27017")
+client = MongoClient("mongodb://172.17.42.1:27017")
 db = client.test_db
 collection = db["mock_data"]
 users_collection = db["users"]
@@ -81,5 +81,5 @@ def get_users():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 80))
-    app.run(debug=True, host='51.116.145.32', port=port)
+    app.run(debug=True, host='172.17.42.1', port=port)
 
