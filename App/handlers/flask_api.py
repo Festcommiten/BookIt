@@ -8,6 +8,7 @@ import handlers.CONSTANTS as C
 client = MongoClient("mongodb://db:27017")
 db = client.test_db
 mock_collection = db["mock_data"]
+users_collection = db["users"]
 
 
 def db_find_one(key: str, value):
@@ -97,8 +98,23 @@ def bookit_api(app):
                 response["status"] = 200
             return response
 
+    class GetUsers(Resource):
+        def get(self):
+            response = {
+                "users": [],
+                "message": "",
+                "status": 0
+            }
+            users = list(users_collection.find())
+            response["users"] = users
+            response["message"] = "OK"
+            response["status"] = 200
+
+            return response
+
     api = Api(app)
     api.add_resource(NewBooking, "/v1/new_booking")
     api.add_resource(AllBookings, "/v1/all_bookings")
     api.add_resource(RemoveBooking, "/v1/remove/<id_number>")
     api.add_resource(GetBookings, "/v1/bookings/<int:week>/<string:room>")
+    api.add_resource(GetUsers, "/v1/users")
