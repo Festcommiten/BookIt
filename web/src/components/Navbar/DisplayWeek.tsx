@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
-import RoutingPath from '../../routes/RoutingPath';
-import { WeekContext } from '../../utils/global/provider/GlobalProvider';
+import { WeekContext } from '../../utils/global/provider/WeekProvider';
 
 export const DisplayWeek = () => {
 	const [week, setWeek] = useContext(WeekContext);
