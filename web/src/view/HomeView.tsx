@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Week from '../components/Week';
+import { Week } from '../components/Week';
 
 class HomeView extends Component {
 	
