@@ -2,19 +2,19 @@ version: "3"
 services:
   web:
     build: ./web
-    image: bookitcontainers.azurecr.io/bookit_web:dev
+    image: bookitcontainers.azurecr.io/bookit_repo:devweb
     links:
       - app
     ports:
       - "80:80"
   db:
     build: ./Db
-    image: bookitcontainers.azurecr.io/bookit_db:dev
+    image: bookitcontainers.azurecr.io/bookit_repo:devdb
     ports:
       - "27017:27017"
   app:
     build: ./App
-    image: bookitcontainers.azurecr.io/bookit_app:dev
+    image: bookitcontainers.azurecr.io/bookit_repo:devapp
     links:
       - db
     ports:
