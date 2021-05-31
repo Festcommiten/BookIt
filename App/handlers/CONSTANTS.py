@@ -1,5 +1,6 @@
 # ***** VARIABLES *****
-
+# URL
+LOCAL_HOST = "http://127.0.0.1:5000"
 
 # ID
 EXISTING_ID_AS_STR = "202105211501"
