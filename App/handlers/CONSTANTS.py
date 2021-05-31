@@ -42,3 +42,19 @@ EXISTING_DATA = {
     "starting_time": "2021-05-19T16:00:00+02:00",
     "end_time": "2021-05-19T17:00:00+02:00"
 }
+# NEW_BOOKING
+NB_CORRECT_DATA = {
+    "_id": 202105281501,
+    "company": "FutureSkill",
+    "booker": "Oscar"
+}
+NB_INCORRECT_ID = {
+    "_id": NONE_EXISTING_ID,
+    "company": "FutureSkill",
+    "booker": "Oscar"
+}
+NB_WRONG_DATATYPE = {
+    "_id": WRONG_ID_DATATYPE,
+    "company": "FutureSkill",
+    "booker": "Oscar"
+}
