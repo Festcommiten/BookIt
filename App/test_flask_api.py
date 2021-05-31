@@ -76,3 +76,10 @@ def test_remove_booking():
 def test_db_find_one():
     assert api.db_find_one("_id", 202105191601) == C.EXISTING_DATA
     assert api.db_find_one("_id", 1234) is None
+
+
+def test_get_users():
+    endpoint = url + "/v1/users"
+    response = requests.get(endpoint)
+    assert response["message"] == "OK"
+    assert response["status"] == 200
