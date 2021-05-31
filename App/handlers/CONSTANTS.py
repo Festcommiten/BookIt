@@ -30,6 +30,7 @@ REQUEST_KEYS_FALSE = "One or more json keys are incorrect"
 REQUEST_KEYS_ORDERED_FALSE = "The jsons key order is incorrect"
 ID_DOES_NOT_EXIST = "This id does not exist"
 STR_TO_INT_ERROR = "can't be convert to a integer"
+NO_BOOKINGS_PARAMETERS = "There are no bookings with the given parameters"
 
 # ***** MOCK DATA *****
 EXISTING_DATA = {

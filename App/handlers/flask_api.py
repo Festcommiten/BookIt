@@ -76,7 +76,26 @@ def bookit_api(app):
                 response["status"] = 400
                 return response
 
+    class GetBookings(Resource):
+        def get(self, week, room):
+            response = {
+                "bookings": "",
+                "message": "",
+                "status": 0
+            }
+            bookings = list(mock_collection.find({"$and": [{"week": week}, {"room": room}]}))
+            if not bookings:
+                response["bookings"] = "None"
+                response["message"] = C.NO_BOOKINGS_PARAMETERS
+                response["status"] = 400
+            else:
+                response["bookings"] = bookings
+                response["message"] = "OK"
+                response["status"] = 200
+            return response
+
     api = Api(app)
     api.add_resource(NewBooking, "/v1/new_booking")
-    api.add_resource(AllBookings, "/v1/bookings")
+    api.add_resource(AllBookings, "/v1/all_bookings")
     api.add_resource(RemoveBooking, "/v1/remove/<id_number>")
+    api.add_resource(GetBookings, "/v1/bookings/<int:week>/<string:room>")
