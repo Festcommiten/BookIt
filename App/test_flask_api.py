@@ -80,6 +80,6 @@ def test_db_find_one():
 
 def test_get_users():
     endpoint = url + "/v1/users"
-    response = requests.get(endpoint)
+    response = requests.get(endpoint).json()
     assert response["message"] == "OK"
     assert response["status"] == 200
