@@ -1,4 +1,4 @@
-from flask import jsonify, request
+from flask import request
 from flask_restful import Api, Resource
 from pymongo import MongoClient
 import handlers.api_tools as tools
@@ -16,24 +16,27 @@ def db_find_one(key: str, value):
 
 def bookit_api(app):
     class NewBooking(Resource):
-        def post(self):
+        def put(self):
             posted_data = request.get_json()
-            print("GOT POSTED DATA")
             response = {
-                "message": "Something unexpected happened",
-                "status": 400
+                "message": "",
+                "status": 0
             }
-            if tools.validate_request_keys_unordered(posted_data, C.NEW_BOOKING):
-                if tools.validate_request_keys_ordered(posted_data, C.NEW_BOOKING):
-                    mock_collection.insert(posted_data)
+            company = posted_data["company"]
+            booker = posted_data["booker"]
+            _id_int = tools.str_to_int(posted_data["_id"])
+            if _id_int:
+                if db_find_one("_id", _id_int) is not None:
+                    mock_collection.update({"_id": _id_int}, {"$set": {"company": company, "booker": booker}})
                     response["message"] = "OK"
                     response["status"] = 200
                 else:
-                    response["message"] = C.REQUEST_KEYS_ORDERED_FALSE
+                    response["message"] = C.ID_DOES_NOT_EXIST
+                    response["status"] = 400
             else:
-                response["message"] = C.REQUEST_KEYS_FALSE
-
-            return jsonify(response)
+                response["message"] = "'" + posted_data["_id"] + "' " + C.STR_TO_INT_ERROR
+                response["status"] = 400
+            return response
 
     class AllBookings(Resource):
         def get(self):

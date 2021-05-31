@@ -41,16 +41,16 @@ new_booking_incorrect_data = {
 
 def test_new_booking():
     url_endpoint = url + "/v1/new_booking"
-    response = requests.post(url_endpoint, json=new_booking_correct_data_and_order).json()
+    response = requests.put(url_endpoint, json=C.NB_CORRECT_DATA).json()
     assert response["message"] == "OK"
     assert response["status"] == 200
 
-    response = requests.post(url_endpoint, json=new_booking_correct_data_wrong_order).json()
-    assert response["message"] == C.REQUEST_KEYS_ORDERED_FALSE
+    response = requests.put(url_endpoint, json=C.NB_INCORRECT_ID).json()
+    assert response["message"] == C.ID_DOES_NOT_EXIST
     assert response["status"] == 400
 
-    response = requests.post(url_endpoint, json=new_booking_incorrect_data).json()
-    assert response["message"] == C.REQUEST_KEYS_FALSE
+    response = requests.put(url_endpoint, json=C.NB_WRONG_DATATYPE).json()
+    assert response["message"] == "'" + C.WRONG_ID_DATATYPE + "' " + C.STR_TO_INT_ERROR
     assert response["status"] == 400
 
 
