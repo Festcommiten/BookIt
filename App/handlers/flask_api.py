@@ -5,7 +5,7 @@ import handlers.api_tools as tools
 import handlers.CONSTANTS as C
 
 # MONGO
-client = MongoClient("mongodb://db:27017")
+client = MongoClient("https://bookit-festcommitten.azurewebsites.net:27017")
 db = client.test_db
 mock_collection = db["mock_data"]
 
