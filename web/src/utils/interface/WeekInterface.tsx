@@ -19,8 +19,6 @@ export interface OneDayColumnData {
 
 // Data structure from API
 export interface OneWeekData {
-	week: number
-	room: string
 	oneWeek: Array<OneDayColumnData>
 }
 
@@ -33,4 +31,14 @@ export interface BookingInfo {
 export interface WeekDate {
 	weekday: string
 	date: string
+}
+
+export interface JsonData {
+	_id: number
+	booker: string
+	company: string
+	end_time: moment.Moment
+	room: string
+	starting_time: moment.Moment
+	week: number
 }

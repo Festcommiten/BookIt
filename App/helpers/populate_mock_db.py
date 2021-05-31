@@ -2,10 +2,12 @@ from pymongo import MongoClient
 import datetime
 import random
 
+
 # MONGO
 client = MongoClient("mongodb://db:27017")
 db = client.test_db
 collection = db["mock_data"]
+users_collection = db["users"]
 
 my_date = datetime.date.today()
 time_now = datetime.datetime.today()
@@ -14,9 +16,19 @@ current_month_int = time_now.month
 current_day_int = time_now.day
 current_hour_int = time_now.hour
 
+today = datetime.datetime.now()
+
+week_dates = [
+    today + datetime.timedelta(days=-7),
+    today,
+    today + datetime.timedelta(days=7),
+    today + datetime.timedelta(days=14),
+    today + datetime.timedelta(days=21),
+    today + datetime.timedelta(days=28)
+]
+
 starting_times = []
 
-NUMBER_OF_WEEKS = 5
 TIME_SLOTS_FOR_ROOM_PER_WEEK = 45
 
 ROOM_NAMES_LIST = ["Ada", "Rust", "Douglas", "Katniss", "Kakashi", "Obito"]
@@ -41,11 +53,17 @@ booking_companies = \
     ]
 
 
+def get_week_int(year, month, day):
+    return datetime.date(year, month, day).isocalendar()[1]
+
+
 def updated_week_list():
-    this_week = current_week_int
-    last_week = this_week - 1
-    next_week = this_week + 1
-    current_week_list = [last_week, this_week, next_week, next_week + 1, next_week + 2, next_week + 3]
+    current_week_list = []
+    for date in week_dates:
+        year = date.year
+        month = date.month
+        day = date.day
+        current_week_list.append(get_week_int(year, month, day))
     return current_week_list
 
 
@@ -149,7 +167,7 @@ def generate_empty_documents_for_room_time_slots_based_on_week(room_name: str, w
     return room_data_for_week
 
 
-def populate_time_slots():
+def populate_time_slots_for_all_weeks():
     populated_times_slots = []
     for room_order in range(len(ROOM_NAMES_LIST)):
         room_name = ROOM_NAMES_LIST[room_order]
@@ -192,52 +210,85 @@ def convert_time_to_id(time, room_id):
 
 
 def insert_random_bookings():
-    times_to_be_booked = get_random_starting_times()
-    for i in range(len(ROOM_NAMES_LIST)):
-        for time in range(len(times_to_be_booked)):
-            id_to_update = convert_time_to_id(times_to_be_booked[time], i)
-            booker = random.choice(bookers)
-            booking_company = random.choice(booking_companies)
-            collection.update_one({"_id": id_to_update},
-                                  {"$set": {"booker": booker, "company": booking_company}})
-
+    if not collection.find_one({"company": "FutureSkill"}):
+        times_to_be_booked = get_random_starting_times()
+        for i in range(len(ROOM_NAMES_LIST)):
+            for time in range(len(times_to_be_booked)):
+                id_to_update = convert_time_to_id(times_to_be_booked[time], i)
+                booker = random.choice(bookers)
+                booking_company = random.choice(booking_companies)
+                collection.update_one({"_id": id_to_update},
+                                      {"$set": {"booker": booker, "company": booking_company}})
+        print("Random bookings created")
+    else:
+        print("No new bookings entered")
 
 
 def insert_empty_time_slots():
-    collection.insert_many(combine_lists(populate_time_slots()))
+    collection.insert_many(combine_lists(populate_time_slots_for_all_weeks()))
+    print("1620 empty documents inserted")
+
+
+def populate_time_slots(week, room_order):
+    room_name = ROOM_NAMES_LIST[room_order]
+    populated_times_slots = generate_empty_documents_for_room_time_slots_based_on_week(room_name, week,
+                                                                                       room_order)
+    return populated_times_slots
+
+
+def add_new_week_to_all_rooms():
+    new_week = weeks[-1]
+    populated_times_slots = []
+    for room_order in range(len(ROOM_NAMES_LIST)):
+        populated_times_slots.append(populate_time_slots(new_week, room_order))
+    return populated_times_slots
+
+
+def update_calendar_weeks():
+    date_two_weeks_ago = today + datetime.timedelta(days=-14)
+    year = date_two_weeks_ago.year
+    month = date_two_weeks_ago.month
+    day = date_two_weeks_ago.day
+    two_weeks_ago = get_week_int(year, month, day)
+    if collection.find_one({"week": two_weeks_ago}):
+        collection.delete_many({"week": two_weeks_ago})
+        collection.insert_many(combine_lists(add_new_week_to_all_rooms()))
+        print("Deleted all entries for week before last and added a new week with empty time slots")
+    else:
+        print("Calendar was up to date, no weeks added or removed")
+
+
+def create_admin_db(workplace_info: list):
+    if workplace_info:
+        users_collection.remove()
+        for user in workplace_info:
+            user["_id"] = int(workplace_info.index(user) + 1)
+            users_collection.insert_one(user)
+        print("Recreated users database")
+    else:
+        print("No input in list, did you accidentally delete work-info file?")
 
 
 
 """
+
+    for user in workplace_info:
+        if users_collection.find(
+            {"$and":
+                [
+                    {"company": user["company"]},
+                    {"first_name": user["first_name"]},
+                    {"last_name": user["last_name"]}
+                ]
+            }
+        ):
+            pass
+        else:
+            users_collection.insert_many(workplace_info)
+            
 days = datetime.timedelta(days=1)
 
 d = datetime.timedelta(days=2)
 a = time_now + d
 
-
-def type_is_int(input):
-    if type(input) == int:
-        return True
-    else:
-        return False
-
-
-def check_if_type_is_str(input):
-    if type(input) == str:
-        return True
-    else:
-        return False
-
-def latest_int_id_entry_in_db():
-    try:
-        latest_int_id_entry = collection.find().sort({"_id": -1}).limit(1)["_id"]
-        print(type(latest_int_id_entry))
-        print(latest_int_id_entry)
-    except:
-        latest_int_id_entry = False
-
-    if latest_int_id_entry:
-        return latest_int_id_entry
-    else:
-        return False
 """

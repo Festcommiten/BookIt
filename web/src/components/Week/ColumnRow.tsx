@@ -11,20 +11,17 @@ import {
 	RenderTitle, RenderBookedSlotCurrentTime
 } from './ColumnRowItem';
 
-let key = 200;
-
 // Render greyed out slot with or without data
 function timeSlotPassed(slotData: IndividualSlotData) {
-	key += key;
 	if (slotData.empty_slot) {
 		return (
 			<RenderFreeSlotPassed
-				key={ key }/>
+				key={ slotData.id }/>
 		);
 	} else {
 		return (
 			<RenderBookedSlotPassed
-				key={ key }
+				key={ slotData.id }
 				company={ slotData.company }
 				booker={ slotData.booker }/>
 		);
@@ -33,18 +30,16 @@ function timeSlotPassed(slotData: IndividualSlotData) {
 
 // Render all other slots with or without data
 function timeSlotFuture(slotData: IndividualSlotData) {
-	key += key;
 	// if empty slot
 	if (slotData.empty_slot) {
-		// TODO: Add green slot if current time
 		return (
 			<RenderFreeSlotFuture
-				key={ key }/>
+				key={ slotData.id }/>
 		);
 	} else {
 		return (
 			<RenderBookedSlotFuture
-				key={ key }
+				key={ slotData.id }
 				company={ slotData.company }
 				booker={ slotData.booker }/>
 		);
@@ -53,17 +48,16 @@ function timeSlotFuture(slotData: IndividualSlotData) {
 
 // Render nutid
 function timeSlotCurrent(slotData: IndividualSlotData) {
-	key += key;
 	// if empty slot
 	if (slotData.empty_slot) {
 		return (
 			<RenderFreeSlotCurrentTime
-				key={ key }/>
+				key={ slotData.id }/>
 		);
 	} else {
 		return (
 			<RenderBookedSlotCurrentTime
-				key={ key }
+				key={ slotData.id }
 				company={ slotData.company }
 				booker={ slotData.booker }/>
 		);

@@ -1,11 +1,11 @@
-import moment from 'moment';
+// import moment from 'moment';
 import React from 'react';
 import './Footer.css';
 import logo from '../utils/images/Codic-logo.b73b7b04.svg';
 
 export default function Footer() {
 	
-	let weekNumber = moment().week() - 1;
+	// let weekNumber = moment().week() - 1;
 	
 	return (
 		<footer className="pa3 grid-footer">
@@ -13,7 +13,7 @@ export default function Footer() {
 				<img src={ logo } alt="Codic Education logo"/>
 			</div>
 			<div>
-				<h1 className="ma0 tc">v.{ weekNumber }</h1>
+				{/*<h1 className="ma0 tc">v.{ weekNumber }</h1>*/}
 			</div>
 			<div className="tr">
 				<h2 className="mt2">FestCommitén</h2>

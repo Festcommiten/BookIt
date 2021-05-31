@@ -5,14 +5,13 @@ services:
     image: bookitcontainers.azurecr.io/bookit_db:dev
     ports:
       - "27017:27017"
-
   app:
     build: ./App
     image: bookitcontainers.azurecr.io/bookit_app:dev
     links:
       - db
     ports:
-      - "80:80"
+      - "8080:80"
   web:
     build: ./web
     image: bookitcontainers.azurecr.io/bookit_web:dev
