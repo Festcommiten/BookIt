@@ -2,15 +2,19 @@
 
 - [CRUD](#API-Data-Structure)
     - [New-Booking](#New-Booking)
-    - [Read-bookings](#Read-bookings-from-backend)
-    - [Update-booking](#Update-a-booking)
-    - [Delete-booking](#Delete-booking)
+    - [Remove-booking](#Remove-booking)
+    - [Read](##Read)
+        - [Read all bookings from backend](#Read-all-bookings-from-backend)
+        - [Read bookings for specifik week](#Read-bookings-for-week-from-backend)
+        - [Read bookings for specifik room](#Read-bookings-for-room-from-backend)
+        - [Read bookings for specifik week and room](#Read-bookings-for-room-and-week-from-backend)
+        - [Read user data from backend](#Read-user-data-from-backend)
 - [Git-Policy](#Git-Policy)
 # API-Data-Structure
 
-## **New-Booking**
+### **New-Booking**
 
-### Request
+#### Request
 
 HTTP Method: `PUT`  
 url: current_version + `/new_booking/<int:id>`
@@ -26,7 +30,7 @@ url: current_version + `/new_booking/<int:id>`
 }
 ```
 
-### Response
+#### Response
 
 Success:
 
@@ -46,14 +50,42 @@ Bad request:
 }
 ```
 
-## **Read-bookings-from-backend**
+### **Remove-booking**
 
-### Request All Bookings
+#### Request
+
+HTTP Method: `PUT`  
+API url: current_version + `/remove/<int:id>`
+
+#### Response
+
+Success:
+
+```json
+{
+  "status": 200,
+  "message": "OK"
+}
+```
+
+Bad request:
+
+```json
+{
+  "status": 400,
+  "message": "Bad Request"
+}
+```
+
+##Read
+### **Read-all-bookings-from-backend**
+
+#### Request
 
 HTTP Method: `GET`  
 API url: current_version + `/bookings/`
 
-### Response
+#### Response
 
 Success:
 
@@ -101,13 +133,13 @@ Bad request:
   "message": "Bad Request"
 }
 ```
-
-### Request All Bookings for Week
+### **Read-all-bookings-for-week-from-backend**
+#### Request 
 
 HTTP Method: `GET`  
 API url: current_version + `/bookings/<int:week>`
 
-### Response
+#### Response
 
 Success:
 
@@ -155,12 +187,13 @@ Bad request:
   "message": "Bad Request"
 }
 ```
-### Request All Bookings for Room
+### **Read-all-bookings-for-room-from-backend**
+#### Request All Bookings for Room
 
 HTTP Method: `GET`  
 API url: current_version + `/bookings/<string:room_name>`
 
-### Response
+#### Response
 
 Success:
 
@@ -208,13 +241,13 @@ Bad request:
   "message": "Bad Request"
 }
 ```
-
-### Request
+### **Read-all-bookings-for-week-and-room-from-backend**
+#### Request
 
 HTTP Method: `GET`  
 API url: current_version + `/bookings/<int:week>/<string:room>`
 
-### Response
+#### Response
 
 Success:
 
@@ -264,41 +297,16 @@ Bad request:
 ```
 
 
-## **Remove-booking**
 
-### Request
 
-HTTP Method: `PUT`  
-API url: current_version + `/remove/<int:id>`
+### **Read-User-info**
 
-### Response
-
-Success:
-
-```json
-{
-  "status": 200,
-  "message": "OK"
-}
-```
-
-Bad request:
-
-```json
-{
-  "status": 400,
-  "message": "Bad Request"
-}
-```
-
-## **User-info**
-
-### Request
+#### Request
 
 HTTP Method: `GET`  
 API url: current_version + `/users`
 
-### Response
+#### Response
 
 Success:
 
