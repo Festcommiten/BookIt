@@ -2,18 +2,22 @@
 
 - [CRUD](#API-Data-Structure)
     - [New-Booking](#New-Booking)
-    - [Read-bookings](#Read-bookings-from-backend)
-    - [Update-booking](#Update-a-booking)
-    - [Delete-booking](#Delete-booking)
+    - [Remove-booking](#Remove-booking)
+    - [Read](##Read)
+        - [Read all bookings from backend](#Read-all-bookings-from-backend)
+        - [Read bookings for specifik week](#Read-bookings-for-week-from-backend)
+        - [Read bookings for specifik room](#Read-bookings-for-room-from-backend)
+        - [Read bookings for specifik week and room](#Read-bookings-for-room-and-week-from-backend)
+        - [Read user data from backend](#Read-user-data-from-backend)
 - [Git-Policy](#Git-Policy)
 # API-Data-Structure
 
-## **New-Booking**
+### **New-Booking**
 
-### Request
+#### Request
 
-HTTP Method: `POST`  
-url: `/v1/new_booking`
+HTTP Method: `PUT`  
+url: current_version + `/new_booking/<int:id>`
 
 ```json
 {
@@ -26,7 +30,7 @@ url: `/v1/new_booking`
 }
 ```
 
-### Response
+#### Response
 
 Success:
 
@@ -46,124 +50,14 @@ Bad request:
 }
 ```
 
-## **Read-bookings-from-backend**
+### **Remove-booking**
 
-### Request
-
-HTTP Method: `GET`  
-API url: `/v1/bookings/`
-
-### Response
-
-Success:
-
-```json
-{
-  "bookings": [
-    {
-        "_id": "ObjectId_56340AWDFSQ12",
-        "room": "ada",
-        "week": 20,
-        "booking-company": "Company1",
-        "booker": "user1",
-        "start_time": "2021-05-17:09:00:00",
-        "end_time": "2021-05-17:10:00:00"
-    },
-    {
-        "_id": "ObjectId_15215ASFF1245",
-        "room": "ada",
-        "week": 20,
-        "booking-company": "Company 1",
-        "booker": "user2",
-        "start_time": "2021-05-17:10:00:00",
-        "end_time": "2021-05-17:11:00:00"
-    },
-    {
-        "_id": "ObjectId_115570ASFD42",
-        "room": "ada",
-        "week": 20,
-        "booking-company": "Company1",
-        "booker": "user3",
-        "start_time": "2021-05-17:11:00:00",
-        "end_time": "2021-05-17:12:00:00"
-    }
-  ],
-  "status": 200,
-  "message": "OK"
-}
-```
-
-Bad request:
-
-```json
-{
-  "status": 400,
-  "message": "Bad Request"
-}
-```
-
-### Request
-
-HTTP Method: `GET`  
-API url: `/v1/bookings/<str:room1>/<int:week>`
-
-### Response
-
-Success:
-
-```json
-{
-  "bookings": [
-    {
-      "id": "1",
-      "room": "room1",
-      "booking-company": "Company1",
-      "booker": "user1",
-      "start_time": "2021-05-16:16:00:00",
-      "end_time": "date moment object"
-    },
-    {
-      "id": "2",
-      "room": "room1",
-      "booking-company": "Company1",
-      "booker": "user2",
-      "start_time": "date moment object",
-      "end_time": "date moment object"
-    }
-  ],
-  "status": 200,
-  "message": "OK"
-}
-```
-
-Bad request:
-
-```json
-{
-  "status": 400,
-  "message": "Bad Request"
-}
-```
-
-## **Update-a-booking**
+#### Request
 
 HTTP Method: `PUT`  
-API url: `/v1/update_booking`
+API url: current_version + `/remove/<int:id>`
 
-### Request
-
-```json
-{
-  "id": "1",
-  "room": "room2",
-  "booker": "user1",
-  "booking-company": "Company1",
-  "start_time": "2021-05-16:17:00:00",
-  "end_time": "date moment object"
-}
-```
-
-### Response
+#### Response
 
 Success:
 
@@ -183,19 +77,377 @@ Bad request:
 }
 ```
 
-## **Delete-booking**
+##Read
+### **Read-all-bookings-from-backend**
 
-### Request
+#### Request
 
-HTTP Method: `DELETE`  
-API url: `/v1/delete/{1}`
+HTTP Method: `GET`  
+API url: current_version + `/bookings/`
 
-### Response
+#### Response
 
 Success:
 
 ```json
 {
+  "bookings": [
+    {
+        "_id": 202105170901,
+        "room": "Ada",
+        "week": 22,
+        "booking-company": "Codic Education",
+        "booker": "Robin Kamo",
+        "start_time": "2021-05-17T09:00:00+02:00",
+        "end_time": "2021-05-17T10:00:00+02:00"
+    },
+    {
+        "_id": 202105171002,
+        "room": "Rust",
+        "week": 23,
+        "booking-company": "Codic Education",
+        "booker": "Robin Kamo",
+        "start_time": "2021-05-17T10:00:00+02:00",
+        "end_time": "2021-05-17T11:00:00+02:00"
+    },
+    {
+        "_id": 202105171105,
+        "room": "Kakashi",
+        "week": 24,
+        "booking-company": "Codic Education",
+        "booker": "Robin Kamo",
+        "start_time": "2021-05-17T11:00:00+02:00",
+        "end_time": "2021-05-17T12:00:00+02:00"
+    }
+  ],
+  "status": 200,
+  "message": "OK"
+}
+```
+
+Bad request:
+
+```json
+{
+  "status": 400,
+  "message": "Bad Request"
+}
+```
+### **Read-all-bookings-for-week-from-backend**
+#### Request 
+
+HTTP Method: `GET`  
+API url: current_version + `/bookings/<int:week>`
+
+#### Response
+
+Success:
+
+```json
+{
+  "bookings": [
+    {
+        "_id": 202105170901,
+        "room": "Ada",
+        "week": 22,
+        "booking-company": "Codic Education",
+        "booker": "Robin Kamo",
+        "start_time": "2021-05-17T09:00:00+02:00",
+        "end_time": "2021-05-17T10:00:00+02:00"
+    },
+    {
+        "_id": 202105171002,
+        "room": "Rust",
+        "week": 22,
+        "booking-company": "Codic Education",
+        "booker": "Robin Kamo",
+        "start_time": "2021-05-17T10:00:00+02:00",
+        "end_time": "2021-05-17T11:00:00+02:00"
+    },
+    {
+        "_id": 202105171105,
+        "room": "Kakashi",
+        "week": 22,
+        "booking-company": "Codic Education",
+        "booker": "Robin Kamo",
+        "start_time": "2021-05-17T11:00:00+02:00",
+        "end_time": "2021-05-17T12:00:00+02:00"
+    }
+  ],
+  "status": 200,
+  "message": "OK"
+}
+```
+
+Bad request:
+
+```json
+{
+  "status": 400,
+  "message": "Bad Request"
+}
+```
+### **Read-all-bookings-for-room-from-backend**
+#### Request All Bookings for Room
+
+HTTP Method: `GET`  
+API url: current_version + `/bookings/<string:room_name>`
+
+#### Response
+
+Success:
+
+```json
+{
+  "bookings": [
+    {
+        "_id": 202105170901,
+        "room": "Ada",
+        "week": 22,
+        "booking-company": "Codic Education",
+        "booker": "Robin Kamo",
+        "start_time": "2021-05-17T09:00:00+02:00",
+        "end_time": "2021-05-17T10:00:00+02:00"
+    },
+    {
+        "_id": 202105171002,
+        "room": "Ada",
+        "week": 23,
+        "booking-company": "Codic Education",
+        "booker": "Robin Kamo",
+        "start_time": "2021-05-17T10:00:00+02:00",
+        "end_time": "2021-05-17T11:00:00+02:00"
+    },
+    {
+        "_id": 202105171105,
+        "room": "Ada",
+        "week": 24,
+        "booking-company": "Codic Education",
+        "booker": "Robin Kamo",
+        "start_time": "2021-05-17T11:00:00+02:00",
+        "end_time": "2021-05-17T12:00:00+02:00"
+    }
+  ],
+  "status": 200,
+  "message": "OK"
+}
+```
+
+Bad request:
+
+```json
+{
+  "status": 400,
+  "message": "Bad Request"
+}
+```
+### **Read-all-bookings-for-week-and-room-from-backend**
+#### Request
+
+HTTP Method: `GET`  
+API url: current_version + `/bookings/<int:week>/<string:room>`
+
+#### Response
+
+Success:
+
+```json
+{
+  "bookings": [
+    {
+        "_id": 202106010906,
+        "room": "Obito",
+        "week": 22,
+        "booking-company": "Codic Education",
+        "booker": "Robin Kamo",
+        "start_time": "2021-06-01:09T00:00+02:00",
+        "end_time": "2021-06-01:10T00:00+02:00"
+    },
+    {
+        "_id": 202106021006,
+        "room": "Obito",
+        "week": 22,
+        "booking-company": "Codic Education",
+        "booker": "Robin Kamo",
+        "start_time": "2021-06-02:10T00:00+02:00",
+        "end_time": "2021-06-02:11T00:00+02:00"
+    },
+    {
+        "_id": 202106031106,
+        "room": "Obito",
+        "week": 22,
+        "booking-company": "Codic Education",
+        "booker": "Robin Kamo",
+        "start_time": "2021-06-03T11:00:00+02:00",
+        "end_time": "2021-06-03T12:00:00+02:00"
+    }
+  ],
+  "status": 200,
+  "message": "OK"
+}
+```
+
+Bad request:
+
+```json
+{
+  "status": 400,
+  "message": "Bad Request"
+}
+```
+
+
+
+
+### **Read-User-info**
+
+#### Request
+
+HTTP Method: `GET`  
+API url: current_version + `/users`
+
+#### Response
+
+Success:
+
+```json
+{
+  "Vipetech": 
+            [
+                {
+                    "_id": 1,
+                    "first_name": "Michel",
+                    "last_name": "A",
+                    "email": "",
+                    "phone": ""
+                },
+                {
+                    "_id": 2,
+                    "first_name": "Behrouz",
+                    "last_name": "K",
+                    "email": "",
+                    "phone": ""
+                }
+            ],
+  "GOMO GROUP": 
+            [
+                {
+                    "_id": 3,
+                    "first_name": "Gabriel",
+                    "last_name": "G",
+                    "email": "",
+                    "phone": ""
+                },
+                {
+                    "_id": 4,
+                    "first_name": "Reza",
+                    "last_name": "G",
+                    "email": "",
+                    "phone": ""
+                }
+            ],
+  "CC": 
+            [
+                {
+                    "_id": 5,
+                    "first_name": "Andrew",
+                    "last_name": "",
+                    "email": "",
+                    "phone": ""
+                },
+                {
+                    "_id": 6,
+                    "first_name": "Malin",
+                    "last_name": "",
+                    "email": "",
+                    "phone": ""
+                }
+            ],
+  "CE": 
+            [
+                {
+                    "_id": 7,
+                    "first_name": "Robin",
+                    "last_name": "",
+                    "email": "",
+                    "phone": ""
+                },
+                {
+                    "_id": 8,
+                    "first_name": "Maria",
+                    "last_name": "",
+                    "email": "",
+                    "phone": ""
+                }
+            ],
+  "SWS": 
+            [
+                {
+                    "_id": 9,
+                    "first_name": "Caroline",
+                    "last_name": "A",
+                    "email": "",
+                    "phone": ""
+                },
+                {
+                    "_id": 10,
+                    "first_name": "Rickard",
+                    "last_name": "",
+                    "email": "",
+                    "phone": ""
+                }
+            ],
+  "Lön/Admin": 
+            [
+                {
+                    "_id": 11,
+                    "first_name": "Elias",
+                    "last_name": "",
+                    "email": "",
+                    "phone": ""
+                },
+                {
+                    "_id": 12,
+                    "first_name": "Jonathan",
+                    "last_name": "K",
+                    "email": "",
+                    "phone": ""
+                }
+            ],
+  "Futureskill": 
+            [
+                {
+                    "_id": 13,
+                    "first_name": "Carl",
+                    "last_name": "A",
+                    "email": "",
+                    "phone": ""
+                },
+                {
+                    "_id": 14,
+                    "first_name": "Zebastian",
+                    "last_name": "",
+                    "email": "",
+                    "phone": ""
+                }
+            ],
+  "MeAnalytics": 
+            [
+                {
+                    "_id": 15,
+                    "first_name": "Patrik",
+                    "last_name": "",
+                    "email": "",
+                    "phone": ""
+                },
+                {
+                    "_id": 16,
+                    "first_name": "Martin",
+                    "last_name": "",
+                    "email": "",
+                    "phone": ""
+                }
+            ],
   "status": 200,
   "message": "OK"
 }
