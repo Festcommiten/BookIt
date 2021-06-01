@@ -8,8 +8,8 @@ PORT_80 = ":80"
 CURRENT_VERSION = "/v1.0"
 
 # ID
-EXISTING_ID_AS_STR = "202106010802"
-EXISTING_ID_AS_INT = 202106010802
+EXISTING_ID_AS_STR = "202106070801"
+EXISTING_ID_AS_INT = 202106070801
 NONE_EXISTING_ID = "110100100"
 WRONG_ID_DATATYPE = "a"
 
@@ -40,13 +40,13 @@ NO_BOOKINGS_PARAMETERS = "There are no bookings with the given parameters"
 
 # ***** MOCK DATA *****
 EXISTING_DATA = {
-    "_id": 202105191601,
+    "_id": 202106070801,
+    "booker": "",
+    "company": "",
+    "end_time": "2021-06-07T09:00:00+02:00",
     "room": "Ada",
-    "week": 20,
-    "company": "FutureSkill",
-    "booker": "Oscar på Backend",
-    "starting_time": "2021-05-19T16:00:00+02:00",
-    "end_time": "2021-05-19T17:00:00+02:00"
+    "starting_time": "2021-06-07T08:00:00+02:00",
+    "week": 23
 }
 # NEW_BOOKING
 NEW_BOOKING_DATA = {

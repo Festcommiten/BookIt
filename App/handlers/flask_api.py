@@ -17,6 +17,7 @@ def db_find_one(key: str, value):
 
 
 def bookit_api(app):
+    # EDIT BOOKINGS
     class NewBooking(Resource):
         @cross_origin()
         def put(self, id):
@@ -34,73 +35,93 @@ def bookit_api(app):
             else:
                 response["message"] = C.ID_DOES_NOT_EXIST
                 response["status"] = 400
-            return response
-
-    class AllBookings(Resource):
-        @cross_origin()
-        def get(self):
-            response = {
-                "bookings": [],
-                "message": "Something unexpected happened",
-                "status": 400
-            }
-            try:
-                # all_bookings = json_util.dumps(mock_collection.find())
-                all_bookings = list(mock_collection.find())
-                # all_bookings_json = json.dumps(all_bookings, default=json_util.default)
-                response["bookings"] = all_bookings
-                response["message"] = "OK"
-                response["status"] = 200
-                return response
-            except Exception as e:
-                response["message"] = e
-                return response
+            return jsonify(response)
 
     class RemoveBooking(Resource):
         @cross_origin()
-        def put(self, id_number: int):
+        def put(self, id):
             response = {
                 "message": "",
                 "status": ""
             }
-            _id = tools.str_to_int(id_number)
-            if _id:
-                if db_find_one("_id", _id):
-                    mock_collection.update({"_id": _id}, {"$set": {"company": "", "booker": ""}})
-                    response["message"] = C.SLOT_IS_EMPTY
-                    response["status"] = 200
-                    return response
-                else:
-                    response["message"] = C.ID_DOES_NOT_EXIST
-                    response["status"] = 400
-                    return response
+            if db_find_one("_id", id):
+                mock_collection.update({"_id": id}, {"$set": {"company": "", "booker": ""}})
+                response["message"] = "OK"
+                response["status"] = 200
             else:
-                response["message"] = "'" + C.WRONG_ID_DATATYPE + "' " + C.STR_TO_INT_ERROR
+                response["message"] = C.ID_DOES_NOT_EXIST
                 response["status"] = 400
-                return response
 
-    class GetBookings(Resource):
+            return jsonify(response)
+
+    # GET BOOKINGS
+    class Bookings(Resource):
+        @cross_origin()
+        def get(self):
+            bookings = list(mock_collection.find())
+            response = {
+                "bookings": bookings,
+                "message": "OK",
+                "status": 200
+            }
+            return jsonify(response)
+
+    class BookingsWeek(Resource):
+        @cross_origin()
+        def get(self, week):
+            response = {
+                "bookings": [],
+                "message": "Bad request",
+                "status": 400
+            }
+            bookings = list(mock_collection.find({"week": week}))
+            if bookings:
+                response["bookings"] = bookings
+                response["message"] = "OK"
+                response["status"] = 200
+            else:
+                response["bookings"] = C.NO_BOOKINGS_PARAMETERS
+            return jsonify(response)
+
+    class BookingsWeekRoom(Resource):
         @cross_origin()
         def get(self, week, room_name):
+            response = {
+                "bookings": [],
+                "message": "Bad request",
+                "status": 400
+            }
             bookings = list(mock_collection.find({"$and": [{"week": week}, {"room": room_name}]}))
-            return jsonify(bookings)
+            if bookings:
+                response["bookings"] = bookings
+                response["message"] = "OK"
+                response["status"] = 200
+            else:
+                response["bookings"] = C.NO_BOOKINGS_PARAMETERS
+            return jsonify(response)
 
-
+    # GET USERS
     class GetUsers(Resource):
         @cross_origin()
         def get(self):
             users = list(users_collection.find())
             return jsonify(users)
 
+    # HELLO WORLD
     class HelloWorld(Resource):
         @cross_origin()
         def get(self):
             return "Hello World!"
 
     api = Api(app)
+    # EDIT BOOKINGS
     api.add_resource(NewBooking, C.CURRENT_VERSION + "/new_booking/<int:id>")
-    api.add_resource(AllBookings, C.CURRENT_VERSION + "/all_bookings")
-    api.add_resource(RemoveBooking, C.CURRENT_VERSION + "/remove/<id_number>")
-    api.add_resource(GetBookings, C.CURRENT_VERSION + "/bookings/<int:week>/<string:room_name>")
+    api.add_resource(RemoveBooking, C.CURRENT_VERSION + "/remove/<int:id>")
+    # GET BOOKINGS
+    api.add_resource(Bookings, C.CURRENT_VERSION + "/bookings")
+    api.add_resource(BookingsWeek, C.CURRENT_VERSION + "/bookings/<int:week>")
+    api.add_resource(BookingsWeekRoom, C.CURRENT_VERSION + "/bookings/<int:week>/<string:room_name>")
+    # GET USERS
     api.add_resource(GetUsers, C.CURRENT_VERSION + "/users")
+    # HELLO WORLD
     api.add_resource(HelloWorld, "/")
