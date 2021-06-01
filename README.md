@@ -185,7 +185,7 @@ Bad request:
 }
 ```
 ### **Read-all-bookings-for-room-from-backend**
-#### Request All Bookings for Room
+#### Request
 
 HTTP Method: `GET`  
 API url: current_version + `/bookings/<string:room_name>`
