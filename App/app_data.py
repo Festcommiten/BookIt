@@ -11,7 +11,7 @@ CORS(app)
 current_version = '/v1.0'
 
 # MONGO
-client = MongoClient("mongodb://db:27017")
+client = MongoClient("mongodb://51.116.145.32:27017")
 db = client.test_db
 collection = db["mock_data"]
 users_collection = db["users"]
