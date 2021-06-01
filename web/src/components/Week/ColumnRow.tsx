@@ -1,6 +1,7 @@
 import moment from 'moment';
 import React from 'react';
 import './ColumnRow.css';
+// import { NewBooking } from '../../utils/global/handlers/NewBooking';
 import { IndividualSlotData, OneDayColumnData } from '../../utils/interface/WeekInterface';
 import {
 	RenderFreeSlotFuture,
@@ -10,6 +11,7 @@ import {
 	RenderBookedSlotPassed,
 	RenderTitle, RenderBookedSlotCurrentTime
 } from './ColumnRowItem';
+import { NewBooking, RemoveBooking } from '../../utils/global/handlers/HandleBookings';
 
 // Render greyed out slot with or without data
 function timeSlotPassed(slotData: IndividualSlotData) {
@@ -33,15 +35,19 @@ function timeSlotFuture(slotData: IndividualSlotData) {
 	// if empty slot
 	if (slotData.empty_slot) {
 		return (
-			<RenderFreeSlotFuture
-				key={ slotData.id }/>
+			<div onClick={ () => NewBooking(slotData) }
+				 key={ slotData.id }>
+				<RenderFreeSlotFuture/>
+			</div>
 		);
 	} else {
 		return (
-			<RenderBookedSlotFuture
-				key={ slotData.id }
-				company={ slotData.company }
-				booker={ slotData.booker }/>
+			<div onClick={ () => alert('Remove Booking') }
+				 key={ slotData.id }>
+				<RenderBookedSlotFuture
+					company={ slotData.company }
+					booker={ slotData.booker }/>
+			</div>
 		);
 	}
 }
@@ -51,15 +57,19 @@ function timeSlotCurrent(slotData: IndividualSlotData) {
 	// if empty slot
 	if (slotData.empty_slot) {
 		return (
-			<RenderFreeSlotCurrentTime
-				key={ slotData.id }/>
+			<div onClick={ () => alert('New Booking') }
+				 key={ slotData.id }>
+				<RenderFreeSlotCurrentTime/>
+			</div>
 		);
 	} else {
 		return (
-			<RenderBookedSlotCurrentTime
-				key={ slotData.id }
-				company={ slotData.company }
-				booker={ slotData.booker }/>
+			<div onClick={ () => alert('Remove Booking') }
+				 key={ slotData.id }>
+				<RenderBookedSlotCurrentTime
+					company={ slotData.company }
+					booker={ slotData.booker }/>
+			</div>
 		);
 	}
 }
@@ -95,4 +105,5 @@ export default function ColumnRow(oneDayData: OneDayColumnData) {
 		<RenderTitle weekday={ weekday } date={ date }/>
 		{ renderDayColumn(oneDayData) }
 	</div>;
-};
+}
+;
