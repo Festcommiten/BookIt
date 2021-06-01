@@ -11,7 +11,7 @@ services:
     build: ./Db
     image: bookitcontainers.azurecr.io/bookit_repo:devdb
     ports:
-      - "27017:8080"
+      - "27017:27017"
   app:
     build: ./App
     image: bookitcontainers.azurecr.io/bookit_repo:devapp
