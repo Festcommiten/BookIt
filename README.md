@@ -3,11 +3,11 @@
 - [CRUD](#API-Data-Structure)
     - [New-Booking](#New-Booking)
     - [Remove-booking](#Remove-booking)
-    - [Read](##Read)
+    - [Read](#Read)
         - [Read all bookings from backend](#Read-all-bookings-from-backend)
-        - [Read bookings for specifik week](#Read-bookings-for-week-from-backend)
-        - [Read bookings for specifik room](#Read-bookings-for-room-from-backend)
-        - [Read bookings for specifik week and room](#Read-bookings-for-room-and-week-from-backend)
+        - [Read bookings for specific week](#Read-all-bookings-for-week-from-backend)
+        - [Read bookings for specific room](#Read-all-bookings-for-room-from-backend)
+        - [Read bookings for specific week and room](#Read-all-bookings-for-room-and-week-from-backend)
         - [Read user data from backend](#Read-user-data-from-backend)
 - [Git-Policy](#Git-Policy)
 # API-Data-Structure
@@ -21,12 +21,8 @@ url: current_version + `/new_booking/<int:id>`
 
 ```json
 {
-  "room": "room1",
-  "week": 19,
-  "booking-company": "Company1",
-  "booker": "user1",
-  "start_time": "date string",
-  "end_time": "date string"
+  "company": "CE",
+  "booker": "Robin "
 }
 ```
 
@@ -91,35 +87,36 @@ Success:
 
 ```json
 {
-  "bookings": [
-    {
-        "_id": 202105170901,
-        "room": "Ada",
-        "week": 22,
-        "booking-company": "Codic Education",
-        "booker": "Robin Kamo",
-        "start_time": "2021-05-17T09:00:00+02:00",
-        "end_time": "2021-05-17T10:00:00+02:00"
-    },
-    {
-        "_id": 202105171002,
-        "room": "Rust",
-        "week": 23,
-        "booking-company": "Codic Education",
-        "booker": "Robin Kamo",
-        "start_time": "2021-05-17T10:00:00+02:00",
-        "end_time": "2021-05-17T11:00:00+02:00"
-    },
-    {
-        "_id": 202105171105,
-        "room": "Kakashi",
-        "week": 24,
-        "booking-company": "Codic Education",
-        "booker": "Robin Kamo",
-        "start_time": "2021-05-17T11:00:00+02:00",
-        "end_time": "2021-05-17T12:00:00+02:00"
-    }
-  ],
+  "bookings": 
+    [
+        {
+            "_id": 202105170901,
+            "room": "Ada",
+            "week": 22,
+            "company": "Codic Education",
+            "booker": "Robin Kamo",
+            "start_time": "2021-05-17T09:00:00+02:00",
+            "end_time": "2021-05-17T10:00:00+02:00"
+        },
+        {
+            "_id": 202105171002,
+            "room": "Rust",
+            "week": 23,
+            "company": "Codic Education",
+            "booker": "Robin Kamo",
+            "start_time": "2021-05-17T10:00:00+02:00",
+            "end_time": "2021-05-17T11:00:00+02:00"
+        },
+        {
+            "_id": 202105171105,
+            "room": "Kakashi",
+            "week": 24,
+            "company": "Codic Education",
+            "booker": "Robin Kamo",
+            "start_time": "2021-05-17T11:00:00+02:00",
+            "end_time": "2021-05-17T12:00:00+02:00"
+        }
+    ],
   "status": 200,
   "message": "OK"
 }
@@ -150,7 +147,7 @@ Success:
         "_id": 202105170901,
         "room": "Ada",
         "week": 22,
-        "booking-company": "Codic Education",
+        "company": "Codic Education",
         "booker": "Robin Kamo",
         "start_time": "2021-05-17T09:00:00+02:00",
         "end_time": "2021-05-17T10:00:00+02:00"
@@ -159,7 +156,7 @@ Success:
         "_id": 202105171002,
         "room": "Rust",
         "week": 22,
-        "booking-company": "Codic Education",
+        "company": "Codic Education",
         "booker": "Robin Kamo",
         "start_time": "2021-05-17T10:00:00+02:00",
         "end_time": "2021-05-17T11:00:00+02:00"
@@ -168,7 +165,7 @@ Success:
         "_id": 202105171105,
         "room": "Kakashi",
         "week": 22,
-        "booking-company": "Codic Education",
+        "company": "Codic Education",
         "booker": "Robin Kamo",
         "start_time": "2021-05-17T11:00:00+02:00",
         "end_time": "2021-05-17T12:00:00+02:00"
@@ -204,7 +201,7 @@ Success:
         "_id": 202105170901,
         "room": "Ada",
         "week": 22,
-        "booking-company": "Codic Education",
+        "company": "Codic Education",
         "booker": "Robin Kamo",
         "start_time": "2021-05-17T09:00:00+02:00",
         "end_time": "2021-05-17T10:00:00+02:00"
@@ -213,7 +210,7 @@ Success:
         "_id": 202105171002,
         "room": "Ada",
         "week": 23,
-        "booking-company": "Codic Education",
+        "company": "Codic Education",
         "booker": "Robin Kamo",
         "start_time": "2021-05-17T10:00:00+02:00",
         "end_time": "2021-05-17T11:00:00+02:00"
@@ -222,7 +219,7 @@ Success:
         "_id": 202105171105,
         "room": "Ada",
         "week": 24,
-        "booking-company": "Codic Education",
+        "company": "Codic Education",
         "booker": "Robin Kamo",
         "start_time": "2021-05-17T11:00:00+02:00",
         "end_time": "2021-05-17T12:00:00+02:00"
@@ -258,7 +255,7 @@ Success:
         "_id": 202106010906,
         "room": "Obito",
         "week": 22,
-        "booking-company": "Codic Education",
+        "company": "Codic Education",
         "booker": "Robin Kamo",
         "start_time": "2021-06-01:09T00:00+02:00",
         "end_time": "2021-06-01:10T00:00+02:00"
@@ -267,7 +264,7 @@ Success:
         "_id": 202106021006,
         "room": "Obito",
         "week": 22,
-        "booking-company": "Codic Education",
+        "company": "Codic Education",
         "booker": "Robin Kamo",
         "start_time": "2021-06-02:10T00:00+02:00",
         "end_time": "2021-06-02:11T00:00+02:00"
@@ -276,7 +273,7 @@ Success:
         "_id": 202106031106,
         "room": "Obito",
         "week": 22,
-        "booking-company": "Codic Education",
+        "company": "Codic Education",
         "booker": "Robin Kamo",
         "start_time": "2021-06-03T11:00:00+02:00",
         "end_time": "2021-06-03T12:00:00+02:00"
