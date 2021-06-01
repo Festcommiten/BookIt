@@ -73,7 +73,7 @@ Bad request:
 }
 ```
 
-##Read
+## **Read**
 ### **Read-all-bookings-from-backend**
 
 #### Request
