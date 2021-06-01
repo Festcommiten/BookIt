@@ -6,16 +6,16 @@ services:
     links:
       - app
     ports:
-      - "127.0.0.1:80:80"
+      - "80:80"
   db:
     build: ./Db
     image: bookitcontainers.azurecr.io/bookit_repo:devdb
     ports:
-      - "127.0.0.1:27017:27017"
+      - "27017:27017"
   app:
     build: ./App
     image: bookitcontainers.azurecr.io/bookit_repo:devapp
     links:
       - db
     ports:
-      - "127.0.0.1:8080:80"
+      - "8080:80"
