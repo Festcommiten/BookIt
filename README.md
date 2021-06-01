@@ -184,60 +184,6 @@ Bad request:
   "message": "Bad Request"
 }
 ```
-### **Read-all-bookings-for-room-from-backend**
-#### Request
-
-HTTP Method: `GET`  
-API url: current_version + `/bookings/<string:room_name>`
-
-#### Response
-
-Success:
-
-```json
-{
-  "bookings": [
-    {
-        "_id": 202105170901,
-        "room": "Ada",
-        "week": 22,
-        "company": "Codic Education",
-        "booker": "Robin Kamo",
-        "start_time": "2021-05-17T09:00:00+02:00",
-        "end_time": "2021-05-17T10:00:00+02:00"
-    },
-    {
-        "_id": 202105171002,
-        "room": "Ada",
-        "week": 23,
-        "company": "Codic Education",
-        "booker": "Robin Kamo",
-        "start_time": "2021-05-17T10:00:00+02:00",
-        "end_time": "2021-05-17T11:00:00+02:00"
-    },
-    {
-        "_id": 202105171105,
-        "room": "Ada",
-        "week": 24,
-        "company": "Codic Education",
-        "booker": "Robin Kamo",
-        "start_time": "2021-05-17T11:00:00+02:00",
-        "end_time": "2021-05-17T12:00:00+02:00"
-    }
-  ],
-  "status": 200,
-  "message": "OK"
-}
-```
-
-Bad request:
-
-```json
-{
-  "status": 400,
-  "message": "Bad Request"
-}
-```
 ### **Read-all-bookings-for-week-and-room-from-backend**
 #### Request
 
