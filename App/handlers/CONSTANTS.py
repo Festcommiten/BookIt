@@ -1,10 +1,15 @@
 # ***** VARIABLES *****
 # URL
-LOCAL_HOST = "http://127.0.0.1:5000"
+HTTP = "http://"
+LOCAL_HOST = "127.0.0.1"
+DEFAULT_ROUTE = "0.0.0.0"
+PORT_5K = ":5000"
+PORT_80 = ":80"
+CURRENT_VERSION = "/v1.0"
 
 # ID
-EXISTING_ID_AS_STR = "202105211501"
-EXISTING_ID_AS_INT = 202105211501
+EXISTING_ID_AS_STR = "202106070801"
+EXISTING_ID_AS_INT = 202106070801
 NONE_EXISTING_ID = "110100100"
 WRONG_ID_DATATYPE = "a"
 
@@ -35,27 +40,16 @@ NO_BOOKINGS_PARAMETERS = "There are no bookings with the given parameters"
 
 # ***** MOCK DATA *****
 EXISTING_DATA = {
-    "_id": 202105191601,
+    "_id": 202106070801,
+    "booker": "",
+    "company": "",
+    "end_time": "2021-06-07T09:00:00+02:00",
     "room": "Ada",
-    "week": 20,
-    "company": "FutureSkill",
-    "booker": "Oscar på Backend",
-    "starting_time": "2021-05-19T16:00:00+02:00",
-    "end_time": "2021-05-19T17:00:00+02:00"
+    "starting_time": "2021-06-07T08:00:00+02:00",
+    "week": 23
 }
 # NEW_BOOKING
-NB_CORRECT_DATA = {
-    "_id": 202105281501,
-    "company": "FutureSkill",
-    "booker": "Oscar"
-}
-NB_INCORRECT_ID = {
-    "_id": NONE_EXISTING_ID,
-    "company": "FutureSkill",
-    "booker": "Oscar"
-}
-NB_WRONG_DATATYPE = {
-    "_id": WRONG_ID_DATATYPE,
-    "company": "FutureSkill",
-    "booker": "Oscar"
+NEW_BOOKING_DATA = {
+  "company": "CE",
+  "booker": "Robin "
 }

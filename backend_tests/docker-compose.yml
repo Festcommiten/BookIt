@@ -3,7 +3,7 @@ services:
   app:
     build: ../App
     ports:
-      - "5000:5000"
+      - "127.0.0.1:8080:80"
     links:
       - db
   db:

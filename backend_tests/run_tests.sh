@@ -19,11 +19,13 @@ docker-compose -f $docker_compose_file build
 echo $'\n****** DOCKER COMPOSE UP ******\n'
 docker-compose up -d
 
-echo $'\n****** IMPORT MOCK DATA ******\n'
-docker exec -i backend_tests_db_1 sh -c 'mongoimport -c mock_data -d test_db --drop --file mock_data.json --jsonArray'
+# THIS MOCK DATA CONFLICTS WITH LEO's MOCK DATA INSERT
+#echo $'\n****** IMPORT MOCK DATA ******\n'
+#docker exec -i backend_tests_db_1 sh -c 'mongoimport -c mock_data -d test_db --drop --file mock_data.json --jsonArray'
 
 echo $'\n****** RUNNING FLAKE8 ******\n'
 docker exec -i backend_tests_app_1 sh -c 'flake8 --statistics'
+sleep 2
 
 echo $'\n****** RUNNING PYTEST ******\n'
 docker exec -i backend_tests_app_1 sh -c 'pytest -vv -s'
