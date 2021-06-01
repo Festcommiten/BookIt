@@ -4,22 +4,24 @@ from handlers import flask_api as api
 
 
 def test_new_booking():
-    url_endpoint = C.LOCAL_HOST + "/v1/new_booking"
-    response = requests.put(url_endpoint, json=C.NB_CORRECT_DATA).json()
+    endpoint = C.HTTP + C.LOCAL_HOST + C.PORT_5K + C.CURRENT_VERSION + "/new_booking/"
+    endpoint_correct = endpoint + C.EXISTING_ID_AS_STR
+    response = requests.put(endpoint_correct, json=C.NEW_BOOKING_DATA).json()
     assert response["message"] == "OK"
     assert response["status"] == 200
 
-    response = requests.put(url_endpoint, json=C.NB_INCORRECT_ID).json()
+    endpoint_incorrect = endpoint + C.NONE_EXISTING_ID
+    response = requests.put(endpoint_incorrect, json=C.NEW_BOOKING_DATA).json()
     assert response["message"] == C.ID_DOES_NOT_EXIST
     assert response["status"] == 400
 
-    response = requests.put(url_endpoint, json=C.NB_WRONG_DATATYPE).json()
-    assert response["message"] == "'" + C.WRONG_ID_DATATYPE + "' " + C.STR_TO_INT_ERROR
-    assert response["status"] == 400
+    endpoint_wrong_datatype = endpoint + C.WRONG_ID_DATATYPE
+    response = requests.put(endpoint_wrong_datatype, json=C.NEW_BOOKING_DATA)
+    assert response.status_code == 404
 
-
+"""
 def test_remove_booking():
-    endpoint = C.LOCAL_HOST + "/v1/remove/"
+    endpoint = C.LOCAL_HOST + C.CURRENT_VERSION + "/remove/"
     endpoint_correct_data = endpoint + C.EXISTING_ID_AS_STR
     endpoint_incorrect_data = endpoint + C.WRONG_ID_DATATYPE
     endpoint_no_existing_id = endpoint + C.NONE_EXISTING_ID
@@ -42,24 +44,25 @@ def test_db_find_one():
 
 
 def test_get_users():
-    endpoint = C.LOCAL_HOST + "/v1/users"
+    endpoint = C.LOCAL_HOST + C.CURRENT_VERSION + "/users"
     response = requests.get(endpoint).json()
     assert response["message"] == "OK"
     assert response["status"] == 200
 
 
 def test_get_bookings():
-    endpoint_correct = C.LOCAL_HOST + "/v1/bookings/21/Ada"
+    endpoint_correct = C.LOCAL_HOST + C.CURRENT_VERSION + "/bookings/21/Ada"
     response = requests.get(endpoint_correct).json()
     assert response["message"] == "OK"
     assert response["status"] == 200
 
-    endpoint_incorrect = C.LOCAL_HOST + "/v1/bookings/1/room_1"
+    endpoint_incorrect = C.LOCAL_HOST + C.CURRENT_VERSION + "/bookings/1/room_1"
     response = requests.get(endpoint_incorrect).json()
     assert response["bookings"] is None
     assert response["message"] == C.NO_BOOKINGS_PARAMETERS
     assert response["status"] == 400
 
-    endpoint_wrong_datatype = C.LOCAL_HOST + "/v1/bookings/a/Ada"
+    endpoint_wrong_datatype = C.LOCAL_HOST + C.CURRENT_VERSION + "/bookings/a/Ada"
     response = requests.put(endpoint_wrong_datatype)
     assert response.status_code == 404
+"""

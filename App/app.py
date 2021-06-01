@@ -3,6 +3,7 @@ from handlers.flask_api import bookit_api
 from helpers.populate_mock_db import insert_empty_time_slots, insert_random_bookings, update_calendar_weeks, create_admin_db
 from helpers.get_workplace_info import get_user_data
 from flask_cors import CORS
+from handlers import CONSTANTS as C
 import os
 
 app = Flask(__name__)
@@ -34,5 +35,6 @@ except Exception as e:
     print(e)
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 80))
-    app.run(host="0.0.0.0", port=port)
+    port_80 = int(os.environ.get("PORT", 80))
+    port_5k = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port_80)

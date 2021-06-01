@@ -19,25 +19,20 @@ def db_find_one(key: str, value):
 def bookit_api(app):
     class NewBooking(Resource):
         @cross_origin()
-        def put(self):
+        def put(self, id):
             posted_data = request.get_json()
             response = {
-                "message": "",
-                "status": 0
+                "status": 0,
+                "message": ""
             }
             company = posted_data["company"]
             booker = posted_data["booker"]
-            _id_int = tools.str_to_int(posted_data["_id"])
-            if _id_int:
-                if db_find_one("_id", _id_int) is not None:
-                    mock_collection.update({"_id": _id_int}, {"$set": {"company": company, "booker": booker}})
-                    response["message"] = "OK"
-                    response["status"] = 200
-                else:
-                    response["message"] = C.ID_DOES_NOT_EXIST
-                    response["status"] = 400
+            if db_find_one("_id", id) is not None:
+                mock_collection.update({"_id": id}, {"$set": {"company": company, "booker": booker}})
+                response["message"] = "OK"
+                response["status"] = 200
             else:
-                response["message"] = "'" + posted_data["_id"] + "' " + C.STR_TO_INT_ERROR
+                response["message"] = C.ID_DOES_NOT_EXIST
                 response["status"] = 400
             return response
 
@@ -97,9 +92,15 @@ def bookit_api(app):
             users = list(users_collection.find())
             return jsonify(users)
 
+    class HelloWorld(Resource):
+        @cross_origin()
+        def get(self):
+            return "Hello World!"
+
     api = Api(app)
-    api.add_resource(NewBooking, "/v1.0/new_booking")
-    api.add_resource(AllBookings, "/v1.0/all_bookings")
-    api.add_resource(RemoveBooking, "/v1.0/remove/<id_number>")
-    api.add_resource(GetBookings, "/v1.0/bookings/<int:week>/<string:room_name>")
-    api.add_resource(GetUsers, "/v1.0/users")
+    api.add_resource(NewBooking, C.CURRENT_VERSION + "/new_booking/<int:id>")
+    api.add_resource(AllBookings, C.CURRENT_VERSION + "/all_bookings")
+    api.add_resource(RemoveBooking, C.CURRENT_VERSION + "/remove/<id_number>")
+    api.add_resource(GetBookings, C.CURRENT_VERSION + "/bookings/<int:week>/<string:room_name>")
+    api.add_resource(GetUsers, C.CURRENT_VERSION + "/users")
+    api.add_resource(HelloWorld, "/")
