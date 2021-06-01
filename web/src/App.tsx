@@ -5,8 +5,10 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar/Navbar';
 import Routing from './routes/Routing';
 import './utils/global/Global.css';
-import { RoomProvider, WeekDataProvider, WeekProvider } from './utils/global/provider/GlobalProvider';
+import { RoomProvider, WeekDataProvider } from './utils/global/provider/GlobalProvider';
+import { PopUpProvider } from './utils/global/provider/PopUpProvider';
 import { UserProvider } from './utils/global/provider/UserProvider';
+import { WeekProvider } from './utils/global/provider/WeekProvider';
 
 
 function App() {
@@ -15,10 +17,12 @@ function App() {
 			<WeekProvider>
 				<RoomProvider>
 					<WeekDataProvider>
-						<Routing>
-							<Navbar/>
-						</Routing>
-						<Footer/>
+						<PopUpProvider>
+							<Routing>
+								<Navbar/>
+							</Routing>
+							<Footer/>
+						</PopUpProvider>
 					</WeekDataProvider>
 				</RoomProvider>
 			</WeekProvider>

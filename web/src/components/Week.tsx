@@ -1,11 +1,14 @@
 import moment from 'moment';
 import React, { useContext, useEffect, useState } from 'react';
-import BooikitService from '../utils/api/service/BookItService';
-import { RoomContext, WeekContext } from '../utils/global/provider/GlobalProvider';
+import 'reactjs-popup/dist/index.css';
+import BookitService from '../utils/api/service/BookItService';
+import { RoomContext } from '../utils/global/provider/GlobalProvider';
+import { WeekContext } from '../utils/global/provider/WeekProvider';
 import { IndividualSlotData, JsonData, OneDayColumnData, OneWeekData } from '../utils/interface/WeekInterface';
 import './Week.css';
 import ColumnRow from './Week/ColumnRow';
 import { ColumnTimeLeft, ColumnTimeRight } from './Week/ColumnTime';
+import { ControlledPopup } from './Week/ControlledPopup';
 
 
 let week_days: Array<string> = [
@@ -135,21 +138,21 @@ export const Week = () => {
 	const [week, setWeek] = useContext(WeekContext);
 	const [room, setRoom] = useContext(RoomContext);
 	
+	
 	const fetchDataFromApi = () => {
-		BooikitService.getWeekForRoom(week, room)
+		BookitService.getWeekForRoom(week, room)
 			.then(response => {
 				setData(buildDataAllInOne(response.data));
 			})
 			.catch(error => console.log(error));
 	};
 	
+	
 	useEffect(() => {
 		fetchDataFromApi();
 		
-		return () => {
-		};
 		
-	}, [week]);
+	}, [week, room]);
 	
 	function buildDataAllInOne(responseData: [JsonData]) {
 		let weekData: OneWeekData = {
@@ -234,6 +237,7 @@ export const Week = () => {
 				}
 				<ColumnTimeRight/>
 			</div>
+			<ControlledPopup/>
 		</div>
 	);
 };

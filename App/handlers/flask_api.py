@@ -90,6 +90,7 @@ def bookit_api(app):
             bookings = list(mock_collection.find({"$and": [{"week": week}, {"room": room_name}]}))
             return jsonify(bookings)
 
+
     class GetUsers(Resource):
         @cross_origin()
         def get(self):

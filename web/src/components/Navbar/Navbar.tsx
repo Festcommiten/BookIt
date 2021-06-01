@@ -1,23 +1,15 @@
-import moment from 'moment';
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import RoutingPath from '../../routes/RoutingPath';
-import { RoomContext, WeekContext } from '../../utils/global/provider/GlobalProvider';
-import { NavigationButtonPrimary } from '../Buttons';
-import './Navbar.css';
 import { UserContext } from '../../utils/global/provider/UserProvider';
+import { NavigationButtonPrimary } from '../Buttons';
 import { DisplayRoom } from './DisplayRoom';
 import { DisplayWeek } from './DisplayWeek';
+import './Navbar.css';
 
 export default function Navbar() {
 	const history = useHistory();
 	const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext);
-	const [room, setRoom] = useContext(RoomContext);
-	const [week, setWeek] = useContext(WeekContext);
-	setRoom('Kakashi');
-	
-	let time: moment.Moment = moment();
-	setWeek(parseInt(time.format('W')));
 	
 	const logout = () => {
 		localStorage.removeItem('username');

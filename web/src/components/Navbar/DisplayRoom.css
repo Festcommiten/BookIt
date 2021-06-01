@@ -1,0 +1,21 @@
+.display-room-container {
+    display: grid;
+    grid-template-rows: 150px 150px;
+    grid-template-columns: 150px 150px 150px;
+    grid-gap: 30px;
+    padding: 20px;
+    background-color: var(--dark-grey);
+}
+
+.display-room-container-item {
+    padding: 20px;
+    text-align: center;
+}
+
+.popup-content-my {
+    background: var(--dark-grey);
+}
+[role='tooltip'].popup-content-my {
+    width: 200px;
+    box-shadow: none;
+}

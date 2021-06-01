@@ -3,7 +3,8 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import moment from 'moment';
 import React, { useContext } from 'react';
 import './ColumnTime.css';
-import { WeekContext } from '../../utils/global/provider/GlobalProvider';
+import { WeekContext } from '../../utils/global/provider/WeekProvider';
+
 
 const weekNow: number = parseInt(moment().format('W'));
 const weekMin = weekNow - 1;
@@ -31,8 +32,11 @@ const render_time_slots = time_slot.map((slot, i) => {
 });
 
 export function ColumnTimeLeft() {
+	const [week, setWeek] = useContext(WeekContext);
 	function goToPastWeek() {
-		alert('Past week');
+		if (week > weekMin) {
+			setWeek(week - 1);
+		}
 	}
 	
 	return (
@@ -48,8 +52,11 @@ export function ColumnTimeLeft() {
 }
 
 export function ColumnTimeRight() {
+	const [week, setWeek] = useContext(WeekContext);
 	function goToNextWeek() {
-		alert('Next week');
+		if (week < weekMax) {
+			setWeek(week + 1)
+		}
 	}
 	
 	return (
