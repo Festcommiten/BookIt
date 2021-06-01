@@ -6,4 +6,4 @@ COPY requirements.txt .
 RUN pip3 install --no-cache-dir -r requirements.txt
 COPY . .
 COPY resources/ .config/gspread/
-CMD ["python", "app_data.py"]
+CMD ["python", "app.py"]

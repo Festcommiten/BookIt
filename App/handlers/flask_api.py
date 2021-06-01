@@ -1,8 +1,9 @@
-from flask import request
+from flask import request, jsonify
 from flask_restful import Api, Resource
 from pymongo import MongoClient
 import handlers.api_tools as tools
 import handlers.CONSTANTS as C
+from flask_cors import cross_origin
 
 # MONGO
 client = MongoClient("mongodb://db:27017")
@@ -17,6 +18,7 @@ def db_find_one(key: str, value):
 
 def bookit_api(app):
     class NewBooking(Resource):
+        @cross_origin()
         def put(self):
             posted_data = request.get_json()
             response = {
@@ -40,6 +42,7 @@ def bookit_api(app):
             return response
 
     class AllBookings(Resource):
+        @cross_origin()
         def get(self):
             response = {
                 "bookings": [],
@@ -59,6 +62,7 @@ def bookit_api(app):
                 return response
 
     class RemoveBooking(Resource):
+        @cross_origin()
         def put(self, id_number: int):
             response = {
                 "message": "",
@@ -81,40 +85,21 @@ def bookit_api(app):
                 return response
 
     class GetBookings(Resource):
-        def get(self, week, room):
-            response = {
-                "bookings": "",
-                "message": "",
-                "status": 0
-            }
-            bookings = list(mock_collection.find({"$and": [{"week": week}, {"room": room}]}))
-            if not bookings:
-                response["bookings"] = None
-                response["message"] = C.NO_BOOKINGS_PARAMETERS
-                response["status"] = 400
-            else:
-                response["bookings"] = bookings
-                response["message"] = "OK"
-                response["status"] = 200
-            return response
+        @cross_origin()
+        def get(self, week, room_name):
+            bookings = list(mock_collection.find({"$and": [{"week": week}, {"room": room_name}]}))
+            return jsonify(bookings)
+
 
     class GetUsers(Resource):
+        @cross_origin()
         def get(self):
-            response = {
-                "users": [],
-                "message": "",
-                "status": 0
-            }
             users = list(users_collection.find())
-            response["users"] = users
-            response["message"] = "OK"
-            response["status"] = 200
-
-            return response
+            return jsonify(users)
 
     api = Api(app)
-    api.add_resource(NewBooking, "/v1/new_booking")
-    api.add_resource(AllBookings, "/v1/all_bookings")
-    api.add_resource(RemoveBooking, "/v1/remove/<int:id_number>")
-    api.add_resource(GetBookings, "/v1/bookings/<int:week>/<string:room>")
-    api.add_resource(GetUsers, "/v1/users")
+    api.add_resource(NewBooking, "/v1.0/new_booking")
+    api.add_resource(AllBookings, "/v1.0/all_bookings")
+    api.add_resource(RemoveBooking, "/v1.0/remove/<id_number>")
+    api.add_resource(GetBookings, "/v1.0/bookings/<int:week>/<string:room_name>")
+    api.add_resource(GetUsers, "/v1.0/users")
