@@ -104,8 +104,12 @@ def bookit_api(app):
     class GetUsers(Resource):
         @cross_origin()
         def get(self):
-            users = list(users_collection.find())
-            return jsonify(users)
+            response = {
+                "users": list(users_collection.find()),
+                "message": "OK",
+                "status": 200
+            }
+            return jsonify(response)
 
     # HELLO WORLD
     class HelloWorld(Resource):
