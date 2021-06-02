@@ -38,7 +38,7 @@ ID_DOES_NOT_EXIST = "This id does not exist"
 STR_TO_INT_ERROR = "can't be convert to a integer"
 NO_BOOKINGS_PARAMETERS = "There are no bookings with the given parameters"
 
-# ***** MOCK DATA *****
+# ***** DATA *****
 EXISTING_DATA = {
     "_id": 202106070801,
     "booker": "",
@@ -53,3 +53,5 @@ NEW_BOOKING_DATA = {
   "company": "CE",
   "booker": "Robin "
 }
+
+ROOM_NAMES_LIST = ["Ada", "Rust", "Douglas", "Katniss", "Kakashi", "Obito"]
