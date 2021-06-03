@@ -23,34 +23,19 @@ export const DisplayRoom = () => {
 			<Popup open={ open } closeOnDocumentClick onClose={ closeModal }>
 				<div className="modal">
 					<div className="display-room-container">
-						<div className="display-room-container-item"
-							 onClick={ () => roomName(0) }>
-							<h1>{ ROOM_NAMES_LIST[0] }</h1>
-						</div>
-						<div className="display-room-container-item"
-							 onClick={ () => roomName(1) }>
-							<h1>{ ROOM_NAMES_LIST[1] }</h1>
-						</div>
-						<div className="display-room-container-item"
-							 onClick={ () => roomName(2) }>
-							<h1>{ ROOM_NAMES_LIST[2] }</h1>
-						</div>
-						<div className="display-room-container-item"
-							 onClick={ () => roomName(3) }>
-							<h1>{ ROOM_NAMES_LIST[3] }</h1>
-						</div>
-						<div className="display-room-container-item"
-							 onClick={ () => roomName(4) }>
-							<h1>{ ROOM_NAMES_LIST[4] }</h1>
-						</div>
-						<div className="display-room-container-item"
-							 onClick={ () => roomName(5) }>
-							<h1>{ ROOM_NAMES_LIST[5] }</h1>
-						</div>
+						{
+							ROOM_NAMES_LIST?.map((ds, i) => {
+								return (
+									<div key={ i } className="display-room-container-item"
+										 onClick={ () => roomName(i) }>
+										<h1>{ ROOM_NAMES_LIST[i] }</h1>
+									</div>
+								);
+							})
+						}
 					</div>
 				</div>
 			</Popup>
-		
 		</>
 	);
 };

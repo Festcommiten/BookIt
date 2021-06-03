@@ -11,11 +11,3 @@
     padding: 20px;
     text-align: center;
 }
-
-.popup-content-my {
-    background: var(--dark-grey);
-}
-[role='tooltip'].popup-content-my {
-    width: 200px;
-    box-shadow: none;
-}

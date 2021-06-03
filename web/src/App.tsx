@@ -5,8 +5,9 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar/Navbar';
 import Routing from './routes/Routing';
 import './utils/global/Global.css';
-import { RoomProvider, WeekDataProvider } from './utils/global/provider/GlobalProvider';
-import { PopUpProvider } from './utils/global/provider/PopUpProvider';
+import { ChosenDataSlotProvider, RoomProvider, WeekDataProvider } from './utils/global/provider/GlobalProvider';
+import { ChoseCompanyProvider } from './utils/global/provider/ChoseCompanyProvider';
+import { RemoveBookingProvider } from './utils/global/provider/RemoveBookingProvider';
 import { UserProvider } from './utils/global/provider/UserProvider';
 import { WeekProvider } from './utils/global/provider/WeekProvider';
 
@@ -16,14 +17,18 @@ function App() {
 		<UserProvider>
 			<WeekProvider>
 				<RoomProvider>
-					<WeekDataProvider>
-						<PopUpProvider>
-							<Routing>
-								<Navbar/>
-							</Routing>
-							<Footer/>
-						</PopUpProvider>
-					</WeekDataProvider>
+					<ChosenDataSlotProvider>
+						<RemoveBookingProvider>
+							<WeekDataProvider>
+								<ChoseCompanyProvider>
+									<Routing>
+										<Navbar/>
+									</Routing>
+									<Footer/>
+								</ChoseCompanyProvider>
+							</WeekDataProvider>
+						</RemoveBookingProvider>
+					</ChosenDataSlotProvider>
 				</RoomProvider>
 			</WeekProvider>
 		</UserProvider>

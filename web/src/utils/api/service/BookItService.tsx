@@ -2,7 +2,10 @@ import http from '../BookitAPI'
 
 const getWeekForRoom = (week: number, room: string) => {
 	return http.get(`bookings/${ week }/${ room }`)
-	
+}
+
+const getCompaniesAndUsers = () => {
+	return http.get(`users`)
 }
 
 interface NewBooking {
@@ -27,6 +30,7 @@ const removeBooking = (id: number) => {
 
 export default {
 	getWeekForRoom,
+	getCompaniesAndUsers,
 	newBooking,
 	removeBooking
 }
