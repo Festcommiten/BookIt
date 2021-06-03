@@ -42,3 +42,10 @@ export interface JsonData {
 	starting_time: moment.Moment
 	week: number
 }
+
+
+export interface JsonDataWithStatus {
+	bookings: Array<JsonData>
+	message: string
+	status: number
+}

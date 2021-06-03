@@ -1,7 +1,7 @@
 import moment from 'moment';
 import React, { useContext, useEffect, useState } from 'react';
 import 'reactjs-popup/dist/index.css';
-import BookitService from '../utils/api/service/BookItService';
+import BookItService from '../utils/api/service/BookItService';
 import { RoomContext } from '../utils/global/provider/GlobalProvider';
 import { WeekContext } from '../utils/global/provider/WeekProvider';
 import { IndividualSlotData, JsonData, OneDayColumnData, OneWeekData } from '../utils/interface/WeekInterface';
@@ -25,11 +25,10 @@ export const Week = () => {
 	const [week, setWeek] = useContext(WeekContext);
 	const [room, setRoom] = useContext(RoomContext);
 	
-	
 	const fetchDataFromApi = () => {
-		BookitService.getWeekForRoom(week, room)
+		BookItService.getWeekForRoom(week, room)
 			.then(response => {
-				setData(buildDataAllInOne(response.data));
+				setData(buildDataAllInOne(response.data.bookings));
 			})
 			.catch(error => console.log(error));
 	};
