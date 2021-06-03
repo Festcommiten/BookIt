@@ -24,7 +24,7 @@ export const BookingHandling = () => {
 	const fetchDataFromApi = () => {
 		BookItService.getCompaniesAndUsers()
 			.then(response => {
-				setData(response.data);
+				setData(response.data.users);
 			})
 			.catch(error => console.log(error));
 	};
