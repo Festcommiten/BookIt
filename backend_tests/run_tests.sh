@@ -30,8 +30,8 @@ sleep 2
 echo $'\n****** RUNNING PYTEST ******\n'
 docker exec -i backend_tests_app_1 sh -c 'pytest -vv -s'
 
-echo $'\n***** DELETING MOCK DATA COLLECTION *****\n'
-docker exec -i backend_tests_db_1 sh -c 'mongo test_db --eval "db.mock_data.drop()"'
+# echo $'\n***** DELETING MOCK DATA COLLECTION *****\n'
+# docker exec -i backend_tests_db_1 sh -c 'mongo test_db --eval "db.mock_data.drop()"'
 
 echo $'\n****** DOCKER COMPOSE STOP ******\n'
 docker-compose stop

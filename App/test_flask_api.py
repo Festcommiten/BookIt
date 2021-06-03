@@ -46,6 +46,14 @@ def test_get_users():
     pass
 
 
+def test_get_rooms():
+    endpoint_correct = C.HTTP + C.LOCAL_HOST + C.CURRENT_VERSION + "/rooms"
+    response = requests.get(endpoint_correct).json()
+    assert response["rooms"] == C.ROOM_NAMES_LIST
+    assert response["message"] == "OK"
+    assert response["status"] == 200
+
+
 def test_bookings():
     endpoint_correct = C.HTTP + C.LOCAL_HOST + C.CURRENT_VERSION + "/bookings"
     response = requests.get(endpoint_correct).json()

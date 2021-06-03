@@ -1,9 +1,9 @@
 import os
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
-from helpers.populate_mock_db import insert_empty_time_slots, insert_random_bookings, update_calendar_weeks, create_admin_db
+from App.handlers.populate_mock_db import insert_empty_time_slots, insert_random_bookings, update_calendar_weeks, create_admin_db
 from flask_cors import CORS, cross_origin
-from helpers.get_workplace_info import get_user_data
+from App.handlers.get_workplace_info import get_user_data
 
 app = Flask(__name__)
 CORS(app)
