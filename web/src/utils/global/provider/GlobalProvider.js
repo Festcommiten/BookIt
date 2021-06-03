@@ -23,3 +23,15 @@ export const WeekDataProvider = (props) => {
         </WeekDataContext.Provider>
     )
 }
+
+export const ChosenDataSlotContext = createContext();
+
+export const ChosenDataSlotProvider = (props) => {
+    const [chosenDataSlot, setChosenDataSlot] = useState()
+
+    return (
+        <ChosenDataSlotContext.Provider value={ [chosenDataSlot, setChosenDataSlot] }>
+            { props.children }
+        </ChosenDataSlotContext.Provider>
+    )
+}

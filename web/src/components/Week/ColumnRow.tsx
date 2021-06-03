@@ -11,21 +11,20 @@ import {
 	RenderBookedSlotPassed,
 	RenderTitle, RenderBookedSlotCurrentTime
 } from './ColumnRowItem';
-import { NewBooking, RemoveBooking } from '../../utils/global/handlers/HandleBookings';
 
 // Render greyed out slot with or without data
 function timeSlotPassed(slotData: IndividualSlotData) {
 	if (slotData.empty_slot) {
 		return (
 			<RenderFreeSlotPassed
-				key={ slotData.id }/>
+				key={ slotData.id }
+				slotData={ slotData }/>
 		);
 	} else {
 		return (
 			<RenderBookedSlotPassed
 				key={ slotData.id }
-				company={ slotData.company }
-				booker={ slotData.booker }/>
+				slotData={ slotData }/>
 		);
 	}
 }
@@ -35,19 +34,15 @@ function timeSlotFuture(slotData: IndividualSlotData) {
 	// if empty slot
 	if (slotData.empty_slot) {
 		return (
-			<div onClick={ () => NewBooking(slotData) }
-				 key={ slotData.id }>
-				<RenderFreeSlotFuture/>
-			</div>
+			<RenderFreeSlotFuture
+				key={ slotData.id }
+				slotData={ slotData }/>
 		);
 	} else {
 		return (
-			<div onClick={ () => alert('Remove Booking') }
-				 key={ slotData.id }>
-				<RenderBookedSlotFuture
-					company={ slotData.company }
-					booker={ slotData.booker }/>
-			</div>
+			<RenderBookedSlotFuture
+				key={ slotData.id }
+				slotData={ slotData }/>
 		);
 	}
 }
@@ -57,24 +52,18 @@ function timeSlotCurrent(slotData: IndividualSlotData) {
 	// if empty slot
 	if (slotData.empty_slot) {
 		return (
-			<div onClick={ () => alert('New Booking') }
-				 key={ slotData.id }>
-				<RenderFreeSlotCurrentTime/>
-			</div>
+			<RenderFreeSlotCurrentTime
+				key={ slotData.id }
+				slotData={ slotData }/>
 		);
 	} else {
 		return (
-			<div onClick={ () => alert('Remove Booking') }
-				 key={ slotData.id }>
-				<RenderBookedSlotCurrentTime
-					company={ slotData.company }
-					booker={ slotData.booker }/>
-			</div>
+			<RenderBookedSlotCurrentTime
+				key={ slotData.id }
+				slotData={ slotData }/>
 		);
 	}
 }
-
-const hardCodedTodayDay: moment.Moment = moment('2021-05-19', 'YYYY-MM-DD');
 
 function renderDayColumn(oneDayData: OneDayColumnData) {
 	let slotArray = oneDayData.slotDatas;
@@ -90,7 +79,7 @@ function renderDayColumn(oneDayData: OneDayColumnData) {
 		if (slotArray[i].passed_time_slot) {
 			dataArray.push(timeSlotPassed(slotArray[i]));
 		} else if (hourNow === slotStartHour &&
-			slotStartTime.dayOfYear() === hardCodedTodayDay.dayOfYear()) {
+			slotStartTime.dayOfYear() === today.dayOfYear()) {
 			dataArray.push(timeSlotCurrent(slotArray[i]));
 		} else {
 			dataArray.push(timeSlotFuture(slotArray[i]));

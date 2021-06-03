@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { IndividualSlotData } from '../../interface/WeekInterface';
-import { PopUpContext } from '../provider/PopUpProvider';
+import { ChoseCompanyContext } from '../provider/ChoseCompanyProvider';
 
 export const NewBooking = (slotData: IndividualSlotData) => {
-	const [popup, setPopup] = useContext(PopUpContext);
+	const [popup, setPopup] = useContext(ChoseCompanyContext);
 	alert('New Booking')
 	console.log('NewBooking', slotData)
 	console.log('popup', popup)
