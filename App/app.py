@@ -3,6 +3,7 @@ from handlers.flask_api import bookit_api
 from handlers.populate_mock_db import insert_empty_time_slots, insert_random_bookings, update_calendar_weeks, create_admin_db
 from handlers.get_workplace_info import get_user_data
 from flask_cors import CORS
+from handlers import api_tools as tools
 import os
 
 app = Flask(__name__)
