@@ -254,7 +254,7 @@ API url: current_version + `/users`
 Success:
 
 ```json
-{
+"users": {
   "Vipetech": 
             [
                 {

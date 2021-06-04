@@ -105,7 +105,7 @@ def bookit_api(app):
         @cross_origin()
         def get(self):
             response = {
-                "users": list(users_collection.find()),
+                "users": list(users_collection.find())[0],
                 "message": "OK",
                 "status": 200
             }
