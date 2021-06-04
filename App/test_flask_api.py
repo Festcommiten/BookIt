@@ -43,7 +43,18 @@ def test_db_find_one():
 
 
 def test_get_users():
-    pass
+    endpoint_correct = C.HTTP + C.LOCAL_HOST + C.CURRENT_VERSION + "/users"
+    response = requests.get(endpoint_correct).json()
+    assert response["message"] == "OK"
+    assert response["status"] == 200
+
+
+def test_get_rooms():
+    endpoint_correct = C.HTTP + C.LOCAL_HOST + C.CURRENT_VERSION + "/rooms"
+    response = requests.get(endpoint_correct).json()
+    assert response["rooms"] == C.ROOM_NAMES_LIST
+    assert response["message"] == "OK"
+    assert response["status"] == 200
 
 
 def test_bookings():

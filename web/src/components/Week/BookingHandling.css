@@ -1,0 +1,21 @@
+.booking-handling-container-companies {
+    display: grid;
+    grid-template-rows: 150px;
+    grid-template-columns: 1fr 1fr 1fr;
+    /*grid-gap: 30px;*/
+    /*padding: 20px;*/
+    background-color: var(--dark-grey);
+}
+
+.booking-handling-container-item {
+    padding: 20px;
+    align-items: center;
+}
+
+.popup-content-my {
+    background: var(--dark-grey);
+}
+[role='tooltip'].popup-content-my {
+    width: 200px;
+    box-shadow: none;
+}

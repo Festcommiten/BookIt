@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './ColumnRowItem.css';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import { BookingInfo, WeekDate } from '../../utils/interface/WeekInterface';
+import { NewBooking } from '../../utils/global/handlers/HandleBookings';
+import { ChoseCompanyContext } from '../../utils/global/provider/ChoseCompanyProvider';
+import { ChosenDataSlotContext } from '../../utils/global/provider/GlobalProvider';
+import { RemoveBookingContext } from '../../utils/global/provider/RemoveBookingProvider';
+import { BookingInfo, IndividualSlotData, WeekDate } from '../../utils/interface/WeekInterface';
 
 export function RenderTitle(weekDate: WeekDate) {
 	
@@ -15,54 +19,83 @@ export function RenderTitle(weekDate: WeekDate) {
 	);
 }
 
-export function RenderFreeSlotPassed() {
+export const RenderFreeSlotPassed: React.FC<IndividualSlotDataProps> = ({slotData}: IndividualSlotDataProps) => {
 	return (
 		<div className="pa2 ma0 item-time-passed"></div>
 	);
 }
 
-export function RenderBookedSlotPassed(bookingInfo: BookingInfo) {
-	let {company, booker} = bookingInfo;
+export const RenderBookedSlotPassed: React.FC<IndividualSlotDataProps> = ({slotData}: IndividualSlotDataProps) => {
 	return (
 		<div className="pa2 ma0 item-time-passed">
-			<h3 className="item-text-passed-h3">{ company }</h3>
-			<p className="item-text-passed-p">{ booker }</p>
+			<h3 className="item-text-passed-h3">{ slotData.company }</h3>
+			<p className="item-text-passed-p">{ slotData.booker }</p>
 		</div>
 	);
 }
 
-export function RenderFreeSlotCurrentTime() {
+export const RenderFreeSlotCurrentTime: React.FC<IndividualSlotDataProps> = ({slotData}: IndividualSlotDataProps) => {
+	const [isChosenCompany, setChosenCompany] = useContext(ChoseCompanyContext);
+	const [chosenDataSlot, setChosenDataSlot] = useContext(ChosenDataSlotContext);
 	return (
-		<div className="pa2 ma0 item-time-current grow shadow-1">
-			<AddCircleOutlineIcon className='mt2 pt1'/>
+		<div onClick={ () => {
+			setChosenDataSlot(slotData.id);
+			setChosenCompany(!isChosenCompany);
+		} }>
+			<div className="pa2 ma0 item-time-current grow shadow-1">
+				<AddCircleOutlineIcon className="mt2 pt1"/>
+			</div>
+		</div>
+	);
+};
+
+export const RenderBookedSlotCurrentTime: React.FC<IndividualSlotDataProps> = ({slotData}: IndividualSlotDataProps) => {
+	const [chosenDataSlot, setChosenDataSlot] = useContext(ChosenDataSlotContext);
+	const [removeCompany, setRemoveCompany] = useContext(RemoveBookingContext);
+	return (
+		<div className="pa2 ma0 item-time-current grow shadow-1"
+			 onClick={ () => {
+				 setChosenDataSlot(slotData.id);
+				 setRemoveCompany(!removeCompany);
+			 }
+			 }>
+			<h3 className="primary_text">{ slotData.company }</h3>
+			<p className="secondary_text">{ slotData.booker }</p>
 		</div>
 	);
 }
 
-export function RenderBookedSlotCurrentTime(bookingInfo: BookingInfo) {
-	let {company, booker} = bookingInfo;
-	return (
-		<div className="pa2 ma0 item-time-current grow shadow-1">
-			<h3 className="item-text-current-h3">{ company }</h3>
-			<p className="item-text-current-p">{ booker }</p>
-		</div>
-	);
+interface IndividualSlotDataProps {
+	slotData: IndividualSlotData
 }
 
-export function RenderFreeSlotFuture() {
+export const RenderFreeSlotFuture: React.FC<IndividualSlotDataProps> = ({slotData}: IndividualSlotDataProps) => {
+	const [isChosenCompany, setChosenCompany] = useContext(ChoseCompanyContext);
+	const [chosenDataSlot, setChosenDataSlot] = useContext(ChosenDataSlotContext);
 	return (
-		<div className="pa2 ma0 item-time-future grow shadow-1">
-			<AddCircleOutlineIcon className='mt2 pt1'/>
+		<div onClick={ () => {
+			setChosenDataSlot(slotData.id);
+			setChosenCompany(!isChosenCompany);
+		} }>
+			<div className="pa2 ma0 item-time-future grow shadow-1">
+				<AddCircleOutlineIcon className="mt2 pt1"/>
+			</div>
 		</div>
 	);
-}
+};
 
-export function RenderBookedSlotFuture(bookingInfo: BookingInfo) {
-	let {company, booker} = bookingInfo;
+export const RenderBookedSlotFuture: React.FC<IndividualSlotDataProps> = ({slotData}: IndividualSlotDataProps) => {
+	const [chosenDataSlot, setChosenDataSlot] = useContext(ChosenDataSlotContext);
+	const [removeCompany, setRemoveCompany] = useContext(RemoveBookingContext);
 	return (
-		<div className="pa2 ma0 item-red grow shadow-1">
-			<h3 className="primary_text">{ company }</h3>
-			<p className="secondary_text">{ booker }</p>
+		<div className="pa2 ma0 item-red grow shadow-1"
+			 onClick={ () => {
+				 setChosenDataSlot(slotData.id);
+				 setRemoveCompany(!removeCompany);
+			 }
+			 }>
+			<h3 className="primary_text">{ slotData.company }</h3>
+			<p className="secondary_text">{ slotData.booker }</p>
 		</div>
 	);
-}
+};

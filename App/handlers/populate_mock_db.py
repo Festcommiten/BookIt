@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+import handlers.CONSTANTS as C
 import datetime
 import random
 
@@ -30,8 +31,6 @@ week_dates = [
 starting_times = []
 
 TIME_SLOTS_FOR_ROOM_PER_WEEK = 45
-
-ROOM_NAMES_LIST = ["Ada", "Rust", "Douglas", "Katniss", "Kakashi", "Obito"]
 
 bookers = \
     [
@@ -80,7 +79,7 @@ def convert_int_to_string_of_minimum_length_two(int_input):
 
 
 def room_name_exist(room_name):
-    if room_name in ROOM_NAMES_LIST:
+    if room_name in C.ROOM_NAMES_LIST:
         return True
     else:
         return False
@@ -169,8 +168,8 @@ def generate_empty_documents_for_room_time_slots_based_on_week(room_name: str, w
 
 def populate_time_slots_for_all_weeks():
     populated_times_slots = []
-    for room_order in range(len(ROOM_NAMES_LIST)):
-        room_name = ROOM_NAMES_LIST[room_order]
+    for room_order in range(len(C.ROOM_NAMES_LIST)):
+        room_name = C.ROOM_NAMES_LIST[room_order]
         for week in weeks:
             rooms_data_for_week = generate_empty_documents_for_room_time_slots_based_on_week(room_name, week,
                                                                                              room_order)
@@ -189,7 +188,7 @@ def combine_lists(array_of_lists):
 def print_x_random_times():
     x = 12
     times_to_be_shown = get_random_starting_times()
-    for i in range(len(ROOM_NAMES_LIST)):
+    for i in range(len(C.ROOM_NAMES_LIST)):
         for j in range(x):
             id_int = convert_time_to_id(times_to_be_shown[j], i)
             print(collection.find_one({"_id": id_int}))
@@ -212,7 +211,7 @@ def convert_time_to_id(time, room_id):
 def insert_random_bookings():
     if not collection.find_one({"company": "FutureSkill"}):
         times_to_be_booked = get_random_starting_times()
-        for i in range(len(ROOM_NAMES_LIST)):
+        for i in range(len(C.ROOM_NAMES_LIST)):
             for time in range(len(times_to_be_booked)):
                 id_to_update = convert_time_to_id(times_to_be_booked[time], i)
                 booker = random.choice(bookers)
@@ -230,7 +229,7 @@ def insert_empty_time_slots():
 
 
 def populate_time_slots(week, room_order):
-    room_name = ROOM_NAMES_LIST[room_order]
+    room_name = C.ROOM_NAMES_LIST[room_order]
     populated_times_slots = generate_empty_documents_for_room_time_slots_based_on_week(room_name, week,
                                                                                        room_order)
     return populated_times_slots
@@ -239,7 +238,7 @@ def populate_time_slots(week, room_order):
 def add_new_week_to_all_rooms():
     new_week = weeks[-1]
     populated_times_slots = []
-    for room_order in range(len(ROOM_NAMES_LIST)):
+    for room_order in range(len(C.ROOM_NAMES_LIST)):
         populated_times_slots.append(populate_time_slots(new_week, room_order))
     return populated_times_slots
 

@@ -104,9 +104,23 @@ def bookit_api(app):
     class GetUsers(Resource):
         @cross_origin()
         def get(self):
-            users = list(users_collection.find())
-            return jsonify(users)
+            response = {
+                "users": list(users_collection.find()),
+                "message": "OK",
+                "status": 200
+            }
+            return jsonify(response)
 
+    # GET ROOMS
+    class GetRooms(Resource):
+        @cross_origin()
+        def get(self):
+            response = {
+                "rooms": C.ROOM_NAMES_LIST,
+                "message": "OK",
+                "status": 200
+            }
+            return jsonify(response)
     # HELLO WORLD
     class HelloWorld(Resource):
         @cross_origin()
@@ -123,5 +137,7 @@ def bookit_api(app):
     api.add_resource(BookingsWeekRoom, C.CURRENT_VERSION + "/bookings/<int:week>/<string:room_name>")
     # GET USERS
     api.add_resource(GetUsers, C.CURRENT_VERSION + "/users")
+    # GET ROOMS
+    api.add_resource(GetRooms, C.CURRENT_VERSION + "/rooms")
     # HELLO WORLD
     api.add_resource(HelloWorld, "/")
