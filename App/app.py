@@ -3,7 +3,7 @@ from handlers.flask_api import bookit_api
 from helpers.populate_mock_db import insert_empty_time_slots, insert_random_bookings, update_calendar_weeks, create_admin_db
 from helpers.get_workplace_info import get_user_data
 from flask_cors import CORS
-from handlers import CONSTANTS as C
+from handlers import api_tools as tools
 import os
 
 app = Flask(__name__)
@@ -29,7 +29,8 @@ except Exception as e:
     print(e)
 
 try:
-    create_admin_db(get_user_data())
+    user_data = [tools.convert_users_structure(get_user_data())]
+    create_admin_db(user_data)
     print("CREATED ADMIN DB")
 except Exception as e:
     print(e)

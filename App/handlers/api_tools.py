@@ -27,3 +27,23 @@ def str_to_int(string: str):
         return int(string)
     except ValueError:
         return False
+
+
+def convert_users_structure(users: dict) -> dict:
+    companies_list = []
+    formatted_dict = {}
+
+    for user in users:
+        if user["company"] not in companies_list:
+            companies_list.append(user["company"])
+
+    for company in companies_list:
+        users_list = []
+        for user in users:
+            if user.get("company"):
+                if user["company"] == company:
+                    del user["company"]
+                    users_list.append(user)
+        formatted_dict[company] = users_list
+
+    return formatted_dict
