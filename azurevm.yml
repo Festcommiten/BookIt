@@ -1,0 +1,13 @@
+- hosts: 51.116.187.202
+  become: yes
+  tasks:
+
+  - name: 'start mongod service'
+    systemd:
+      name: mongod
+      state: started
+
+  - run:
+      name: 'activate API'
+      command: |
+        python3 /home/backend/BookIt/App/app.py
