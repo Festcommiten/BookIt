@@ -116,7 +116,7 @@ def bookit_api(app):
         @cross_origin()
         def get(self):
             response = {
-                "rooms": C.ROOM_NAMES_LIST,
+                "rooms": sorted(C.ROOM_NAMES_LIST),
                 "message": "OK",
                 "status": 200
             }
