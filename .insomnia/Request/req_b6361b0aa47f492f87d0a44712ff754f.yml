@@ -1,0 +1,21 @@
+_id: req_b6361b0aa47f492f87d0a44712ff754f
+type: Request
+parentId: wrk_9fdd7629ecee48698973f960ca35cf0e
+modified: 1623082903479
+created: 1623082854397
+url: 127.0.0.1:8080/v1.0/rooms
+name: Get Rooms
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1622997602607
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

@@ -1,0 +1,25 @@
+_id: ut_fd9e8cf7ae554f8caa6b9cced2c34929
+type: UnitTest
+parentId: uts_efa9b5c64b3b4e178111e780f93d4a9b
+modified: 1623082997407
+created: 1623082883990
+requestId: req_b6361b0aa47f492f87d0a44712ff754f
+name: Get Rooms
+code: |-
+  const response1 = await insomnia.send();
+  const body = JSON.parse(response1.data);
+  expect(response1.status).to.equal(200);
+  expect(body).to.be.an('object');
+  expect(body).to.have.property('message');
+  expect(body).to.have.property('status');
+  expect(body).to.have.property('rooms');
+  expect(body).to.have.property('rooms');
+  expect(body.rooms).to.be.an('array');
+  expect(body.rooms.length).to.equal(6);
+  expect(body.rooms[0]).to.equal('Ada');
+  expect(body.rooms[1]).to.equal('Douglas');
+  expect(body.rooms[2]).to.equal('Kakashi');
+  expect(body.rooms[3]).to.equal('Katniss');
+  expect(body.rooms[4]).to.equal('Obito');
+  expect(body.rooms[5]).to.equal('Rust');
+  expect(body.status).to.equal(200);
