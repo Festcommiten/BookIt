@@ -5,7 +5,7 @@ import random
 
 
 # MONGO
-client = MongoClient("mongodb://db:27017")
+client = MongoClient("mongodb://localhost:27017")
 db = client.test_db
 collection = db["mock_data"]
 users_collection = db["users"]

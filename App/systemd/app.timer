@@ -1,0 +1,10 @@
+[Unit]
+Description=Executes app.py on 30 seconds after boot
+
+[Timer]
+OnBootSec=30 s
+Unit=app.service
+Persistent=true
+
+[Install]
+WantedBy=timers.target
