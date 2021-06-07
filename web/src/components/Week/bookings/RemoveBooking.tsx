@@ -26,11 +26,11 @@ export default function RemoveBooking() {
 				<div className="popup-background">
 					<h1 className="tc">RemoveBooking</h1>
 					
-					<button className="fl ml2 mb2 cancel-button general-button-style"
+					<button className="fl ml5 mb4 cancel-button general-button-style"
 							onClick={ () => setRemoveCompany(false) }>Cancel
 					</button>
 					
-					<button className="fr mr2 mb2 bg-red general-button-style"
+					<button className="fr mr5 mb4 bg-red general-button-style"
 							onClick={ () => sendToApi() }>Remove
 					</button>
 				</div>
