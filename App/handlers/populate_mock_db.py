@@ -3,7 +3,6 @@ import handlers.CONSTANTS as C
 import datetime
 import random
 
-
 # MONGO
 client = MongoClient("mongodb://db:27017")
 db = client.test_db
@@ -69,13 +68,13 @@ def updated_week_list():
 weeks = updated_week_list()
 
 
-def convert_int_to_string_of_minimum_length_two(int_input):
-    if type(int_input) is int:
-        str_input = str(int_input)
-        if len(str_input) == 1:
-            return "0" + str_input
+def convert_int_to_string_of_minimum_length_two(input):
+    if type(input) is int:
+        string = str(input)
+        if len(string) == 1:
+            return "0" + string
         else:
-            return str_input
+            return string
 
 
 def room_name_exist(room_name):
@@ -268,7 +267,6 @@ def create_admin_db(workplace_info: list):
         print("No input in list, did you accidentally delete work-info file?")
 
 
-
 """
 
     for user in workplace_info:
@@ -284,7 +282,7 @@ def create_admin_db(workplace_info: list):
             pass
         else:
             users_collection.insert_many(workplace_info)
-            
+
 days = datetime.timedelta(days=1)
 
 d = datetime.timedelta(days=2)
