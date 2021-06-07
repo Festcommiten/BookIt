@@ -1,6 +1,6 @@
 import gspread
 
-gc = gspread.service_account(filename="service_account.json")
+gc = gspread.service_account()
 sh = gc.open("user-info")
 
 worksheet = sh.get_worksheet(0)

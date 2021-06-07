@@ -1,6 +1,6 @@
 [Service]
 Type=simple
-Execstart=/home/backend/BookIt/App/app.py
+ExecStart=/home/backend/run.sh
 
 [Unit]
 Description=Executes app.py on 30 seconds after boot
