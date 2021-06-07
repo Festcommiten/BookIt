@@ -83,7 +83,7 @@ export const RenderFreeSlotCurrentTime: React.FC<IndividualSlotDataProps> = ({sl
 			} }>
 				<div style={ {height: height} }
 					 className="item-time-current grow shadow-1">
-					<AddCircleOutlineIcon className="pt3 mt2"/>
+					<AddCircleOutlineIcon fontSize="large" className="pt3 mt1"/>
 				</div>
 			</div>
 		);
@@ -137,7 +137,7 @@ export const RenderFreeSlotFuture: React.FC<IndividualSlotDataProps> = ({slotDat
 			} }>
 				<div style={ {height: height} }
 					 className="item-time-future-free grow shadow-1">
-					<AddCircleOutlineIcon className="pt3 mt2"/>
+					<AddCircleOutlineIcon fontSize="large" className="pt3 mt1"/>
 				</div>
 			</div>
 		);
