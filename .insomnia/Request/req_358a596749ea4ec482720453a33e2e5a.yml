@@ -1,0 +1,21 @@
+_id: req_358a596749ea4ec482720453a33e2e5a
+type: Request
+parentId: wrk_9fdd7629ecee48698973f960ca35cf0e
+modified: 1623050653654
+created: 1622997908253
+url: 127.0.0.1:8080/v1.0/users
+name: Get Users
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1622997602807
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
