@@ -1,5 +1,7 @@
-.week-column_rows {
+.week-column-rows {
     display: grid;
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-rows: auto;
     grid-gap: 4px;
+    /*height: calc(100vh - 10px);*/
+    /*height: 200px;*/
 }
