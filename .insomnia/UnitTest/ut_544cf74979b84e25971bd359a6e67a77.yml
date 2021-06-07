@@ -1,0 +1,23 @@
+_id: ut_544cf74979b84e25971bd359a6e67a77
+type: UnitTest
+parentId: uts_efa9b5c64b3b4e178111e780f93d4a9b
+modified: 1623049185479
+created: 1622997936337
+requestId: req_358a596749ea4ec482720453a33e2e5a
+name: Users
+code: |-
+  const response1 = await insomnia.send();
+  const body = JSON.parse(response1.data);
+  const user = body.users;
+  expect(response1.status).to.equal(200);
+  expect(body).to.be.an('object');
+  expect(body).to.have.property('message');
+  expect(body).to.have.property('status');
+  expect(body).to.have.property('users');
+  expect(body.users.length).to.equal(38);
+  expect(user[0]._id).to.equal(1);
+  expect(user[0].company).to.equal('Vipetech');
+  expect(user[0].email).to.equal('');
+  expect(user[0].first_name).to.equal('Michel');
+  expect(user[0].last_name).to.equal('A');
+  expect(user[0].phone).to.equal('');
