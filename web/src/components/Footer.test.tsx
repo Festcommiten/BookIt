@@ -9,12 +9,6 @@ test('render FestCommitén in Footer', () => {
 	expect(footerElement).toHaveClass('mt2');
 });
 
-test('render week in Footer', () => {
-	render(<Footer/>);
-	const footerElement = screen.getByText(/v./i);
-	expect(footerElement).toBeInTheDocument();
-});
-
 test('render logo in Footer', () => {
 	render(<Footer/>);
 	const footerElement = screen.getByAltText(/Codic Education logo/i);
