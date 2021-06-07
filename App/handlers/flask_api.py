@@ -1,9 +1,10 @@
 from flask import request, jsonify
 from flask_restful import Api, Resource
 from pymongo import MongoClient
-import handlers.api_tools as tools
 import handlers.CONSTANTS as C
 from flask_cors import cross_origin
+
+# import handlers.api_tools as tools
 
 # MONGO
 client = MongoClient("mongodb://db:27017")
@@ -121,6 +122,7 @@ def bookit_api(app):
                 "status": 200
             }
             return jsonify(response)
+
     # HELLO WORLD
     class HelloWorld(Resource):
         @cross_origin()

@@ -9,5 +9,3 @@ list_of_dicts = worksheet.get_all_records()
 
 def get_user_data():
     return list_of_dicts
-
-
