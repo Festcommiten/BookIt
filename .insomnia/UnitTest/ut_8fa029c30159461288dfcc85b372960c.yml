@@ -1,0 +1,16 @@
+_id: ut_8fa029c30159461288dfcc85b372960c
+type: UnitTest
+parentId: uts_efa9b5c64b3b4e178111e780f93d4a9b
+modified: 1623051364488
+created: 1623051351713
+requestId: req_e4fabc231304464cb04c4d8bd7c609e1
+name: Remove Booking
+code: |-
+  const response1 = await insomnia.send();
+  const body = JSON.parse(response1.data);
+  expect(response1.status).to.equal(200);
+  expect(body).to.be.an('object');
+  expect(body).to.have.property('message');
+  expect(body).to.have.property('status');
+  expect(body.message).to.equal('OK');
+  expect(body.status).to.equal(200);

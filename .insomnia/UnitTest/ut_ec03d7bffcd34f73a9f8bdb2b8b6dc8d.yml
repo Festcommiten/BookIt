@@ -1,0 +1,16 @@
+_id: ut_ec03d7bffcd34f73a9f8bdb2b8b6dc8d
+type: UnitTest
+parentId: uts_efa9b5c64b3b4e178111e780f93d4a9b
+modified: 1623051266961
+created: 1623051128501
+requestId: req_c3c66d2cfb254694b594d928e7b8373e
+name: New Booking
+code: |-
+  const response1 = await insomnia.send();
+  const body = JSON.parse(response1.data);
+  expect(response1.status).to.equal(200);
+  expect(body).to.be.an('object');
+  expect(body).to.have.property('message');
+  expect(body).to.have.property('status');
+  expect(body.message).to.equal('OK');
+  expect(body.status).to.equal(200);
