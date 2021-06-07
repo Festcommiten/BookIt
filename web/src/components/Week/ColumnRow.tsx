@@ -17,8 +17,7 @@ function timeSlotPassed(slotData: IndividualSlotData) {
 	if (slotData.empty_slot) {
 		return (
 			<RenderFreeSlotPassed
-				key={ slotData.id }
-				slotData={ slotData }/>
+				key={ slotData.id }/>
 		);
 	} else {
 		return (
@@ -90,7 +89,7 @@ function renderDayColumn(oneDayData: OneDayColumnData) {
 
 export default function ColumnRow(oneDayData: OneDayColumnData) {
 	let {weekday, date} = oneDayData;
-	return <div className="week-column_rows">
+	return <div className="week-column-rows">
 		<RenderTitle weekday={ weekday } date={ date }/>
 		{ renderDayColumn(oneDayData) }
 	</div>;
