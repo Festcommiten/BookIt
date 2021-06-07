@@ -33,7 +33,7 @@ const render_time_slots = (height: number) => {
 				<div style={ {height: height} }
 					 key={ i }
 					 className="item-time">
-					<p>{ time_slot[i] }</p>
+					<p style={{color: '#4F4F53'}}>{ time_slot[i] }</p>
 				</div>
 			);
 		});
@@ -43,7 +43,7 @@ const render_time_slots = (height: number) => {
 				<div style={ {height: height} }
 					 key={ i }
 					 className="item-time pt2 f4">
-					<p>{ time_slot[i] }</p>
+					<p style={{color: '#4F4F53'}}>{ time_slot[i] }</p>
 				</div>
 			);
 		});
