@@ -1,9 +1,0 @@
-[Service]
-Type=simple
-ExecStart=/usr/bin/python3.8 /home/tomten/DevOps/CI-CD/projekt_arbete/BookIt/App/test.py
-
-[Unit]
-Description=Executes app.py
-
-[Install]
-WantedBy=multi-user.target
