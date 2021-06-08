@@ -1,0 +1,30 @@
+_id: req_c3c66d2cfb254694b594d928e7b8373e
+type: Request
+parentId: wrk_9fdd7629ecee48698973f960ca35cf0e
+modified: 1623051323915
+created: 1623051072593
+url: 127.0.0.1:8080/v1.0/new_booking/202106070805
+name: New Booking
+description: ""
+method: PUT
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"company": "Fake Company",
+    	"booker": "Fake Kamo"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_35b399d3f7d74eca90f0ad26ef059cf5
+authentication: {}
+metaSortKey: -1622997602707
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

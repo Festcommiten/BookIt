@@ -52,7 +52,7 @@ def test_get_users():
 def test_get_rooms():
     endpoint_correct = C.HTTP + C.LOCAL_HOST + C.CURRENT_VERSION + "/rooms"
     response = requests.get(endpoint_correct).json()
-    assert response["rooms"] == C.ROOM_NAMES_LIST
+    assert sorted(response["rooms"]) == sorted(C.ROOM_NAMES_LIST)
     assert response["message"] == "OK"
     assert response["status"] == 200
 

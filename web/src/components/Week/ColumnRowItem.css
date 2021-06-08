@@ -1,36 +1,25 @@
 .item-time {
     background-color: var(--tint-yellow-3);
     font-weight: bold;
-    /*border: 1px solid rgba(0, 0, 0, 0.8);*/
 }
 
 .item-week-day {
     background-color: var(--tint-yellow-3);
     font-weight: bold;
-    /*border: 1px solid rgba(0, 0, 0, 0.8);*/
 }
 
-.item-time, .item-time-future, .item-green, .item-time-current, .item-red, .item-time-passed {
-    height: 4em;
+.item-time, .item-time-future-free, .item-time-current, .item-time-future-booked, .item-time-passed {
+    /*height: 2em;*/
+    /*height: calc((100vh - 186px) / 11.5);*/
 }
 
-.item-time-future, .item-green, .item-time-current, .item-red, .item-time-passed {
+.item-time-future-free, .item-time-current, .item-time-future-booked, .item-time-passed {
     border-radius: 5px;
 }
 
-.item-green {
-    background-color: var(--tint-yellow-3);
-    /*background-color: var(--light-green);*/
-    /*border: 1px solid rgba(0, 0, 0, 0.8);*/
-}
-
-.item-red {
-    /*background-color: var(--light-red);*/
+.item-time-future-booked {
     background-color: var(--tint-yellow-2);
-    /*border: 1px solid rgba(0, 0, 0, 0.8);*/
 }
-
-
 
 /* Passed Time */
 .item-time-passed {
@@ -63,7 +52,7 @@
 }
 
 /* Future Time */
-.item-time-future {
+.item-time-future-free {
     background-color: var(--tint-yellow-6);
     color: var(--tint-dark-grey-1);
 }

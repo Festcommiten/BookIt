@@ -1,7 +1,7 @@
 .booking-handling-container-companies {
     display: grid;
-    grid-template-rows: 150px;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-columns: auto auto auto;
     /*grid-gap: 30px;*/
     /*padding: 20px;*/
     background-color: var(--dark-grey);

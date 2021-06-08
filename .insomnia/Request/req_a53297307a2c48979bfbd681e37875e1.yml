@@ -1,0 +1,21 @@
+_id: req_a53297307a2c48979bfbd681e37875e1
+type: Request
+parentId: wrk_9fdd7629ecee48698973f960ca35cf0e
+modified: 1623050666582
+created: 1623050650337
+url: 127.0.0.1:8080/v1.0/bookings/23/Kakashi
+name: Get bookings for room and week
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1622997602757
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
