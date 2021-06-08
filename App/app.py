@@ -6,19 +6,17 @@ import os
 import mongo_client
 from handlers.populate_mock_db import PopulateDb
 import sys
-print("=== STARTED APP ===")
+
 try:
-    print("=== TRY ===")
     url = sys.argv[1]
 except IndexError:
-    print("=== EXCEPT ===")
     url = "localhost"
 
 if url == "-t":
     url = "db"
 else:
     url = "localhost"
-print("*** URL *** :", url)
+
 
 mongo_collections = mongo_client.initiate_mongo_client(url)
 mock_collection = mongo_collections[0]
