@@ -6,11 +6,9 @@ import { DataSlotHeightContext } from '../../utils/global/provider/GlobalProvide
 import { WeekContext } from '../../utils/global/provider/WeekProvider';
 import './ColumnTime.css';
 
-
 const weekNow: number = parseInt(moment().format('W'));
 const weekMin = weekNow - 1;
 const weekMax = weekNow + 4;
-
 
 let time_slot = [
 	'8-9',
@@ -33,7 +31,7 @@ const render_time_slots = (height: number) => {
 				<div style={ {height: height} }
 					 key={ i }
 					 className="item-time">
-					<p style={{color: '#4F4F53'}}>{ time_slot[i] }</p>
+					<p style={ {color: '#4F4F53'} }>{ time_slot[i] }</p>
 				</div>
 			);
 		});
@@ -43,7 +41,7 @@ const render_time_slots = (height: number) => {
 				<div style={ {height: height} }
 					 key={ i }
 					 className="item-time pt2 f4">
-					<p style={{color: '#4F4F53'}}>{ time_slot[i] }</p>
+					<p style={ {color: '#4F4F53'} }>{ time_slot[i] }</p>
 				</div>
 			);
 		});
@@ -53,7 +51,7 @@ const render_time_slots = (height: number) => {
 export function ColumnTimeLeft() {
 	const [week, setWeek] = useContext(WeekContext);
 	const [height, setHeight] = useContext(DataSlotHeightContext);
-	useHeight = height
+	useHeight = height;
 	
 	function goToPastWeek() {
 		if (week > weekMin) {
@@ -76,7 +74,7 @@ export function ColumnTimeLeft() {
 export function ColumnTimeRight() {
 	const [week, setWeek] = useContext(WeekContext);
 	const [height, setHeight] = useContext(DataSlotHeightContext);
-	useHeight = height
+	useHeight = height;
 	
 	function goToNextWeek() {
 		if (week < weekMax) {

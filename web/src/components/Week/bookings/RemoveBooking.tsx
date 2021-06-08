@@ -5,19 +5,20 @@ import { ChosenDataSlotContext } from '../../../utils/global/provider/GlobalProv
 import { RemoveBookingContext } from '../../../utils/global/provider/RemoveBookingProvider';
 import './RemoveBooking.css';
 
-export default function RemoveBooking() {
+export default function RemoveBooking(props: { loading?: any, setLoading?: any }) {
 	const [chosenDataSlot, setChosenDataSlot] = useContext(ChosenDataSlotContext);
 	const [removeCompany, setRemoveCompany] = useContext(RemoveBookingContext);
 	const closeModalRemoveBooking = () => setRemoveCompany(false);
 	
 	function sendToApi() {
-		console.log('Booking ' + chosenDataSlot + ' removed!');
+		props.setLoading(true);
 		BookItService.removeBooking(chosenDataSlot)
 			.then(response => {
-				console.log('response', response);
+				props.setLoading(false);
 			})
 			.catch(error => console.log(error));
 		setRemoveCompany(false);
+		setChosenDataSlot(0);
 	}
 	
 	return (

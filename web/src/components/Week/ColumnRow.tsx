@@ -1,7 +1,6 @@
 import moment from 'moment';
 import React from 'react';
 import './ColumnRow.css';
-// import { NewBooking } from '../../utils/global/handlers/NewBooking';
 import { IndividualSlotData, OneDayColumnData } from '../../utils/interface/WeekInterface';
 import {
 	RenderFreeSlotFuture,
