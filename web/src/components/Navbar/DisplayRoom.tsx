@@ -5,7 +5,10 @@ import { RoomContext } from '../../utils/global/provider/GlobalProvider';
 import './DisplayRoom.css';
 
 export const DisplayRoom = () => {
+	// Global variable
 	const [room, setRoom] = useContext(RoomContext);
+	
+	// Local variable
 	const [rooms, setRooms] = useState([]);
 	const [open, setOpen] = useState(false);
 	const closeModal = () => setOpen(false);
