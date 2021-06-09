@@ -6,4 +6,4 @@ COPY . .
 COPY resources/ .config/gspread/
 #CMD ["python3", "app.py", "-test"]
 #CMD ["pytest", "-v"]
-
+CMD ["bash"]
