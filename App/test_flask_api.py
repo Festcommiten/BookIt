@@ -3,6 +3,13 @@ from handlers import CONSTANTS as C
 # from handlers import flask_api as api
 
 
+def test_hello_world():
+    endpoint = C.HTTP + C.LOCAL_HOST + C.PORT_80 + "/"
+    response = requests.get(endpoint)
+    assert response.content == b"Hello World!"
+    assert response.status_code == 200
+
+
 def test_new_booking():
     endpoint = C.HTTP + C.LOCAL_HOST + C.PORT_80 + C.CURRENT_VERSION + "/new_booking/"
     endpoint_correct = endpoint + C.EXISTING_ID_AS_STR
