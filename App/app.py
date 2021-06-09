@@ -59,4 +59,4 @@ except Exception as e:
 if __name__ == "__main__":
     port_80 = int(os.environ.get("PORT", 80))
     port_5k = int(os.environ.get("PORT", 5000))
-    app.run(host=api_url, port=port_80)
+    app.run(host=api_url, port=port_5k)

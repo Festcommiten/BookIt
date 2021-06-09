@@ -4,7 +4,7 @@ from handlers import CONSTANTS as C
 
 
 def test_hello_world():
-    endpoint = C.HTTP + C.LOCAL_HOST + C.PORT_80 + "/"
+    endpoint = C.HTTP + C.LOCAL_HOST + C.PORT_5K + "/"
     print("ENDPOINT:", endpoint)
     response = requests.get(endpoint)
     assert response.content == b"Hello World!"
