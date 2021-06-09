@@ -3,7 +3,6 @@ import React, { useContext } from 'react';
 import { ChoseCompanyContext } from '../../utils/global/provider/ChoseCompanyProvider';
 import { ChosenDataSlotContext, DataSlotHeightContext } from '../../utils/global/provider/GlobalProvider';
 import { RemoveBookingContext } from '../../utils/global/provider/RemoveBookingProvider';
-import useWindowDimensions from '../../utils/global/provider/WindowDimensionsProvider';
 import { BookingInfo, IndividualSlotData, WeekDate } from '../../utils/interface/WeekInterface';
 import './ColumnRowItem.css';
 
@@ -19,7 +18,6 @@ export function RenderTitle(weekDate: WeekDate) {
 
 function CompanyAndBooker(data: BookingInfo) {
 	const [height, setHeight] = useContext(DataSlotHeightContext);
-	console.log('height: ', height);
 	if (height < 50) {
 		return (
 			<>
@@ -38,7 +36,6 @@ function CompanyAndBooker(data: BookingInfo) {
 
 export const RenderFreeSlotPassed = () => {
 	const [height, setHeight] = useContext(DataSlotHeightContext);
-	console.log('useWindowDimensions().height: ', useWindowDimensions().height);
 	return (
 		<div style={ {height: height} }
 			 className="item-time-passed">

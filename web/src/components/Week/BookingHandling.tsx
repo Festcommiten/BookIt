@@ -6,7 +6,7 @@ import { ChoseCompanyContext } from '../../utils/global/provider/ChoseCompanyPro
 import { ChosenDataSlotContext } from '../../utils/global/provider/GlobalProvider';
 import { CompanyWithItsUsers, User } from '../../utils/interface/CompaniesAndUsers';
 
-export const BookingHandling = () => {
+export const BookingHandling = (props: { loading: any, setLoading: any }) => {
 	const [data, setData] = useState<Array<User> | undefined>(undefined);
 	let companies: Array<string> = [];
 	let allCompaniesWithItsUsers: Array<CompanyWithItsUsers> = [];
@@ -80,19 +80,17 @@ export const BookingHandling = () => {
 	function setChosenUsername(element: string) {
 		setBookingUser(element);
 		setChosenUser(false);
-		sendToApi(element)
+		sendToApi(element);
 	}
 	
 	function sendToApi(element: string) {
-		console.log('sendToApi:')
-		console.log('chosenDataSlot', chosenDataSlot)
-		console.log('bookingCompany: ', bookingCompany);
-		console.log('bookingUser: ', element);
+		props.setLoading(true);
 		BookItService.newBooking(Number(chosenDataSlot), bookingCompany, element)
 			.then(response => {
-				console.log('response', response)
+				props.setLoading(false);
 			})
 			.catch(error => console.log(error));
+		// setChosenDataSlot(0);
 		// newBooking(chosenDataSlot, bookingCompany, element)
 	}
 	

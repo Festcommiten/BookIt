@@ -2,9 +2,8 @@ import moment from 'moment';
 import React, { useContext, useEffect, useState } from 'react';
 import 'reactjs-popup/dist/index.css';
 import BookItService from '../utils/api/service/BookItService';
-import { DataSlotHeightContext, RoomContext } from '../utils/global/provider/GlobalProvider';
+import { RoomContext } from '../utils/global/provider/GlobalProvider';
 import { WeekContext } from '../utils/global/provider/WeekProvider';
-import useWindowDimensions from '../utils/global/provider/WindowDimensionsProvider';
 import { IndividualSlotData, JsonData, OneDayColumnData, OneWeekData } from '../utils/interface/WeekInterface';
 import './Week.css';
 import { BookingHandling } from './Week/BookingHandling';
@@ -23,6 +22,7 @@ let week_days: Array<string> = [
 
 export const Week = () => {
 	const [data, setData] = useState<OneWeekData | undefined>(undefined);
+	const [loading, setLoading] = useState(false);
 	const [week, setWeek] = useContext(WeekContext);
 	const [room, setRoom] = useContext(RoomContext);
 	
@@ -37,7 +37,7 @@ export const Week = () => {
 	
 	useEffect(() => {
 		fetchDataFromApi();
-	}, [week, room]);
+	}, [week, room, loading]);
 	
 	function buildDataAllInOne(responseData: [JsonData]) {
 		let weekData: OneWeekData = {
@@ -104,26 +104,33 @@ export const Week = () => {
 		return weekData;
 	}
 	
-	return (
-		<div className="tc">
-			<div className="week-column">
-				<ColumnTimeLeft/>
-				{
-					data?.oneWeek.map((ds, i) => {
-						return (
-							<ColumnRow
-								key={ i }
-								weekday={ data?.oneWeek[i].weekday }
-								date={ data?.oneWeek[i].date }
-								slotDatas={ data?.oneWeek[i].slotDatas }
-							/>
-						);
-					})
-				}
-				<ColumnTimeRight/>
+	if (!loading) {
+		return (
+			<div className="tc">
+				<div className="week-column">
+					<ColumnTimeLeft/>
+					{
+						data?.oneWeek.map((ds, i) => {
+							return (
+								<ColumnRow
+									key={ i }
+									weekday={ data?.oneWeek[i].weekday }
+									date={ data?.oneWeek[i].date }
+									slotDatas={ data?.oneWeek[i].slotDatas }
+								/>
+							);
+						})
+					}
+					<ColumnTimeRight/>
+				</div>
+				<BookingHandling loading={ loading } setLoading={ setLoading }/>
+				<RemoveBooking loading={ loading } setLoading={ setLoading }/>
 			</div>
-			<BookingHandling/>
-			<RemoveBooking/>
-		</div>
-	);
+		);
+	} else {
+		return (
+			<h1>Loading...</h1>
+		);
+	}
+	
 };
