@@ -10,17 +10,19 @@ import sys
 # Gets the parameter from the CLI and checks if the application will be running for testing purposes.
 # Defaults to be running in production unless specified
 try:
-    url = sys.argv[1]
+    mongo_url = sys.argv[1]
 except IndexError:
-    url = "localhost"
+    mongo_url = "localhost"
 
-if url == "-test":
-    url = "db"
+if mongo_url == "-test":
+    mongo_url = "db"
+    api_url = "127.0.0.1"
 else:
-    url = "localhost"
+    mongo_url = "localhost"
+    api_url = "0.0.0.0"
 
 
-mongo_collections = mongo_client.initiate_mongo_client(url)
+mongo_collections = mongo_client.initiate_mongo_client(mongo_url)
 mock_collection = mongo_collections[0]
 users_collection = mongo_collections[1]
 
@@ -57,4 +59,4 @@ except Exception as e:
 if __name__ == "__main__":
     port_80 = int(os.environ.get("PORT", 80))
     port_5k = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port_80)
+    app.run(host=api_url, port=port_80)
