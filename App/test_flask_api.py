@@ -4,6 +4,9 @@ from flask import Flask
 from handlers import CONSTANTS as C
 from handlers import flask_api as api
 from handlers import mongo_client
+from handlers.populate_mock_db import PopulateDb
+from handlers.get_workplace_info import get_user_data
+
 
 mongo_collections = mongo_client.initiate_mongo_client("db")
 mock_collection = mongo_collections[0]
@@ -16,6 +19,32 @@ flask_app = Process(target=app.run)
 
 def setup_module(module):
     flask_app.start()
+
+    populate_db = PopulateDb(mock_collection, users_collection)
+
+    try:
+        populate_db.insert_empty_time_slots()
+        print("INSERTED EMPTY TIME SLOTS")
+    except Exception:
+        print("Empty time slots are already added!")
+
+    try:
+        populate_db.insert_random_bookings()
+        print("INSERTED RANDOM BOOKINGS")
+    except Exception:
+        print("Couldn't enter mock bookings")
+
+    try:
+        populate_db.update_calendar_weeks()
+        print("UPDATE CALENDAR WEEKS")
+    except Exception as e:
+        print(e)
+
+    try:
+        populate_db.create_admin_db(get_user_data())
+        print("CREATED ADMIN DB")
+    except Exception as e:
+        print(e)
 
 
 def teardown_module(module):
@@ -32,7 +61,7 @@ def test_hello_world():
 
 
 def test_new_booking():
-    endpoint = C.HTTP + C.LOCAL_HOST + C.PORT_80 + C.CURRENT_VERSION + "/new_booking/"
+    endpoint = C.HTTP + C.LOCAL_HOST + C.PORT_5K + C.CURRENT_VERSION + "/new_booking/"
     endpoint_correct = endpoint + C.EXISTING_ID_AS_STR
     response = requests.put(endpoint_correct, json=C.NEW_BOOKING_DATA).json()
     assert response["message"] == "OK"
@@ -49,7 +78,7 @@ def test_new_booking():
 
 
 def test_remove_booking():
-    endpoint = C.HTTP + C.LOCAL_HOST + C.CURRENT_VERSION + "/remove/"
+    endpoint = C.HTTP + C.LOCAL_HOST + C.PORT_5K + C.CURRENT_VERSION + "/remove/"
     endpoint_correct_data = endpoint + C.EXISTING_ID_AS_STR
     response = requests.put(endpoint_correct_data).json()
     assert response["message"] == "OK"
@@ -71,14 +100,14 @@ def test_remove_booking():
 
 
 def test_get_users():
-    endpoint_correct = C.HTTP + C.LOCAL_HOST + C.CURRENT_VERSION + "/users"
+    endpoint_correct = C.HTTP + C.LOCAL_HOST + C.PORT_5K + C.CURRENT_VERSION + "/users"
     response = requests.get(endpoint_correct).json()
     assert response["message"] == "OK"
     assert response["status"] == 200
 
 
 def test_get_rooms():
-    endpoint_correct = C.HTTP + C.LOCAL_HOST + C.CURRENT_VERSION + "/rooms"
+    endpoint_correct = C.HTTP + C.LOCAL_HOST + C.PORT_5K + C.CURRENT_VERSION + "/rooms"
     response = requests.get(endpoint_correct).json()
     assert sorted(response["rooms"]) == sorted(C.ROOM_NAMES_LIST)
     assert response["message"] == "OK"
@@ -86,14 +115,14 @@ def test_get_rooms():
 
 
 def test_bookings():
-    endpoint_correct = C.HTTP + C.LOCAL_HOST + C.CURRENT_VERSION + "/bookings"
+    endpoint_correct = C.HTTP + C.LOCAL_HOST + C.PORT_5K + C.CURRENT_VERSION + "/bookings"
     response = requests.get(endpoint_correct).json()
     assert response["message"] == "OK"
     assert response["status"] == 200
 
 
 def test_bookings_week():
-    endpoint = C.HTTP + C.LOCAL_HOST + C.CURRENT_VERSION
+    endpoint = C.HTTP + C.HTTP + C.LOCAL_HOST + C.PORT_5K + C.CURRENT_VERSION
     endpoint_correct = endpoint + "/bookings/23"
     response = requests.get(endpoint_correct).json()
     assert response["message"] == "OK"
@@ -111,7 +140,7 @@ def test_bookings_week():
 
 
 def test_bookings_week_room():
-    endpoint = C.HTTP + C.LOCAL_HOST + C.CURRENT_VERSION
+    endpoint = C.HTTP + C.HTTP + C.LOCAL_HOST + C.PORT_5K + C.CURRENT_VERSION
     endpoint_correct = endpoint + "/bookings/23/Ada"
     response = requests.get(endpoint_correct).json()
     assert response["message"] == "OK"
