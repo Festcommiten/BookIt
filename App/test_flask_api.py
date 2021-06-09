@@ -5,11 +5,12 @@ from handlers import CONSTANTS as C
 
 def test_hello_world():
     endpoint = C.HTTP + C.LOCAL_HOST + C.PORT_80 + "/"
+    print("ENDPOINT:", endpoint)
     response = requests.get(endpoint)
     assert response.content == b"Hello World!"
     assert response.status_code == 200
 
-
+"""
 def test_new_booking():
     endpoint = C.HTTP + C.LOCAL_HOST + C.PORT_80 + C.CURRENT_VERSION + "/new_booking/"
     endpoint_correct = endpoint + C.EXISTING_ID_AS_STR
@@ -105,3 +106,4 @@ def test_bookings_week_room():
     endpoint_wrong_datatype = endpoint + "/bookings/a/Ada"
     response = requests.put(endpoint_wrong_datatype)
     assert response.status_code == 404
+"""
