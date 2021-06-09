@@ -3,7 +3,7 @@ from handlers.flask_api import bookit_api
 from handlers.get_workplace_info import get_user_data
 from flask_cors import CORS
 import os
-import mongo_client
+from App.handlers import mongo_client
 from handlers.populate_mock_db import PopulateDb
 import sys
 

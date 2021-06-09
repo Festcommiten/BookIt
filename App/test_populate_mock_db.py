@@ -1,6 +1,6 @@
 from handlers.populate_mock_db import PopulateDb
 from handlers import CONSTANTS as C
-import mongo_client
+from handlers import mongo_client
 
 mongo_collections = mongo_client.initiate_mongo_client("db")
 mock_collection = mongo_collections[0]

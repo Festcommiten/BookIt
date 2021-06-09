@@ -1,6 +1,26 @@
 import requests
+from multiprocessing import Process
+from flask import Flask
 from handlers import CONSTANTS as C
-# from handlers import flask_api as api
+from handlers import flask_api as api
+from handlers import mongo_client
+
+mongo_collections = mongo_client.initiate_mongo_client("db")
+mock_collection = mongo_collections[0]
+users_collection = mongo_collections[1]
+
+app = Flask(__name__)
+api.bookit_api(app, mock_collection, users_collection)
+flask_app = Process(target=app.run)
+
+
+def setup_module(module):
+    flask_app.start()
+
+
+def teardown_module(module):
+    flask_app.terminate()
+    flask_app.join()
 
 
 def test_hello_world():
