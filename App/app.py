@@ -7,12 +7,14 @@ import mongo_client
 from handlers.populate_mock_db import PopulateDb
 import sys
 
+# Gets the parameter from the CLI and checks if the application will be running for testing purposes.
+# Defaults to be running in production unless specified
 try:
     url = sys.argv[1]
 except IndexError:
     url = "localhost"
 
-if url == "-t":
+if url == "-test":
     url = "db"
 else:
     url = "localhost"

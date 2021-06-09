@@ -1,16 +1,7 @@
 from flask import request, jsonify
 from flask_restful import Api, Resource
-from pymongo import MongoClient
 import handlers.CONSTANTS as C
 from flask_cors import cross_origin
-
-"""
-# MONGO
-client = MongoClient("mongodb://localhost:27017")
-db = client.test_db
-mock_collection = db["mock_data"]
-users_collection = db["users"]
-"""
 
 
 def bookit_api(app, mock_collection, users_collection):

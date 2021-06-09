@@ -24,7 +24,7 @@ docker-compose up -d
 #docker exec -i backend_tests_db_1 sh -c 'mongoimport -c mock_data -d test_db --drop --file mock_data.json --jsonArray'
 
 echo $'\n****** RUNNING FLAKE8 ******\n'
-docker exec -i backend_tests_app_1 sh -c 'flake8 --statistics'
+docker exec -i backend_tests_app_1 sh -c 'flake8 --statistics --max-line-length 120'
 sleep 2
 
 echo $'\n****** RUNNING PYTEST ******\n'

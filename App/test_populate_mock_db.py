@@ -1,5 +1,11 @@
-from handlers import populate_mock_db as db
+from handlers.populate_mock_db import PopulateDb
 from handlers import CONSTANTS as C
+import mongo_client
+
+mongo_collections = mongo_client.initiate_mongo_client("db")
+mock_collection = mongo_collections[0]
+users_collection = mongo_collections[1]
+db = PopulateDb(mock_collection, users_collection)
 
 
 def test_get_week_int():

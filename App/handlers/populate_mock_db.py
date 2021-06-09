@@ -1,14 +1,6 @@
-from pymongo import MongoClient
 import handlers.CONSTANTS as C
 import datetime
 import random
-"""
-# MONGO
-client = MongoClient("mongodb://localhost:27017")
-db = client.test_db
-collection = db["mock_data"]
-users_collection = db["users"]
-"""
 
 
 class PopulateDb:
@@ -166,7 +158,7 @@ class PopulateDb:
             room_name = C.ROOM_NAMES_LIST[room_order]
             for week in self.weeks:
                 rooms_data_for_week = self.generate_empty_documents_for_room_time_slots_based_on_week(room_name, week,
-                                                                                                 room_order)
+                                                                                                      room_order)
                 populated_times_slots.append(rooms_data_for_week)
         return populated_times_slots
 
@@ -206,7 +198,7 @@ class PopulateDb:
                     booker = random.choice(self.bookers)
                     booking_company = random.choice(self.booking_companies)
                     self.collection.update_one({"_id": id_to_update},
-                                          {"$set": {"booker": booker, "company": booking_company}})
+                                               {"$set": {"booker": booker, "company": booking_company}})
             print("Random bookings created")
         else:
             print("No new bookings entered")
@@ -218,7 +210,7 @@ class PopulateDb:
     def populate_time_slots(self, week, room_order):
         room_name = C.ROOM_NAMES_LIST[room_order]
         populated_times_slots = self.generate_empty_documents_for_room_time_slots_based_on_week(room_name, week,
-                                                                                           room_order)
+                                                                                                room_order)
         return populated_times_slots
 
     def add_new_week_to_all_rooms(self):
@@ -251,25 +243,26 @@ class PopulateDb:
         else:
             print("No input in list, did you accidentally delete work-info file?")
 
-    """
-    
-        for user in workplace_info:
-            if users_collection.find(
-                {"$and":
-                    [
-                        {"company": user["company"]},
-                        {"first_name": user["first_name"]},
-                        {"last_name": user["last_name"]}
-                    ]
-                }
-            ):
-                pass
-            else:
-                users_collection.insert_many(workplace_info)
-    
-    days = datetime.timedelta(days=1)
-    
-    d = datetime.timedelta(days=2)
-    a = time_now + d
-    
-    """
+
+"""
+
+    for user in workplace_info:
+        if users_collection.find(
+            {"$and":
+                [
+                    {"company": user["company"]},
+                    {"first_name": user["first_name"]},
+                    {"last_name": user["last_name"]}
+                ]
+            }
+        ):
+            pass
+        else:
+            users_collection.insert_many(workplace_info)
+
+days = datetime.timedelta(days=1)
+
+d = datetime.timedelta(days=2)
+a = time_now + d
+
+"""

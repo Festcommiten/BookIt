@@ -1,6 +1,6 @@
 import requests
 from handlers import CONSTANTS as C
-from handlers import flask_api as api
+# from handlers import flask_api as api
 
 
 def test_new_booking():
@@ -37,9 +37,9 @@ def test_remove_booking():
     assert response["status"] == 400
 
 
-def test_db_find_one():
-    assert api.db_find_one("_id", C.EXISTING_ID_AS_INT) == C.EXISTING_DATA
-    assert api.db_find_one("_id", 1234) is None
+# def test_db_find_one():
+    # assert api.db_find_one("_id", C.EXISTING_ID_AS_INT) == C.EXISTING_DATA
+    # assert api.db_find_one("_id", 1234) is None
 
 
 def test_get_users():
