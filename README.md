@@ -412,9 +412,9 @@ Bad request:
 
 - Innan något pushas till main så ska alla tester gå igenom.
 
-- När du vill commita till AzureDevops så måste du **länka** det till ett kort relaterat till vad du gjort och sedan flytta detta kort från **Git Merge Request** till **Done**
+- När du vill commita till Github så måste du flytta kortet till **Git Merge Request** och när mergen gått igenom så flyttar du kortet till **Done**
 
-- För att få sätta upp en egen branch så ska det finnas ett kort på AzureDevops relaterat till.
+- För att få sätta upp en egen branch så ska det finnas ett kort på Jira relaterat till.
 
 - När du skapar en ny branch så skall den heta respektive till vilket kort du gör/gjort. Exempel: **"feat-this-is-my-card"**.
 
