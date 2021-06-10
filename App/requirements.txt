@@ -1,4 +1,9 @@
+flake8
 flask
 flask-RESTful
+flask-cors
 pymongo
 pytest
+requests
+datetime
+gspread

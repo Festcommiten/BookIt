@@ -1,39 +1,58 @@
 .item-time {
     background-color: var(--tint-yellow-3);
     font-weight: bold;
-    /*border: 1px solid rgba(0, 0, 0, 0.8);*/
 }
 
 .item-week-day {
     background-color: var(--tint-yellow-3);
     font-weight: bold;
-    /*border: 1px solid rgba(0, 0, 0, 0.8);*/
 }
 
-.item-time, .item, .item-green, .item-red, .item-grey-out {
-    height: 4em;
+.item-time, .item-time-future-free, .item-time-current, .item-time-future-booked, .item-time-passed {
+    /*height: 2em;*/
+    /*height: calc((100vh - 186px) / 11.5);*/
 }
 
-.item, .item-green, .item-red, .item-grey-out {
+.item-time-future-free, .item-time-current, .item-time-future-booked, .item-time-passed {
     border-radius: 5px;
 }
 
-.item {
+.item-time-future-booked {
     background-color: var(--tint-yellow-2);
-    /*border: 1px solid rgba(0, 0, 0, 0.8);*/
 }
 
-.item-green {
-    background-color: var(--light-green);
-    /*border: 1px solid rgba(0, 0, 0, 0.8);*/
+/* Passed Time */
+.item-time-passed {
+    background-color: var(--tint-dark-grey-7);
 }
 
-.item-red {
-    background-color: var(--light-red);
-    /*border: 1px solid rgba(0, 0, 0, 0.8);*/
+.item-text-passed-h3, .item-text-passed-p {
+    color: var(--tint-dark-grey-4);
+    margin: 4px 0;
 }
 
-.item-grey-out {
-    background-color: var(--light-grey);
-    /*border: 1px solid rgba(0, 0, 0, 0.8);*/
+.item-text-passed-h3, .item-text-current-h3 {
+    font-size: 1em !important;
+}
+
+.item-text-passed-p, .item-text-current-p {
+    font-size: 0.875em !important;
+}
+
+/* Current Time */
+.item-time-current {
+    background-color: var(--light-brilliant-orange);
+    color: var(--tint-dark-grey-1);
+}
+
+.item-text-current-h3, .item-text-current-p {
+    color: var(--dark-grey);
+    margin: 4px 0;
+    font-weight: 700;
+}
+
+/* Future Time */
+.item-time-future-free {
+    background-color: var(--tint-yellow-6);
+    color: var(--tint-dark-grey-1);
 }

@@ -1,15 +1,13 @@
-import React from 'react';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import React, { useContext } from 'react';
+import { ChoseCompanyContext } from '../../utils/global/provider/ChoseCompanyProvider';
+import { ChosenDataSlotContext, DataSlotHeightContext } from '../../utils/global/provider/GlobalProvider';
+import { RemoveBookingContext } from '../../utils/global/provider/RemoveBookingProvider';
+import { BookingInfo, IndividualSlotData, WeekDate } from '../../utils/interface/WeekInterface';
 import './ColumnRowItem.css';
 
-interface WeekDate {
-	weekday: string
-	date: string
-}
-
 export function RenderTitle(weekDate: WeekDate) {
-	
 	let {weekday, date} = weekDate;
-	
 	return (
 		<div className="pa2 ma0 item-week-day">
 			<p className="primary_text">{ weekday }</p>
@@ -18,71 +16,146 @@ export function RenderTitle(weekDate: WeekDate) {
 	);
 }
 
-export function RenderGrey_out_slot() {
-	return (
-		<div className="pa2 ma0 item-grey-out"></div>
-	);
-}
-
-export function RenderFreeSlot() {
-	return (
-		<div className="pa2 ma0 item grow shadow-1"></div>
-	);
-}
-
-export function RenderGreenSlot() {
-	return (
-		<div className="pa2 ma0 item-green grow shadow-1"></div>
-	);
-}
-
-interface BookingInfo {
-	company: string
-	booker: string
-}
-
-export function RenderRedSlot(bookingInfo: BookingInfo) {
-	let {company, booker} = bookingInfo;
-	return (
-		<div className="pa2 ma0 item-red grow shadow-1">
-			<h3 className="primary_text">{ company }</h3>
-			<p className="secondary_text">{ booker }</p>
-		</div>
-	);
-}
-
-export function RenderRedSlotPassed(bookingInfo: BookingInfo) {
-	let {company, booker} = bookingInfo;
-	return (
-		<div className="pa2 ma0 item-grey-out">
-			<h3 className="primary_text">{ company }</h3>
-			<p className="secondary_text">{ booker }</p>
-		</div>
-	);
-}
-
-/*export default function ColumnRowItem(dataSource: DataSource) {
-	
-	let {isTrue, company, booker, index} = dataSource;
-	
-	function withData() {
+function CompanyAndBooker(data: BookingInfo) {
+	const [height, setHeight] = useContext(DataSlotHeightContext);
+	if (height < 50) {
 		return (
-			<div key={ index } className="pa2 ma0 item-red">
-				<h3 className="primary_text">{ company }</h3>
-				<p className="secondary_text">{ booker }</p>
+			<>
+				<h3 className="primary_text pt2 ma1">{ data.company }</h3>
+			</>
+		);
+	} else {
+		return (
+			<>
+				<h3 className="primary_text pt3">{ data.company }</h3>
+				<p className="secondary_text">{ data.booker }</p>
+			</>
+		);
+	}
+}
+
+export const RenderFreeSlotPassed = () => {
+	const [height, setHeight] = useContext(DataSlotHeightContext);
+	return (
+		<div style={ {height: height} }
+			 className="item-time-passed">
+		
+		</div>
+	);
+};
+
+export const RenderBookedSlotPassed: React.FC<IndividualSlotDataProps> = ({slotData}: IndividualSlotDataProps) => {
+		const [height, setHeight] = useContext(DataSlotHeightContext);
+		return (
+			<div style={ {height: height} }
+				 className="item-time-passed">
+				<CompanyAndBooker company={ slotData.company } booker={ slotData.booker }/>
+			</div>
+		);
+	}
+;
+
+export const RenderFreeSlotCurrentTime: React.FC<IndividualSlotDataProps> = ({slotData}: IndividualSlotDataProps) => {
+	const [isChosenCompany, setChosenCompany] = useContext(ChoseCompanyContext);
+	const [chosenDataSlot, setChosenDataSlot] = useContext(ChosenDataSlotContext);
+	const [height, setHeight] = useContext(DataSlotHeightContext);
+	
+	if (height < 50) {
+		return (
+			<div onClick={ () => {
+				setChosenDataSlot(slotData.id);
+				setChosenCompany(!isChosenCompany);
+			} }>
+				<div style={ {height: height} }
+					 className="item-time-current grow shadow-1">
+					<AddCircleOutlineIcon className="pt2 mt1"/>
+				</div>
+			</div>
+		);
+	} else {
+		return (
+			<div onClick={ () => {
+				setChosenDataSlot(slotData.id);
+				setChosenCompany(!isChosenCompany);
+			} }>
+				<div style={ {height: height} }
+					 className="item-time-current grow shadow-1">
+					<AddCircleOutlineIcon fontSize="large" className="pt3 mt1"/>
+				</div>
 			</div>
 		);
 	}
 	
-	function withoutData() {
+};
+
+export const RenderBookedSlotCurrentTime: React.FC<IndividualSlotDataProps> = ({slotData}: IndividualSlotDataProps) => {
+	const [chosenDataSlot, setChosenDataSlot] = useContext(ChosenDataSlotContext);
+	const [removeCompany, setRemoveCompany] = useContext(RemoveBookingContext);
+	const [height, setHeight] = useContext(DataSlotHeightContext);
+	return (
+		<div style={ {height: height} }
+			 className="item-time-current grow shadow-1"
+			 onClick={ () => {
+				 setChosenDataSlot(slotData.id);
+				 setRemoveCompany(!removeCompany);
+			 }
+			 }>
+			<CompanyAndBooker company={ slotData.company } booker={ slotData.booker }/>
+		</div>
+	);
+};
+
+interface IndividualSlotDataProps {
+	slotData: IndividualSlotData
+}
+
+export const RenderFreeSlotFuture: React.FC<IndividualSlotDataProps> = ({slotData}: IndividualSlotDataProps) => {
+	const [isChosenCompany, setChosenCompany] = useContext(ChoseCompanyContext);
+	const [chosenDataSlot, setChosenDataSlot] = useContext(ChosenDataSlotContext);
+	const [height, setHeight] = useContext(DataSlotHeightContext);
+	
+	if (height < 50) {
 		return (
-			<div key={ index } className="pa2 ma0 item"></div>
+			<div onClick={ () => {
+				setChosenDataSlot(slotData.id);
+				setChosenCompany(!isChosenCompany);
+			} }>
+				<div style={ {height: height} }
+					 className="item-time-future-free grow shadow-1">
+					<AddCircleOutlineIcon className="pt2 mt1"/>
+				</div>
+			</div>
+		);
+	} else {
+		return (
+			<div onClick={ () => {
+				setChosenDataSlot(slotData.id);
+				setChosenCompany(!isChosenCompany);
+			} }>
+				<div style={ {height: height} }
+					 className="item-time-future-free grow shadow-1">
+					<AddCircleOutlineIcon fontSize="large" className="pt3 mt1"/>
+				</div>
+			</div>
 		);
 	}
 	
-	if (isTrue) {
-		return withData();
-	} else {
-		return withoutData();
-	}
-};*/
+	
+};
+
+export const RenderBookedSlotFuture: React.FC<IndividualSlotDataProps> = ({slotData}: IndividualSlotDataProps) => {
+	const [chosenDataSlot, setChosenDataSlot] = useContext(ChosenDataSlotContext);
+	const [removeCompany, setRemoveCompany] = useContext(RemoveBookingContext);
+	const [height, setHeight] = useContext(DataSlotHeightContext);
+	return (
+		<div style={ {height: height} }
+			 className="item-time-future-booked grow shadow-1"
+			 onClick={ () => {
+				 setChosenDataSlot(slotData.id);
+				 setRemoveCompany(!removeCompany);
+			 }
+			 }>
+			<CompanyAndBooker company={ slotData.company } booker={ slotData.booker }/>
+		</div>
+	);
+};

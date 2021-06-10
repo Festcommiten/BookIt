@@ -1,6 +1,14 @@
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import React from 'react';
+import moment from 'moment';
+import React, { useContext } from 'react';
+import { DataSlotHeightContext } from '../../utils/global/provider/GlobalProvider';
+import { WeekContext } from '../../utils/global/provider/WeekProvider';
+import './ColumnTime.css';
+
+const weekNow: number = parseInt(moment().format('W'));
+const weekMin = weekNow - 1;
+const weekMax = weekNow + 4;
 
 let time_slot = [
 	'8-9',
@@ -14,41 +22,74 @@ let time_slot = [
 	'16-17'
 ];
 
-const render_time_slots = time_slot.map((slot, i) => {
-	return (
-		<div key={ i } className="pa2 ma0 item-time"><p>{ time_slot[i] }</p></div>
-	);
-});
+let useHeight = 0;
 
-export default function ColumnTime() {
-	return (
-		<div className="week-column_rows">
-			<div className="mt1 tc shadow-1 br4">
-				<h2>FestCommitén</h2>
-			</div>
-			{ render_time_slots }
-		</div>
-	);
-}
+const render_time_slots = (height: number) => {
+	if (height < 50) {
+		return time_slot.map((slot, i) => {
+			return (
+				<div style={ {height: height} }
+					 key={ i }
+					 className="item-time">
+					<p style={ {color: '#4F4F53'} }>{ time_slot[i] }</p>
+				</div>
+			);
+		});
+	} else {
+		return time_slot.map((slot, i) => {
+			return (
+				<div style={ {height: height} }
+					 key={ i }
+					 className="item-time pt2 f4">
+					<p style={ {color: '#4F4F53'} }>{ time_slot[i] }</p>
+				</div>
+			);
+		});
+	}
+};
 
 export function ColumnTimeLeft() {
+	const [week, setWeek] = useContext(WeekContext);
+	const [height, setHeight] = useContext(DataSlotHeightContext);
+	useHeight = height;
+	
+	function goToPastWeek() {
+		if (week > weekMin) {
+			setWeek(week - 1);
+		}
+	}
+	
 	return (
-		<div className="week-column_rows">
-			<div className="mt1 tc shadow-1 br4">
-				<ArrowBackIosIcon className="mt3 ml2 light-brilliant-orange"/>
+		<div className="week-column-rows">
+			<div onClick={ goToPastWeek }>
+				<ArrowBackIosIcon
+					fontSize="large"
+					className="navigation-arrows mt3 ml3"/>
 			</div>
-			{ render_time_slots }
+			{ render_time_slots(height) }
 		</div>
 	);
 }
 
 export function ColumnTimeRight() {
+	const [week, setWeek] = useContext(WeekContext);
+	const [height, setHeight] = useContext(DataSlotHeightContext);
+	useHeight = height;
+	
+	function goToNextWeek() {
+		if (week < weekMax) {
+			setWeek(week + 1);
+		}
+	}
+	
 	return (
-		<div className="week-column_rows">
-			<div className="mt1 tc shadow-1 br4">
-				<ArrowForwardIosIcon className="mt3 ml2 light-brilliant-orange"/>
+		<div className="week-column-rows">
+			<div onClick={ goToNextWeek }>
+				<ArrowForwardIosIcon
+					fontSize="large"
+					className="navigation-arrows mt3 mr2"/>
 			</div>
-			{ render_time_slots }
+			{ render_time_slots(height) }
 		</div>
 	);
 }

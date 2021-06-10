@@ -1,0 +1,13 @@
+.display-room-container {
+    display: grid;
+    grid-template-rows: 100px 100px;
+    grid-template-columns: auto auto auto;
+    grid-gap: 30px;
+    padding: 20px 20px 60px 20px;
+    background-color: var(--dark-grey);
+}
+
+.display-room-container-item {
+    padding: 20px;
+    text-align: center;
+}

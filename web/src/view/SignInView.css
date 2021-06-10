@@ -1,0 +1,22 @@
+.login-container {
+    margin-top: 200px;
+    display: grid;
+    grid-template-columns: auto 300px auto;
+}
+
+.login-container-item {
+    /*background-color: #9eebcf;*/
+}
+
+.login-font {
+    font-size: 1.25em !important;
+}
+
+.login-field {
+    border-radius: 5px;
+    width: 300px;
+}
+
+.login-button {
+    width: 300px;
+}

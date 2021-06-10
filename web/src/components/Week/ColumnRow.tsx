@@ -1,65 +1,96 @@
 import moment from 'moment';
 import React from 'react';
 import './ColumnRow.css';
+import { IndividualSlotData, OneDayColumnData } from '../../utils/interface/WeekInterface';
 import {
-	RenderFreeSlot,
-	RenderGreenSlot,
-	RenderGrey_out_slot,
-	RenderRedSlot,
-	RenderRedSlotPassed,
-	RenderTitle
+	RenderFreeSlotFuture,
+	RenderFreeSlotCurrentTime,
+	RenderFreeSlotPassed,
+	RenderBookedSlotFuture,
+	RenderBookedSlotPassed,
+	RenderTitle, RenderBookedSlotCurrentTime
 } from './ColumnRowItem';
 
-interface DataSource {
-	passed_time_slot: boolean
-	id: number
-	company: string
-	booker: string
-	start_time: moment.Moment
+// Render greyed out slot with or without data
+function timeSlotPassed(slotData: IndividualSlotData) {
+	if (slotData.empty_slot) {
+		return (
+			<RenderFreeSlotPassed
+				key={ slotData.id }/>
+		);
+	} else {
+		return (
+			<RenderBookedSlotPassed
+				key={ slotData.id }
+				slotData={ slotData }/>
+		);
+	}
 }
 
-interface OneDayData {
-	weekday: string
-	date: string
-	datasource: Array<DataSource>
+// Render all other slots with or without data
+function timeSlotFuture(slotData: IndividualSlotData) {
+	// if empty slot
+	if (slotData.empty_slot) {
+		return (
+			<RenderFreeSlotFuture
+				key={ slotData.id }
+				slotData={ slotData }/>
+		);
+	} else {
+		return (
+			<RenderBookedSlotFuture
+				key={ slotData.id }
+				slotData={ slotData }/>
+		);
+	}
 }
 
-function render_day_slot_column(ds: DataSource) {
-	
-	
-	return (
-		<>
-			<RenderGrey_out_slot/>
-			<RenderRedSlotPassed company={ ds.company } booker={ ds.booker }/>
-			<RenderGreenSlot/>
-			<RenderFreeSlot/>
-			<RenderFreeSlot/>
-			<RenderFreeSlot/>
-			<RenderRedSlot company={ ds.company } booker={ ds.booker }/>
-			<RenderFreeSlot/>
-			<RenderFreeSlot/>
-		</>
-	);
+// Render nutid
+function timeSlotCurrent(slotData: IndividualSlotData) {
+	// if empty slot
+	if (slotData.empty_slot) {
+		return (
+			<RenderFreeSlotCurrentTime
+				key={ slotData.id }
+				slotData={ slotData }/>
+		);
+	} else {
+		return (
+			<RenderBookedSlotCurrentTime
+				key={ slotData.id }
+				slotData={ slotData }/>
+		);
+	}
 }
 
-function unpackData(oneDayData: OneDayData) {
-	let day0: DataSource = oneDayData.datasource[0];
-	let day1: DataSource = oneDayData.datasource[1];
-	let day2: DataSource = oneDayData.datasource[2];
-	let day3: DataSource = oneDayData.datasource[3];
-	let day4: DataSource = oneDayData.datasource[4];
+function renderDayColumn(oneDayData: OneDayColumnData) {
+	let slotArray = oneDayData.slotDatas;
+	let dataArray: Array<any> = [];
 	
+	const today: moment.Moment = moment();
+	const hourNow: number = today.hour();
 	
+	for (let i = 0; i < slotArray.length; i++) {
+		let slotStartTime: moment.Moment = moment(slotArray[i].start_time);
+		let slotStartHour: number = slotStartTime.hour();
+		
+		if (slotArray[i].passed_time_slot) {
+			dataArray.push(timeSlotPassed(slotArray[i]));
+		} else if (hourNow === slotStartHour &&
+			slotStartTime.dayOfYear() === today.dayOfYear()) {
+			dataArray.push(timeSlotCurrent(slotArray[i]));
+		} else {
+			dataArray.push(timeSlotFuture(slotArray[i]));
+		}
+	}
+	return dataArray;
 }
 
-export default function ColumnRow(oneDayData: OneDayData) {
-	
+export default function ColumnRow(oneDayData: OneDayColumnData) {
 	let {weekday, date} = oneDayData;
-	
-	return (
-		<div className="week-column_rows">
-			<RenderTitle weekday={ weekday } date={ date }/>
-			{ render_day_slot_column(oneDayData.datasource[0]) }
-		</div>
-	);
-};
+	return <div className="week-column-rows">
+		<RenderTitle weekday={ weekday } date={ date }/>
+		{ renderDayColumn(oneDayData) }
+	</div>;
+}
+;

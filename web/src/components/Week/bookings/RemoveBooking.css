@@ -1,0 +1,12 @@
+.cancel-button {
+    background-color: var(--light-brilliant-orange);
+}
+
+.popup-content {
+    margin: auto;
+    background: var(--dark-grey);
+    width: 60%;
+    padding: 25px;
+    border: none;
+    border-radius: 30px;
+}
