@@ -26,20 +26,7 @@ export default function Navbar() {
 	const displayRoomIfLoggedIn = () => {
 		return (authenticatedUser)
 			? <DisplayRoom/>
-			: <>
-				
-				<div className="fr mr1">
-					<NavigationButtonPrimary
-						button_name="Login"
-						routing_path={ RoutingPath.loginView }/>
-				</div>
-				
-				<div className="fr mr4-ns">
-					<NavigationButtonPrimary
-						button_name="Home"
-						routing_path={ RoutingPath.homeView }/>
-				</div>
-			</>;
+			: <></>;
 	};
 	
 	return (
