@@ -122,7 +122,7 @@ def test_bookings():
 
 
 def test_bookings_week():
-    endpoint = C.HTTP + C.HTTP + C.LOCAL_HOST + C.PORT_5K + C.CURRENT_VERSION
+    endpoint = C.HTTP + C.LOCAL_HOST + C.PORT_5K + C.CURRENT_VERSION
     endpoint_correct = endpoint + "/bookings/23"
     response = requests.get(endpoint_correct).json()
     assert response["message"] == "OK"
@@ -140,7 +140,7 @@ def test_bookings_week():
 
 
 def test_bookings_week_room():
-    endpoint = C.HTTP + C.HTTP + C.LOCAL_HOST + C.PORT_5K + C.CURRENT_VERSION
+    endpoint = C.HTTP + C.LOCAL_HOST + C.PORT_5K + C.CURRENT_VERSION
     endpoint_correct = endpoint + "/bookings/23/Ada"
     print("ENDPOINT CORRECT:", endpoint_correct)
     response = requests.get(endpoint_correct).json()
