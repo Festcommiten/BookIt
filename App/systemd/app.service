@@ -1,0 +1,9 @@
+[Service]
+Type=simple
+ExecStart=/home/backend/run.sh
+
+[Unit]
+Description=Executes app.py on 30 seconds after boot
+
+[Install]
+WantedBy=multi-user.target

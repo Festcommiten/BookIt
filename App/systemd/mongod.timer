@@ -1,0 +1,10 @@
+[Unit]
+Description=Starts MongoDB on 15 seconds after boot
+
+[Timer]
+OnBootSec=15 s
+Unit=mongod.service
+Persistent=true
+
+[Install]
+WantedBy=timers.target
