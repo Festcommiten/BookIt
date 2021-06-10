@@ -142,16 +142,19 @@ def test_bookings_week():
 def test_bookings_week_room():
     endpoint = C.HTTP + C.HTTP + C.LOCAL_HOST + C.PORT_5K + C.CURRENT_VERSION
     endpoint_correct = endpoint + "/bookings/23/Ada"
+    print("ENDPOINT CORRECT:", endpoint_correct)
     response = requests.get(endpoint_correct).json()
     assert response["message"] == "OK"
     assert response["status"] == 200
 
     endpoint_incorrect = endpoint + "/bookings/1/room_1"
+    print("ENDPOINT_INCORRECT:", endpoint_incorrect)
     response = requests.get(endpoint_incorrect).json()
     assert response["bookings"] == C.NO_BOOKINGS_PARAMETERS
     assert response["message"] == "Bad request"
     assert response["status"] == 400
 
     endpoint_wrong_datatype = endpoint + "/bookings/a/Ada"
+    print("ENDPOINT WRONG DATATYPE:", endpoint_wrong_datatype)
     response = requests.put(endpoint_wrong_datatype)
     assert response.status_code == 404
